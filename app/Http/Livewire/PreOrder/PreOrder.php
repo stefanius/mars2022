@@ -72,13 +72,13 @@ class PreOrder extends FormWizard
         $payment = Mollie::api()->payments->create([
             "amount" => [
                 "currency" => "EUR",
-                "value" => "10.00", // You must send the correct number of decimals, thus we enforce the use of strings
+                "value" => $this->order->grandTotal, // You must send the correct number of decimals, thus we enforce the use of strings
             ],
-            "description" => "Order #12345",
+            "description" => "Duinenmars Order #" . $this->order->order_number,
             "redirectUrl" => route('order.success'),
             "webhookUrl" => route('webhooks.mollie'),
             "metadata" => [
-                "order_id" => "12345",
+                "order_id" => $this->order->order_number,
             ],
         ]);
 
