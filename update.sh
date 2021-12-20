@@ -2,15 +2,17 @@
 
 git fetch --all
 git reset --hard
+git checkout master
 git pull origin master
 
-rm bootstrap/cache/*
-rm storage/logs/*.log
-rm storage/framework/cache/*
-rm storage/framework/sessions/*
-rm storage/framework/views/*
-rm .*.*.cache
-rm .*.cache
+
+rm -rf bootstrap/cache/*
+rm -rf storage/logs/*.log
+rm -rf storage/framework/cache/*
+rm -rf storage/framework/sessions/*
+rm -rf storage/framework/views/*
+rm -rf .*.*.cache
+rm -rf .*.cache
 
 composer install
 npm install
