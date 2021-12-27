@@ -27,5 +27,5 @@ Route::get('/hooks/mollie', function () {
 })->name('webhooks.mollie');
 
 Route::get('/order/success', function () {
-    echo "Thank you for your order";
+    return view('register.pages.thank-you');
 })->name('order.success');

@@ -83,7 +83,6 @@ class PreOrder extends FormWizard
         ]);
 
         // redirect customer to Mollie checkout page
-//        return redirect($payment->getCheckoutUrl(), 303);
         return redirect()->away($payment->getCheckoutUrl(), 303);
     }
 

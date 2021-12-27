@@ -10,5 +10,4 @@
     @if($step === 3)
         @include('livewire.wizards.pre-order.partials.register-step-3')
     @endif
-
 </div>

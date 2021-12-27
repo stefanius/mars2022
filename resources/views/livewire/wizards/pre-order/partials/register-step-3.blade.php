@@ -34,8 +34,6 @@
     </div>
 </div>
 
-
-
 <div class="field is-grouped is-grouped-right">
     <button wire:click="submit" type="submit" class="button button is-medium is-success">
         {{ "Checkout" }}
