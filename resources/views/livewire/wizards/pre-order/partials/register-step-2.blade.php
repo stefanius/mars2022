@@ -2,7 +2,7 @@
     <div class="column">
         <div class="field">
             <div class="field">
-                <label class="label">{{ "Day" }} *</label>
+                <label class="label">{{ __("Day") }} *</label>
                 <div class="control is-clearfix">
                     <select wire:model="day" name="day" required="required" class="input">
                         <option selected hidden>{{ __("Choose") }}</option>
@@ -17,7 +17,7 @@
 
     <div class="column">
         <div class="field">
-            <label class="label">{{ "Distance" }} *</label>
+            <label class="label">{{ __("Distance") }} *</label>
             <div class="control is-clearfix">
                 <select wire:model="distance" name="distance" required="required" class="input">
                     <option selected hidden>{{ __("Choose") }}</option>

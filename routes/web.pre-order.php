@@ -12,20 +12,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('register.pages.index');
+
+Route::group(['middleware' => ['locale']], function () {
+    Route::get('/', function () {
+        return view('register.pages.index');
+    });
+
+    Route::get('/hooks/mollie', function () {
+        $paymentId = request()->input('id');
+        $payment = \Mollie\Laravel\Facades\Mollie::api()->payments->get($paymentId);
+
+        if ($payment->isPaid()) {
+            echo 'Payment received.';
+            // Do your thing ...
+        }
+    })->name('webhooks.mollie');
+
+    Route::get('/order/success', function () {
+        return view('register.pages.thank-you');
+    })->name('order.success');
 });
-
-Route::get('/hooks/mollie', function () {
-    $paymentId = request()->input('id');
-    $payment = \Mollie\Laravel\Facades\Mollie::api()->payments->get($paymentId);
-
-    if ($payment->isPaid()) {
-        echo 'Payment received.';
-        // Do your thing ...
-    }
-})->name('webhooks.mollie');
-
-Route::get('/order/success', function () {
-    return view('register.pages.thank-you');
-})->name('order.success');
