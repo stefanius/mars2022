@@ -20,7 +20,6 @@ class SetLocale
     public function handle(Request $request, Closure $next, ...$guards)
     {
         if ($this->invalidLocale($request)) {
-//            dd(url($request->path(), ['locale' => 'en']));
             return redirect()->away(url($request->url() . '?locale=en'));
         }
 
