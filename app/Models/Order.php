@@ -26,6 +26,7 @@ class Order extends Model
         'organization',
         'phone',
         'order_number',
+        'mollie_payment_id',
         'paid_at',
         'started_at',
         'finished_at',

@@ -27,8 +27,13 @@
                         <strong>{{ __('Paid At') }}</strong> {{ $order->paid_at }} <br/>
                         <strong>{{ __('Started At') }}</strong> {{ $order->started_at }} <br/>
                         <strong>{{ __('Finished At') }}</strong> {{ $order->finished_at }} <br/>
-                        <strong>{{ __('Finished At') }}</strong> {{ $order->finished_at }} <br/>
+                        <strong>{{ __('Printed At') }}</strong> {{ $order->printed_at }} <br/>
                         <strong>{{ __('Created At') }}</strong> {{ $order->created_at }} <br/>
+
+                        @if($order->mollie_payment_id)
+                            <hr>
+                            <strong>{{ __('Mollie Payment ID') }}</strong> {{ $order->mollie_payment_id }} <br/>
+                        @endif
                     </div>
                 </div>
             </div>
