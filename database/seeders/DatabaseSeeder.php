@@ -66,6 +66,10 @@ class DatabaseSeeder extends Seeder
             'year' => 2021,
         ]);
 
+        \App\Models\Season::factory(1)->create([
+            'year' => 2022,
+        ]);
+
         return Season::all();
     }
 
