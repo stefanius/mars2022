@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+use Mollie\Api\Resources\Payment;
 
 class Order extends Model
 {
@@ -199,6 +200,20 @@ class Order extends Model
     public function markAsPrinted()
     {
         $this->update(['printed_at' => Carbon::now()]);
+
+        return $this->fresh();
+    }
+
+    public function markAsPaid(Payment $payment = null)
+    {
+        if ($payment) {
+            $this->update([
+                'paid_at' => Carbon::now(),
+                'mollie_payment_id' => $payment->id,
+            ]);
+        }
+
+        $this->update(['paid_at' => Carbon::now()]);
 
         return $this->fresh();
     }
