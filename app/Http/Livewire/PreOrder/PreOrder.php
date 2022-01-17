@@ -27,7 +27,7 @@ class PreOrder extends FormWizard
         1 => [
             'firstName' => 'required|min:1',
             'lastName' => 'required|min:1',
-            'email' => 'required|email',
+            'email' => 'required|email:rfc,dns',
             'organization' => 'sometimes|nullable',
             'phone' => 'sometimes|nullable',
         ],
@@ -39,6 +39,27 @@ class PreOrder extends FormWizard
             'ticketCount.*' => 'required',
         ],
     ];
+
+    protected function rules()
+    {
+        return [
+            1 => [
+                'firstName' => 'required|min:1',
+                'lastName' => 'required|min:1',
+                'email' => 'required|email:rfc,dns',
+                'organization' => 'sometimes|nullable',
+                'phone' => 'sometimes|nullable',
+            ],
+            2 => [
+                'day' => 'required',
+                'distance' => 'required',
+                'ticketType' => 'required|array|min:1|size:' . count($this->ticketCount),
+                'ticketCount' => 'required|array|min:1|size:' . count($this->ticketType),
+                'ticketType.*' => 'required|integer',
+                'ticketCount.*' => 'required|integer',
+            ],
+        ];
+    }
 
     public function submit()
     {

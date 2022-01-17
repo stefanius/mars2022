@@ -1,6 +1,5 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,5 +32,4 @@ Route::post('/hooks/mollie', function () {
 
         \App\Models\Order::where('order_number', $payment->metadata->order_id)->first()->markAsPaid($payment);
     }
-
 })->name('webhooks.mollie');
