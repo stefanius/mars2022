@@ -5,6 +5,12 @@
             <div class="control is-clearfix">
                 <input wire:model="firstName" type="text" maxlength="70" name="first_name" required="required" class="input">
             </div>
+
+            <span class="help is-danger">
+                @error('firstName')
+                    {{ $message }}
+                @enderror
+            </span>
         </div>
     </div>
 
@@ -14,6 +20,12 @@
             <div class="control is-clearfix">
                 <input wire:model="lastName" type="text" maxlength="70" name="first_name" required="required" class="input">
             </div>
+
+            <span class="help is-danger">
+                @error('lastName')
+                    {{ $message }}
+                @enderror
+            </span>
         </div>
     </div>
 </div>
@@ -25,6 +37,12 @@
             <div class="control is-clearfix">
                 <input wire:model="email"  type="text" maxlength="100" name="first_name" required="required" class="input">
             </div>
+
+            <span class="help is-danger">
+                @error('email')
+                    {{ $message }}
+                @enderror
+            </span>
         </div>
     </div>
 </div>

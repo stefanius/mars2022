@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Mollie\Api\Resources\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
-use Mollie\Api\Resources\Payment;
 
 class Order extends Model
 {
@@ -217,5 +217,10 @@ class Order extends Model
         $this->update(['paid_at' => Carbon::now()]);
 
         return $this->fresh();
+    }
+
+    public function hasEmail()
+    {
+        return filled($this->email);
     }
 }

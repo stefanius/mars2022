@@ -20,12 +20,10 @@ abstract class FormWizard extends Component
      */
     public $maxStep = 5;
 
-    /**
-     * Validation rules.
-     *
-     * @var array
-     */
-    protected $rules = [];
+    protected function rules()
+    {
+        return [];
+    }
 
     /**
      * Allow submit.
@@ -52,8 +50,10 @@ abstract class FormWizard extends Component
      */
     public function next()
     {
-        if (array_key_exists($this->step, $this->rules)) {
-            $this->validate($this->rules[$this->step]);
+        $rules = $this->rules();
+
+        if (array_key_exists($this->step, $rules)) {
+            $this->validate($rules[$this->step]);
         }
 
         if ($this->step < $this->maxStep) {
