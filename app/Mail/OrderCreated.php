@@ -33,6 +33,8 @@ class OrderCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.orders.created');
+        return $this->markdown('emails.orders.created', [
+            'url' => 'https://www.duinenmars.nl',
+        ]);
     }
 }

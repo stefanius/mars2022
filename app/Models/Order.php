@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\OrderCreated;
 use Carbon\Carbon;
 use Mollie\Api\Resources\Payment;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +35,15 @@ class Order extends Model
         'season_id',
         'distance_id',
         'day_id',
+    ];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => OrderCreated::class,
     ];
 
     /**
