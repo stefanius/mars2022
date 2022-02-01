@@ -6,6 +6,13 @@
 
 <div class="columns">
     <div class="column">
+        <a wire:click="firstPage">
+            {{__('Edit order details')}}
+        </a>
+
+        <br/>
+        <br/>
+
         <strong>{{ __("Customer Details") }}</strong> <br/>
         <span>{{ $firstName }} {{ $lastName }}</span> <br/>
         <span>{{ $email }}</span> <br/>
@@ -20,6 +27,7 @@
 
         <hr>
         {{ __('Distance') }}: {{ $this->selectedDistance->name }} <br/>
+
     </div>
 </div>
 
@@ -27,7 +35,7 @@
     <div class="column">
 
         @foreach($this->tickets as $ticket)
-            <span><strong>Medaile: {{ $ticket['ticket']->name }}</strong> € {{ $ticket['ticket']->amount_pre_order }} * {{ $ticket['quantity'] }} = € {{ $ticket['total_decimal'] }}</span> <br/>
+            <span><strong>Medaile: {{ $ticket['ticket']->name }}</strong> € {{ $ticket['ticket']->amount_pre_order / 100 }} * {{ $ticket['quantity'] }} = € {{ $ticket['total_decimal'] }}</span> <br/>
         @endforeach
 
         <span><strong>{{ __("Total") }}:</strong> € {{ $this->grandTotalDecimal }}</span>

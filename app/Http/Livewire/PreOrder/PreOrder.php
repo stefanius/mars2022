@@ -23,23 +23,6 @@ class PreOrder extends FormWizard
     public $maxStep = 3;
     public $day;
 
-    protected $rules = [
-        1 => [
-            'firstName' => 'required|min:1',
-            'lastName' => 'required|min:1',
-            'email' => 'required|email:rfc,dns',
-            'organization' => 'sometimes|nullable',
-            'phone' => 'sometimes|nullable',
-        ],
-        2 => [
-            'distance' => 'required',
-            'ticketType' => 'required|array|min:1',
-            'ticketCount' => 'required|array|min:1',
-            'ticketType.*' => 'required',
-            'ticketCount.*' => 'required',
-        ],
-    ];
-
     protected function rules()
     {
         return [
@@ -55,9 +38,19 @@ class PreOrder extends FormWizard
                 'distance' => 'required',
                 'ticketType' => 'required|array|min:1|size:' . count($this->ticketCount),
                 'ticketCount' => 'required|array|min:1|size:' . count($this->ticketType),
-                'ticketType.*' => 'required|integer',
-                'ticketCount.*' => 'required|integer',
+                'ticketType.*' => 'required|integer|min:1',
+                'ticketCount.*' => 'required|integer|min:1',
             ],
+        ];
+    }
+
+    protected function skipLiveValidation()
+    {
+        return [
+            'ticketType',
+            'ticketCount',
+            'ticketType.*',
+            'ticketCount.*',
         ];
     }
 

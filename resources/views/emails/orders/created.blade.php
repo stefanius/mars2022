@@ -1,12 +1,8 @@
 @component('mail::message')
-    # Order Shipped
+# {{ __('Thank you!') }}
 
-    Your order has been shipped!
+{{ __('Thank you for your order. When your payment is verified you will recieve your tickets.') }}
 
-    @component('mail::button', ['url' => $url])
-        View Order
-    @endcomponent
-
-    Thanks,<br>
-    {{ config('app.name') }}
+Thanks,<br>
+{{ config('app.name') }}
 @endcomponent

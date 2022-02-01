@@ -25,6 +25,18 @@ abstract class FormWizard extends Component
         return [];
     }
 
+    protected function skipLiveValidation()
+    {
+        return [];
+    }
+
+    protected function liveValidationFor($property)
+    {
+        [$attribute] = explode('.', $property, 2);
+
+        return !collect($this->skipLiveValidation())->contains($attribute);
+    }
+
     /**
      * Allow submit.
      *
@@ -42,6 +54,25 @@ abstract class FormWizard extends Component
     {
         if ($this->step > 1) {
             $this->step--;
+        }
+    }
+
+    protected function rulesForStep(int $step)
+    {
+        $rules = $this->rules();
+
+        return $rules[$step] ?? [];
+    }
+
+    protected function rulesForCurrentStep()
+    {
+        return $this->rulesForStep($this->step);
+    }
+
+    public function updated($propertyName)
+    {
+        if ($this->liveValidationFor($propertyName)) {
+            $this->validateOnly($propertyName, $this->rulesForCurrentStep());
         }
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,7 +19,11 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         \App\Events\OrderCreated::class => [
-            \App\Listeners\MailOrderConformation::class,
+            \App\Listeners\MailOrderCreatedConfirmation::class,
+        ],
+
+        \App\Events\OrderPaid::class => [
+            \App\Listeners\MailOrderPaidConfirmation::class,
         ],
     ];
 }

@@ -9,17 +9,38 @@
     <tbody>
     @for ($i = $start; $i < $start + 6; $i++)
         <tr>
-            <td width="50%">
+            <td>
                 <select wire:model="ticketType.{{ $i }}" id="ticket_type_{{ $i }}" class="input">
                     @foreach($ticketTypes as $ticketType)
                         <option value="{{ $ticketType->id }}">{{ __($ticketType->name) }}</option>
                     @endforeach
                 </select>
             </td>
-            <td width="50%">
+            <td>
                 <input wire:model="ticketCount.{{ $i }}" id="ticket_count_{{ $i }}" type="number" class="input">
             </td>
         </tr>
+
+        @error('ticketType.' . $i)
+            <tr>
+                <td colspan="2">
+                    <span class="help is-danger">
+                        {{ $message }}
+                    </span>
+                </td>
+            </tr>
+        @enderror
+
+        @error('ticketCount.' . $i)
+            <tr>
+                <td colspan="2">
+                    <span class="help is-danger">
+                        {{ $message }}
+                    </span>
+                </td>
+            </tr>
+        @enderror
+
     @endfor
     </tbody>
 </table>

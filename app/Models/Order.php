@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Events\OrderCreated;
 use Carbon\Carbon;
+use App\Events\OrderCreated;
 use Mollie\Api\Resources\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;

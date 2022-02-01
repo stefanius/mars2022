@@ -7,7 +7,7 @@ use App\Mail\OrderCreated;
 use Illuminate\Support\Facades\Mail;
 use App\Events\OrderCreated as Event;
 
-class MailOrderConformation
+class MailOrderCreatedConfirmation
 {
     /**
      * @param Event $event
