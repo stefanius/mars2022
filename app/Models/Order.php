@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\OrderPaid;
 use Carbon\Carbon;
 use App\Events\OrderCreated;
 use Mollie\Api\Resources\Payment;
@@ -225,6 +226,8 @@ class Order extends Model
         }
 
         $this->update(['paid_at' => Carbon::now()]);
+
+        event(new OrderPaid($this));
 
         return $this->fresh();
     }
