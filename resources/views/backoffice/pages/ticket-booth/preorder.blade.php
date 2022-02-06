@@ -18,7 +18,7 @@
             <livewire:table
                 model="\App\Models\Order"
                 :queryOn="['order_number', 'first_name', 'last_name', 'email']"
-                :scopes="['unpaid', 'activeSeason']"
+                :scopes="['paid', 'preOrder', 'activeSeason']"
                 routeKey="orders"
                 :showCreateButton="false"
                 :headers="[

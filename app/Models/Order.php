@@ -146,6 +146,16 @@ class Order extends Model
      *
      * @return Builder
      */
+    public function scopePreOrder(Builder $query)
+    {
+        return $query->whereNotNull('mollie_payment_id');
+    }
+
+    /**
+     * @param Builder $query
+     *
+     * @return Builder
+     */
     public function scopeActiveSeason(Builder $query)
     {
         return $query->whereHas('season', function ($query) {
