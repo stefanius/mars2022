@@ -20,17 +20,34 @@ abstract class FormWizard extends Component
      */
     public $maxStep = 5;
 
+    /**
+     * Validation rules.
+     *
+     * @return array
+     */
     protected function rules()
     {
         return [];
     }
 
+    /**
+     * Skip these attributes during live validation.
+     *
+     * @return array
+     */
     protected function skipLiveValidation()
     {
         return [];
     }
 
-    protected function liveValidationFor($property)
+    /**
+     * Determines when a property allows live validation.
+     *
+     * @param string $property
+     *
+     * @return bool
+     */
+    protected function liveValidationFor(string $property)
     {
         [$attribute] = explode('.', $property, 2);
 
@@ -38,7 +55,7 @@ abstract class FormWizard extends Component
     }
 
     /**
-     * Allow submit.
+     * Allows submit on the final step.
      *
      * @return bool
      */
@@ -57,18 +74,46 @@ abstract class FormWizard extends Component
         }
     }
 
-    protected function rulesForStep(int $step)
+    /**
+     * Get the validation rules for a given step.
+     *
+     * @param int $step
+     *
+     * @return array
+     */
+    protected function rulesForStep(int $step): array
     {
         $rules = $this->rules();
 
         return $rules[$step] ?? [];
     }
 
-    protected function rulesForCurrentStep()
+    /**
+     * Get the validation rules for the current step.
+     *
+     * @return array
+     */
+    protected function rulesForCurrentStep(): array
     {
         return $this->rulesForStep($this->step);
     }
 
+    /**
+     *
+     * @return array
+     */
+    protected function attributes()
+    {
+        return [];
+    }
+
+    /**
+     * Listen to updated event.
+     *
+     * @param $propertyName
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function updated($propertyName)
     {
         if ($this->liveValidationFor($propertyName)) {
@@ -81,11 +126,7 @@ abstract class FormWizard extends Component
      */
     public function next()
     {
-        $rules = $this->rules();
-
-        if (array_key_exists($this->step, $rules)) {
-            $this->validate($rules[$this->step]);
-        }
+        $this->validate($this->rulesForCurrentStep(), [], $this->attributes());
 
         if ($this->step < $this->maxStep) {
             $this->step++;

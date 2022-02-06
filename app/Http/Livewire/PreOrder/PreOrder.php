@@ -44,6 +44,13 @@ class PreOrder extends FormWizard
         ];
     }
 
+    protected function attributes()
+    {
+        return [
+            'ticketCount.*' => 'amount',
+        ];
+    }
+
     protected function skipLiveValidation()
     {
         return [
