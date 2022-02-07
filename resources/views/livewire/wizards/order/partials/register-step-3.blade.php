@@ -1,44 +1,49 @@
-<main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
-    <section>
-        <section>
-            <h3 class="font-bold text-2xl">Controlleer je bestelling</h3>
-            <p class="text-gray-600 pt-2">Kijk je gegevens nog even na. Dat is belangrijk zodat wij je de bevestiging naar je kunnen mailen en zodat de betaling klopt.</p>
-    </section>
+<div class="columns">
+    <div class="column">
+        <strong>{{ __("Check your order") }}</strong>
+    </div>
+</div>
 
-    <section class="mt-10">
-        <div class="flex flex-col">
-            <h1>Klantgegevens</h1>
-            <strong>{{ $firstName }} {{ $lastName }}</strong>
-            <span>{{ $email }}</span>
+<div class="columns">
+    <div class="column">
+        <a wire:click="firstPage">
+            {{__('Edit order details')}}
+        </a>
 
-            @if ($organization)
-                <span>{{ $organization }}</span>
-            @endif
+        <br/>
+        <br/>
 
-            @if ($phone)
-                <span>{{ $phone }}</span>
-            @endif
+        <strong>{{ __("Customer Details") }}</strong> <br/>
+        <span>{{ $firstName }} {{ $lastName }}</span> <br/>
+        <span>{{ $email }}</span> <br/>
 
-            <hr>
-            Afstand: {{ $this->selectedDistance->name }} <br/>
+        @if ($organization)
+            <span>{{ $organization }}</span> <br/>
+        @endif
 
-            @if($this->selectedDistance->long_distance)
-                Dit is een lange afstand
-            @endif
-        </div>
-    </section>
+        @if ($phone)
+            <span>{{ $phone }}</span> <br/>
+        @endif
 
-    <section class="mt-10">
-        <div class="flex flex-col">
-            @foreach($this->tickets as $ticket)
-                <span><strong>Medaile: {{ $ticket['ticket']->name }}</strong> € {{ $ticket['ticket']->amount_order }} * {{ $ticket['quantity'] }} = € {{ $ticket['total_decimal'] }}</span>
-            @endforeach
+        <hr>
+        {{ __('Distance') }}: {{ $this->selectedDistance->name }} <br/>
 
-            <span><strong>Totaal:</strong> € {{ $this->grandTotalDecimal }}</span>
-        </div>
+    </div>
+</div>
 
-        <div class="field">
-            <button wire:click="submit" class="button is-primary is-fullwidth" type="submit">{{ __('Save') }}</button>
-        </div>
-    </section>
-</main>
+<div class="columns">
+    <div class="column">
+
+        @foreach($this->tickets as $ticket)
+            <span><strong>Medaile: {{ $ticket['ticket']->name }}</strong> € {{ $ticket['ticket']->amount_pre_order / 100 }} * {{ $ticket['quantity'] }} = € {{ $ticket['total_decimal'] }}</span> <br/>
+        @endforeach
+
+        <span><strong>{{ __("Total") }}:</strong> € {{ $this->grandTotalDecimal }}</span>
+    </div>
+</div>
+
+<div class="field is-grouped is-grouped-right">
+    <button wire:click="submit" type="submit" class="button button is-medium is-success">
+        {{ __("Checkout") }}
+    </button>
+</div>

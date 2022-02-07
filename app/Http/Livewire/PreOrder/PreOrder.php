@@ -23,7 +23,12 @@ class PreOrder extends FormWizard
     public $maxStep = 3;
     public $day;
 
-    protected function rules()
+    /**
+     * Validation rules.
+     *
+     * @return array
+     */
+    protected function rules(): array
     {
         return [
             1 => [
@@ -44,14 +49,24 @@ class PreOrder extends FormWizard
         ];
     }
 
-    protected function attributes()
+    /**
+     * Validation attributes.
+     *
+     * @return array
+     */
+    protected function attributes(): array
     {
         return [
             'ticketCount.*' => 'amount',
         ];
     }
 
-    protected function skipLiveValidation()
+    /**
+     * Skip live validation for the given attributes.
+     *
+     * @return array
+     */
+    protected function skipLiveValidation(): array
     {
         return [
             'ticketType',
@@ -61,6 +76,9 @@ class PreOrder extends FormWizard
         ];
     }
 
+    /**
+     * Submit form wizard.
+     */
     public function submit()
     {
         $this->order = \App\Models\Order::create([
@@ -88,6 +106,11 @@ class PreOrder extends FormWizard
         $this->preparePayment();
     }
 
+    /**
+     * Prepare Mollie payment.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function preparePayment()
     {
         $payment = Mollie::api()->payments->create([
@@ -107,11 +130,21 @@ class PreOrder extends FormWizard
         return redirect()->away($payment->getCheckoutUrl(), 303);
     }
 
+    /**
+     * Get the Distance object.
+     *
+     * @return Distance
+     */
     public function getSelectedDistanceProperty()
     {
         return Distance::find($this->distance);
     }
 
+    /**
+     * Get the grand total of the order.
+     *
+     * @return mixed
+     */
     public function getGrandTotalProperty()
     {
         return $this->getTicketsProperty()->sum(function ($item) {
@@ -119,6 +152,11 @@ class PreOrder extends FormWizard
         });
     }
 
+    /**
+     * Get the grand total in decimals.
+     *
+     * @return float
+     */
     public function getGrandTotalDecimalProperty()
     {
         return (double) $this->getGrandTotalProperty() / 100;
@@ -146,21 +184,41 @@ class PreOrder extends FormWizard
         return $tickets;
     }
 
+    /**
+     * Get all tickettypes.
+     *
+     * @return TicketType[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function ticketTypes()
     {
         return TicketType::all();
     }
 
+    /**
+     * Get all distances.
+     *
+     * @return Distance[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function distances()
     {
         return Distance::all();
     }
 
+    /**
+     * Get all days.
+     *
+     * @return Day[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function days()
     {
         return Day::all();
     }
 
+    /**
+     * Render the wizard.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.wizards.pre-order.pre-order-wizard', [

@@ -1,49 +1,79 @@
-<main class="is-vertical">
-    <section>
-        <h3 class="font-bold text-2xl">Vertel ons wie je bent</h3>
-        <p class="text-gray-600 pt-2">Het is niet verplicht, maar als je wilt kan je je contactgegevens achterlaten. Zo houden wij je op de hoogte via de mail voor het laatate nieuws over de Duinenmars.</p>
-    </section>
-
-    <section class="mt-10">
-            <div class="field">
-                <label class="label">{{ __('First Name') }}</label>
-                <div class="control">
-                    <input class="input" wire:model="firstName" type="text" id="first_name">
-                </div>
+<div class="columns">
+    <div class="column">
+        <div class="field">
+            <label class="label">{{ __("First Name") }}</label>
+            <div class="control is-clearfix">
+                <input wire:model="firstName" type="text" maxlength="70" name="first_name" class="input">
             </div>
 
-            <div class="field">
-                <label class="label">{{ __('Last Name') }}</label>
-                <div class="control">
-                    <input class="input" wire:model="lastName" type="text" id="last_name">
-                </div>
+            <span class="help is-danger">
+                @error('firstName')
+                    {{ $message }}
+                @enderror
+            </span>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="field">
+            <label class="label">{{ __("Last Name") }}</label>
+            <div class="control is-clearfix">
+                <input wire:model="lastName" type="text" maxlength="70" name="last_name" class="input">
             </div>
 
-            <div class="field">
-                <label class="label">{{ __('Email') }}</label>
-                <div class="control">
-                    <input class="input" wire:model="email" type="text" id="email">
-                </div>
+            <span class="help is-danger">
+                @error('lastName')
+                    {{ $message }}
+                @enderror
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="columns">
+    <div class="column">
+        <div class="field">
+            <label class="label">{{ __("Email") }}</label>
+            <div class="control is-clearfix">
+                <input wire:model="email"  type="text" maxlength="100" name="email" class="input">
             </div>
 
-            <hr/>
+            <span class="help is-danger">
+                @error('email')
+                    {{ $message }}
+                @enderror
+            </span>
+        </div>
+    </div>
+</div>
 
-            <div class="field">
-                <label class="label">{{ __('Organization') }}</label>
-                <div class="control">
-                    <input class="input" wire:model="organization" type="text" id="organization">
-                </div>
-            </div>
+<hr/>
 
-            <div class="field">
-                <label class="label">{{ __('Phone') }}</label>
-                <div class="control">
-                    <input class="input" wire:model="phone" type="text" id="phone">
-                </div>
+<div class="columns">
+    <div class="column">
+        <div class="field">
+            <label class="label">{{ __("Organization") }}</label>
+            <div class="control is-clearfix">
+                <input wire:model="organization" type="text" maxlength="100" name="organization" class="input">
             </div>
+        </div>
+    </div>
+</div>
 
-            <div class="field">
-                <button wire:click="next" class="button is-primary is-fullwidth" type="submit">Volgende</button>
+<div class="columns">
+    <div class="column">
+        <div class="field">
+            <label class="label">{{ __("Phone") }}</label>
+            <div class="control is-clearfix">
+                <input wire:model="phone"  type="text" maxlength="100" name="phone" class="input">
             </div>
-    </section>
-</main>
+            <p class="help">.</p>
+        </div>
+    </div>
+</div>
+
+<div class="field is-grouped is-grouped-right">
+    <button wire:click="next" type="submit" class="button button is-medium is-success">
+        {{ __("Next") }}
+    </button>
+</div>

@@ -23,23 +23,61 @@ class Order extends FormWizard
     public $order;
     public $maxStep = 4;
 
-    protected $rules = [
-        1 => [
-            'firstName' => 'nullable',
-            'lastName' => 'nullable',
-            'email' => 'nullable',
-            'organization' => 'nullable',
-            'phone' => 'nullable',
-        ],
-        2 => [
-            'distance' => 'required',
-            'ticketType' => 'required|array|min:1',
-            'ticketCount' => 'required|array|min:1',
-            'ticketType.*' => 'required',
-            'ticketCount.*' => 'required',
-        ],
-    ];
+    /**
+     * Validation rules.
+     *
+     * @return array
+     */
+    protected function rules(): array
+    {
+        return [
+            1 => [
+                'firstName' => 'nullable',
+                'lastName' => 'nullable',
+                'email' => 'nullable',
+                'organization' => 'nullable',
+                'phone' => 'nullable',
+            ],
+            2 => [
+                'distance' => 'required',
+                'ticketType' => 'required|array|min:1|size:' . count($this->ticketCount),
+                'ticketCount' => 'required|array|min:1|size:' . count($this->ticketType),
+                'ticketType.*' => 'required|integer|min:1',
+                'ticketCount.*' => 'required|integer|min:1',
+            ],
+        ];
+    }
 
+    /**
+     * Validation attributes.
+     *
+     * @return array
+     */
+    protected function attributes(): array
+    {
+        return [
+            'ticketCount.*' => 'amount',
+        ];
+    }
+
+    /**
+     * Skip live validation for the given attributes.
+     *
+     * @return array
+     */
+    protected function skipLiveValidation(): array
+    {
+        return [
+            'ticketType',
+            'ticketCount',
+            'ticketType.*',
+            'ticketCount.*',
+        ];
+    }
+
+    /**
+     * Submit the form.
+     */
     public function submit()
     {
         $this->order = \App\Models\Order::create([
@@ -116,16 +154,29 @@ class Order extends FormWizard
         return $tickets;
     }
 
+    /**
+     * Get all ticket types.
+     *
+     * @return TicketType[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function ticketTypes()
     {
         return TicketType::all();
     }
 
+    /**
+     * Get all distances.
+     *
+     * @return Distance[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function distances()
     {
         return Distance::all();
     }
 
+    /**
+     * Create a fresh wizard.
+     */
     public function fresh()
     {
         $this->reset();
@@ -143,6 +194,11 @@ class Order extends FormWizard
 //        $this->halfPrice = [];
     }
 
+    /**
+     * Render the form wizard.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.wizards.order.order-wizard', [

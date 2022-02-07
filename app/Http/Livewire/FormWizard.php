@@ -25,7 +25,7 @@ abstract class FormWizard extends Component
      *
      * @return array
      */
-    protected function rules()
+    protected function rules(): array
     {
         return [];
     }

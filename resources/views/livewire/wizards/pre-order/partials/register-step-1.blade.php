@@ -18,7 +18,7 @@
         <div class="field">
             <label class="label">{{ __("Last Name") }} *</label>
             <div class="control is-clearfix">
-                <input wire:model="lastName" type="text" maxlength="70" name="first_name" required="required" class="input">
+                <input wire:model="lastName" type="text" maxlength="70" name="last_name" required="required" class="input">
             </div>
 
             <span class="help is-danger">
@@ -35,7 +35,7 @@
         <div class="field">
             <label class="label">{{ __("Email") }} *</label>
             <div class="control is-clearfix">
-                <input wire:model="email"  type="text" maxlength="100" name="first_name" required="required" class="input">
+                <input wire:model="email"  type="text" maxlength="100" name="email" required="required" class="input">
             </div>
 
             <span class="help is-danger">
@@ -54,7 +54,7 @@
         <div class="field">
             <label class="label">{{ __("Organization") }}</label>
             <div class="control is-clearfix">
-                <input wire:model="organization" type="text" maxlength="100" name="first_name" class="input">
+                <input wire:model="organization" type="text" maxlength="100" name="organization" class="input">
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
         <div class="field">
             <label class="label">{{ __("Phone") }}</label>
             <div class="control is-clearfix">
-                <input wire:model="phone"  type="text" maxlength="100" name="first_name" class="input">
+                <input wire:model="phone"  type="text" maxlength="100" name="phone" class="input">
             </div>
             <p class="help">.</p>
         </div>
