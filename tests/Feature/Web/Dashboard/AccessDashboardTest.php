@@ -16,6 +16,6 @@ class AccessDashboardTest extends TestCase
 
         // Then
         $response->assertStatus(200)
-            ->assertSee('Started hikers');
+            ->assertSee('Started Hikers');
     }
 }
