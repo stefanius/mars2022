@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
         });
     }
 
+    /**
+     * Seed an admin user.
+     */
     protected function seedAdmin()
     {
         \App\Models\User::factory(1)->create([
@@ -35,6 +38,9 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 
+    /**
+     * Seed a list of addresses.
+     */
     protected function seedAddresses()
     {
         \App\Models\Address::factory(1)->create([
@@ -52,6 +58,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\Address::factory(100)->create();
     }
 
+    /**
+     * Seed seasons.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     protected function seedSeasons()
     {
         \App\Models\Season::factory(1)->create([
@@ -73,13 +84,25 @@ class DatabaseSeeder extends Seeder
         return Season::all();
     }
 
+    /**
+     * Seed orders for a season.
+     *
+     * @param Season $season
+     *
+     * @throws \Exception
+     */
     protected function seedOrders(Season $season)
     {
+        \App\Models\Order::unsetEventDispatcher();
+
         for ($i = 0; $i < 100; $i++) {
             \App\Models\Order::factory()->for($season)->has(OrderLine::factory()->count(random_int(1, 5)))->create();
         }
     }
 
+    /**
+     * Seed inventory.
+     */
     protected function seedInventory()
     {
         \App\Models\InventoryItem::factory()->count(100)->create();
