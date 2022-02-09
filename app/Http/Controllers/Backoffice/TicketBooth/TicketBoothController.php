@@ -10,7 +10,7 @@ class TicketBoothController extends Controller
     /**
      * Show the addresses index.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function index()
     {

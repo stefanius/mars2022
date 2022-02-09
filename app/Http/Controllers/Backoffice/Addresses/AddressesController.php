@@ -65,7 +65,6 @@ class AddressesController extends Controller
     /**
      * Show a address page.
      *
-     * @param Address $address
      * @return \Illuminate\View\View
      */
     public function create()
@@ -77,7 +76,7 @@ class AddressesController extends Controller
      * Destroy a address.
      *
      * @param Address $address
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Address $address)
     {
