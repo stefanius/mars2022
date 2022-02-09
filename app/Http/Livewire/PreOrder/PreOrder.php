@@ -22,6 +22,7 @@ class PreOrder extends FormWizard
     public $phone;
     public $maxStep = 3;
     public $day;
+    public $order;
 
     /**
      * Validation rules.

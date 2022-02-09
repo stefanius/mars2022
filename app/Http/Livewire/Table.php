@@ -97,11 +97,11 @@ class Table extends Component
      * @param int $pagerLimit
      * @param bool $showHeader
      * @param array $scopes
-     * @param null $modal
+     * @param bool $modal
      * @param bool $allowPagination
      * @param bool $showCreateButton
      */
-    public function mount($headers, $routeKey, $model, $queryOn = [], $pagerLimit = 15, $showHeader = true, $scopes = [], $modal = null, $allowPagination=true, $showCreateButton=true, $actions = [])
+    public function mount($headers, $routeKey, $model, $queryOn = [], $pagerLimit = 15, $showHeader = true, $scopes = [], $modal = false, $allowPagination=true, $showCreateButton=true, $actions = [])
     {
         $this->headers = $headers;
         $this->queryOn = $queryOn;
