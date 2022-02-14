@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Season;
+use App\Models\Address;
 use App\Models\OrderLine;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->truncate();
+
         $this->seedInventory();
 
         $this->seedAdmin();
@@ -24,6 +30,24 @@ class DatabaseSeeder extends Seeder
         $this->seedSeasons()->each(function (Season $season) {
             $this->seedOrders($season);
         });
+    }
+
+    /**
+     * Truncate tables before seeding.
+     */
+    protected function truncate()
+    {
+        // Disable forein key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        User::truncate();
+        Address::truncate();
+        Season::truncate();
+        OrderLine::truncate();
+        Order::truncate();
+
+        // Enable forein key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**
@@ -93,7 +117,7 @@ class DatabaseSeeder extends Seeder
      */
     protected function seedOrders(Season $season)
     {
-        \App\Models\Order::unsetEventDispatcher();
+        config(['mail.default' => 'log']);
 
         for ($i = 0; $i < 100; $i++) {
             \App\Models\Order::factory()->for($season)->has(OrderLine::factory()->count(random_int(1, 5)))->create();

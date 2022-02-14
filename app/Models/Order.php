@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Events\OrderPaid;
 use Carbon\Carbon;
+use App\Events\OrderPaid;
 use App\Events\OrderCreated;
 use Mollie\Api\Resources\Payment;
 use Illuminate\Database\Eloquent\Model;
@@ -56,10 +56,12 @@ class Order extends Model
     {
         parent::boot();
 
-        self::created(function (Model $model) {
-            $model->update([
-                'order_number' => sprintf("%'.05d\n", $model->getAttribute('id')),
-            ]);
+        self::creating(function (Model $model) {
+            $previousValue = (int) Order::query()->max('order_number');
+
+            $newValue = $previousValue + 1;
+
+            $model->order_number = sprintf("%'.05d\n", $newValue);
         });
     }
 
