@@ -5,16 +5,18 @@ namespace App\Models;
 use Carbon\Carbon;
 use App\Events\OrderPaid;
 use App\Events\OrderCreated;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Mollie\Api\Resources\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 
-class Order extends Model
+class Order extends Model implements HasLocalePreference
 {
     use HasTimestamps;
     use HasFactory;
+
 
     /**
      * The attributes that are mass assignable.
@@ -244,8 +246,23 @@ class Order extends Model
         return $this->fresh();
     }
 
+    /**
+     * Determine if there was an email.
+     *
+     * @return bool
+     */
     public function hasEmail()
     {
         return filled($this->email);
+    }
+
+    /**
+     * Get the preferred locale of the entity.
+     *
+     * @return string|null
+     */
+    public function preferredLocale()
+    {
+        return $this->locale ?? 'en';
     }
 }

@@ -212,7 +212,7 @@ class PreOrder extends FormWizard
      */
     public function days()
     {
-        return Day::all();
+        return Day::where('show_on_pre_oder', '=', true)->get();
     }
 
     /**

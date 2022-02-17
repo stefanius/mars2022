@@ -25,6 +25,7 @@ class OrderCreated extends Mailable implements ShouldQueue
     public function __construct(Order $order)
     {
         $this->order = $order;
+        $this->locale($order->preferredLocale());
     }
 
     /**
