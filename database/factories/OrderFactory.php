@@ -33,6 +33,7 @@ class OrderFactory extends Factory
             'email' => $this->faker->boolean(50) ? $this->faker->email : null,
             'organization' => $this->faker->boolean(15) ? $this->faker->company : null,
             'phone' => $this->faker->boolean(15) ? $this->faker->phoneNumber : null,
+            'locale' => $this->faker->randomElement(['en', 'nl']),
             'distance_id' => Distance::all()->random()->id,
             'day_id' => Day::all()->random()->id,
             'paid_at' => $paid ? $this->faker->dateTime() : null,

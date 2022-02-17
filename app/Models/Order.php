@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 
-class Order extends Model
+class Order extends Model implements HasLocalePreference
 {
     use HasTimestamps;
     use HasFactory;
@@ -36,6 +37,7 @@ class Order extends Model
         'season_id',
         'distance_id',
         'day_id',
+        'locale'
     ];
 
     /**
@@ -244,8 +246,23 @@ class Order extends Model
         return $this->fresh();
     }
 
+    /**
+     * Determine if there was an email.
+     *
+     * @return bool
+     */
     public function hasEmail()
     {
         return filled($this->email);
+    }
+
+    /**
+     * Get the preferred locale of the entity.
+     *
+     * @return string|null
+     */
+    public function preferredLocale()
+    {
+        return $this->locale ?? 'en';
     }
 }

@@ -21,5 +21,6 @@ class Day extends Model
      */
     protected $fillable = [
         'name',
+        'show_on_pre_order',
     ];
 }

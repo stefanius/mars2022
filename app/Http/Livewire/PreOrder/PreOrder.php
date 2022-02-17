@@ -23,6 +23,12 @@ class PreOrder extends FormWizard
     public $maxStep = 3;
     public $day;
     public $order;
+    public $locale;
+
+    public function mount()
+    {
+        $this->locale = request('locale', 'en');
+    }
 
     /**
      * Validation rules.
@@ -91,6 +97,7 @@ class PreOrder extends FormWizard
             'distance_id' => $this->distance,
             'day_id' => $this->day,
             'season_id' => Season::activeSeason()->id,
+            'locale' => $this->locale,
         ]);
 
         $this->getTicketsProperty()->each(function ($ticket) {
@@ -212,7 +219,7 @@ class PreOrder extends FormWizard
      */
     public function days()
     {
-        return Day::all();
+        return Day::where('show_on_pre_order', '=', true)->get();
     }
 
     /**

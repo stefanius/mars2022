@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
 
             $table->text('name');
+
+            $table->boolean('show_on_pre_order')->default(false);
         });
 
         Schema::create('orders', function (Blueprint $table) {
@@ -28,6 +30,8 @@ class CreateOrdersTable extends Migration
             $table->string('email')->nullable();
             $table->string('organization')->nullable();
             $table->string('phone')->nullable();
+
+            $table->string('locale')->nullable();
 
             $table->timestamp('paid_at')->nullable();
             $table->timestamp('started_at')->nullable();
@@ -63,8 +67,13 @@ class CreateOrdersTable extends Migration
             $table->timestamps();
         });
 
-        \App\Models\Day::create(['name' => 'Saturday']);
-        \App\Models\Day::create(['name' => 'Sunday']);
+        \App\Models\Day::create(['id' => \Carbon\Carbon::MONDAY, 'name' => 'Monday']);
+        \App\Models\Day::create(['id' => \Carbon\Carbon::TUESDAY, 'name' => 'Tuesday']);
+        \App\Models\Day::create(['id' => \Carbon\Carbon::WEDNESDAY, 'name' => 'Wednesday']);
+        \App\Models\Day::create(['id' => \Carbon\Carbon::THURSDAY, 'name' => 'Thursday']);
+        \App\Models\Day::create(['id' => \Carbon\Carbon::FRIDAY, 'name' => 'Friday']);
+        \App\Models\Day::create(['id' => \Carbon\Carbon::SATURDAY, 'name' => 'Saturday', 'show_on_pre_order' => true]);
+        \App\Models\Day::create(['id' => \Carbon\Carbon::SUNDAY, 'name' => 'Sunday', 'show_on_pre_order' => true]);
     }
 
     /**
