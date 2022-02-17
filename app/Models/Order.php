@@ -49,6 +49,7 @@ class Order extends Model implements HasLocalePreference
         'created' => OrderCreated::class,
     ];
 
+
     /**
      * The "booting" method of the model.
      *
