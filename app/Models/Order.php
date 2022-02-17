@@ -37,6 +37,7 @@ class Order extends Model implements HasLocalePreference
         'season_id',
         'distance_id',
         'day_id',
+        'locale'
     ];
 
     /**

@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
 
             $table->text('name');
 
-            $table->boolean('show_on_pre_oder')->default(false);
+            $table->boolean('show_on_pre_order')->default(false);
         });
 
         Schema::create('orders', function (Blueprint $table) {
