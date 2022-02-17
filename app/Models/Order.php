@@ -5,18 +5,17 @@ namespace App\Models;
 use Carbon\Carbon;
 use App\Events\OrderPaid;
 use App\Events\OrderCreated;
-use Illuminate\Contracts\Translation\HasLocalePreference;
 use Mollie\Api\Resources\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 
 class Order extends Model implements HasLocalePreference
 {
     use HasTimestamps;
     use HasFactory;
-
 
     /**
      * The attributes that are mass assignable.
@@ -48,7 +47,6 @@ class Order extends Model implements HasLocalePreference
     protected $dispatchesEvents = [
         'created' => OrderCreated::class,
     ];
-
 
     /**
      * The "booting" method of the model.
