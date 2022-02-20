@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use App\Events\OrderPaid;
 use App\Events\OrderCreated;
+use App\Events\PaymentFailed;
 use Mollie\Api\Resources\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -30,6 +31,7 @@ class Order extends Model implements HasLocalePreference
         'phone',
         'order_number',
         'mollie_payment_id',
+        'mollie_payment_status',
         'paid_at',
         'started_at',
         'finished_at',
@@ -37,7 +39,7 @@ class Order extends Model implements HasLocalePreference
         'season_id',
         'distance_id',
         'day_id',
-        'locale'
+        'locale',
     ];
 
     /**
@@ -236,12 +238,25 @@ class Order extends Model implements HasLocalePreference
             $this->update([
                 'paid_at' => Carbon::now(),
                 'mollie_payment_id' => $payment->id,
+                'mollie_payment_status' => $payment->status,
             ]);
         }
 
         $this->update(['paid_at' => Carbon::now()]);
 
         event(new OrderPaid($this));
+
+        return $this->fresh();
+    }
+
+    public function paymentFailed(Payment $payment)
+    {
+        $this->update([
+            'mollie_payment_id' => $payment->id,
+            'mollie_payment_status' => $payment->status,
+        ]);
+
+        event(new PaymentFailed($this));
 
         return $this->fresh();
     }
