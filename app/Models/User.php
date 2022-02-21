@@ -23,6 +23,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'admin',
         'name',
         'email',
         'password',
@@ -66,5 +67,15 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    /**
+     * Determine the user is admin.
+     *
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+        return $this->admin;
     }
 }

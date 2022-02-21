@@ -1,40 +1,28 @@
 <div class="columns">
     <div class="column">
         <div class="field">
-            <div class="field">
-                <label class="label">{{ __("Day") }} *</label>
-                <div class="control is-clearfix">
-                    <select wire:model="day" name="day" required="required" class="input">
-                        <option selected hidden>{{ __("Choose") }}</option>
-                        @foreach($days as $day)
-                            <option value="{{ $day->id }}">{{ __($day->name) }}</option>
-                        @endforeach()
-                    </select>
-                </div>
-
-                <span class="help is-danger">
-                    @error('day')
-                        {{ $message }}
-                    @enderror
-                </span>
+            <label class="label">{{ __("First Name") }} *</label>
+            <div class="control is-clearfix">
+                <input wire:model="firstName" type="text" maxlength="70" name="first_name" required="required" class="input">
             </div>
+
+            <span class="help is-danger">
+                @error('firstName')
+                    {{ $message }}
+                @enderror
+            </span>
         </div>
     </div>
 
     <div class="column">
         <div class="field">
-            <label class="label">{{ __("Distance") }} *</label>
+            <label class="label">{{ __("Last Name") }} *</label>
             <div class="control is-clearfix">
-                <select wire:model="distance" name="distance" required="required" class="input">
-                    <option selected hidden>{{ __("Choose") }}</option>
-                    @foreach($distances as $distance)
-                        <option value="{{ $distance->id }}">{{ __($distance->name) }}</option>
-                    @endforeach()
-                </select>
+                <input wire:model="lastName" type="text" maxlength="70" name="last_name" required="required" class="input">
             </div>
 
             <span class="help is-danger">
-                @error('distance')
+                @error('lastName')
                     {{ $message }}
                 @enderror
             </span>
@@ -43,31 +31,63 @@
 </div>
 
 <div class="columns">
-    @if(Agent::isMobile())
-        <div class="column is-one-quarter">
+    <div class="column">
+        <div class="field">
+            <label class="label">{{ __("Email") }} *</label>
+            <div class="control is-clearfix">
+                <input wire:model="email"  type="text" maxlength="100" name="email" required="required" class="input">
+            </div>
 
+            <span class="help is-danger">
+                @error('email')
+                    {{ $message }}
+                @enderror
+            </span>
         </div>
+    </div>
+</div>
 
-        <div class="column is-half">
-            @include('livewire.wizards.pre-order.partials.order-table', ['start' => 0])
+<hr/>
+
+<div class="columns">
+    <div class="column">
+        <div class="field">
+            <label class="label">{{ __("Organization") }}</label>
+            <div class="control is-clearfix">
+                <input wire:model="organization" type="text" maxlength="100" name="organization" class="input">
+            </div>
         </div>
+    </div>
+</div>
 
-        <div class="column is-one-quarter">
-
+<div class="columns">
+    <div class="column">
+        <div class="field">
+            <label class="label">{{ __("Phone") }}</label>
+            <div class="control is-clearfix">
+                <input wire:model="phone"  type="text" maxlength="100" name="phone" class="input">
+            </div>
+            <p class="help">.</p>
         </div>
-    @else
-        <div class="column is-one-third">
-            @include('livewire.wizards.pre-order.partials.order-table', ['start' => 0])
-        </div>
+    </div>
+</div>
 
-        <div class="column is-one-third">
-
+<div class="columns">
+    <div class="column">
+        <div class="field">
+            <div class="control is-clearfix">
+                <input wire:model="termsOfService" type="checkbox" name="terms_of_service" class="checkbox"> {{ __("I agree with the terms of service.") }}
+            </div>
+            <span class="help is-danger">
+                @error('termsOfService')
+                    {{ $message }}
+                @enderror
+            </span>
+            <div class="control is-clearfix">
+                <input wire:model="mailConsent" type="checkbox" name="mail_consent" class="checkbox"> {{ __("I consent to recieve future information of this event by email.") }}
+            </div>
         </div>
-
-        <div class="column is-one-third">
-            @include('livewire.wizards.pre-order.partials.order-table',  ['start' => 10])
-        </div>
-    @endif
+    </div>
 </div>
 
 <div class="field is-grouped is-grouped-right">

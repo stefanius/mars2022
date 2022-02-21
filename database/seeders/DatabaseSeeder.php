@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->seedInventory();
 
         $this->seedAdmin();
+        $this->seedUser();
 
         $this->seedAddresses();
 
@@ -51,14 +52,28 @@ class DatabaseSeeder extends Seeder
     }
 
     /**
-     * Seed an admin user.
+     * Seed an admin.
      */
     protected function seedAdmin()
     {
         \App\Models\User::factory(1)->create([
             'name' => 'Test Admin',
-            'email' => 'test@duinenmars.nl',
+            'email' => 'bestuur@duinenmars.nl',
             'password' => 'S3cr3t!1234567890',
+            'admin' => true,
+        ]);
+    }
+
+    /**
+     * Seed a user.
+     */
+    protected function seedUser()
+    {
+        \App\Models\User::factory(1)->create([
+            'name' => 'Test User',
+            'email' => 'medewerker@duinenmars.nl',
+            'password' => 'S3cr3t!1234567890',
+            'admin' => false,
         ]);
     }
 

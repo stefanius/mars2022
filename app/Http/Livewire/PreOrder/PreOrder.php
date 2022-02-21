@@ -9,6 +9,7 @@ use App\Models\OrderLine;
 use App\Models\TicketType;
 use App\Http\Livewire\FormWizard;
 use Mollie\Laravel\Facades\Mollie;
+use Illuminate\Validation\Rule;
 
 class PreOrder extends FormWizard
 {
@@ -24,6 +25,8 @@ class PreOrder extends FormWizard
     public $day;
     public $order;
     public $locale;
+    public $mailConsent = false;
+    public $termsOfService = false;
 
     public function mount()
     {
@@ -39,19 +42,20 @@ class PreOrder extends FormWizard
     {
         return [
             1 => [
+                'day' => 'required',
+                'distance' => 'required',
+                'ticketType' => 'required|array|min:1|size:' . max(count($this->ticketCount), 1),
+                'ticketCount' => 'required|array|min:1|size:' . max(count($this->ticketType), 1),
+                'ticketType.*' => 'required|integer|min:1',
+                'ticketCount.*' => 'required|integer|min:1',
+            ],
+            2 => [
                 'firstName' => 'required|min:1',
                 'lastName' => 'required|min:1',
                 'email' => 'required|email:rfc,dns',
                 'organization' => 'sometimes|nullable',
                 'phone' => 'sometimes|nullable',
-            ],
-            2 => [
-                'day' => 'required',
-                'distance' => 'required',
-                'ticketType' => 'required|array|min:1|size:' . count($this->ticketCount),
-                'ticketCount' => 'required|array|min:1|size:' . count($this->ticketType),
-                'ticketType.*' => 'required|integer|min:1',
-                'ticketCount.*' => 'required|integer|min:1',
+                'termsOfService' => ['required', 'boolean', Rule::in(['1', 'true', true])]
             ],
         ];
     }
@@ -65,6 +69,16 @@ class PreOrder extends FormWizard
     {
         return [
             'ticketCount.*' => 'amount',
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function messages(): array
+    {
+        return [
+            'termsOfService.in' => __('You must agree with our terms of service.'),
         ];
     }
 
@@ -98,6 +112,8 @@ class PreOrder extends FormWizard
             'day_id' => $this->day,
             'season_id' => Season::activeSeason()->id,
             'locale' => $this->locale,
+            'mail_consent' => $this->mailConsent,
+            'agreed_terms_of_service' => $this->termsOfService,
         ]);
 
         $this->getTicketsProperty()->each(function ($ticket) {

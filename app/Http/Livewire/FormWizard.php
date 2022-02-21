@@ -122,11 +122,19 @@ abstract class FormWizard extends Component
     }
 
     /**
+     * @return array
+     */
+    protected function messages(): array
+    {
+        return [];
+    }
+
+    /**
      * Go te next step.
      */
     public function next()
     {
-        $this->validate($this->rulesForCurrentStep(), [], $this->attributes());
+        $this->validate($this->rulesForCurrentStep(), $this->messages(), $this->attributes());
 
         if ($this->step < $this->maxStep) {
             $this->step++;

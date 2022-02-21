@@ -22,8 +22,10 @@
                         <strong>{{ __('Order Number') }}</strong> {{ $order->order_number }} <br/>
                         <strong>{{ __('Organization') }}</strong> {{ $order->organization }} <br/>
                         <strong>{{ __('Name') }}</strong> {{ $order->name }} <br/>
-                        <strong>{{ __('Email') }}</strong> {{ $order->email }} <br/>
-                        <strong>{{ __('Phone') }}</strong> {{ $order->phone }} <br/>
+                        @if(auth()->user()->isAdmin())
+                            <strong>{{ __('Email') }}</strong> {{ $order->email }} <br/>
+                            <strong>{{ __('Phone') }}</strong> {{ $order->phone }} <br/>
+                        @endif
                         <strong>{{ __('Paid At') }}</strong> {{ $order->paid_at }} <br/>
                         <strong>{{ __('Started At') }}</strong> {{ $order->started_at }} <br/>
                         <strong>{{ __('Finished At') }}</strong> {{ $order->finished_at }} <br/>

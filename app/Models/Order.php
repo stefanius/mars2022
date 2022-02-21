@@ -40,6 +40,8 @@ class Order extends Model implements HasLocalePreference
         'distance_id',
         'day_id',
         'locale',
+        'agreed_terms_of_service',
+        'mail_consent',
     ];
 
     /**

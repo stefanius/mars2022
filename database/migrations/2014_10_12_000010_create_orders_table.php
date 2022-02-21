@@ -32,6 +32,9 @@ class CreateOrdersTable extends Migration
             $table->string('organization')->nullable();
             $table->string('phone')->nullable();
 
+            $table->boolean('mail_consent')->default(false);
+            $table->boolean('agreed_terms_of_service')->default(false);
+
             $table->string('locale')->nullable();
 
             $table->timestamp('paid_at')->nullable();
