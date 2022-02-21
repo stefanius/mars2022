@@ -25,10 +25,10 @@ class TopMenu extends Component
     protected function menuItems()
     {
         return [
-            $this->menuItem('Addresses', 'addresses.index'),
-            $this->menuItem('Orders', 'orders.index'),
-            $this->menuItem('Ticket Booth', 'ticket-booth.index'),
-            $this->menuItem('Inventory', 'inventory.index'),
+            $this->menuItem('Addresses', 'addresses.index', auth()->user()->isAdmin()),
+            $this->menuItem('Orders', 'orders.index', auth()->user()->isAdmin()),
+            $this->menuItem('Ticket Booth', 'ticket-booth.index', true),
+            $this->menuItem('Inventory', 'inventory.index', auth()->user()->isAdmin()),
         ];
     }
 
@@ -38,12 +38,13 @@ class TopMenu extends Component
      *
      * @return object
      */
-    protected function menuItem(string $name, string $route)
+    protected function menuItem(string $name, string $route, bool $showItem)
     {
         return (object) [
             'route' => route($route),
             'name' => $name,
             'active' => $this->isActive($route),
+            'showItem' => $showItem,
         ];
     }
 

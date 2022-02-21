@@ -15,6 +15,8 @@ class AddressesController extends Controller
      */
     public function index()
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         return view('backoffice.pages.addresses.index');
     }
 
@@ -26,6 +28,8 @@ class AddressesController extends Controller
      */
     public function show(Address $address)
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         return view('backoffice.pages.addresses.show', compact('address'));
     }
 
@@ -37,6 +41,8 @@ class AddressesController extends Controller
      */
     public function edit(Address $address)
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         return view('backoffice.pages.addresses.edit', compact('address'));
     }
 
@@ -45,6 +51,8 @@ class AddressesController extends Controller
      */
     public function store(AddressStoreRequest $request)
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         Address::create($request->validated());
 
         return redirect(route('addresses.index'));
@@ -57,6 +65,8 @@ class AddressesController extends Controller
      */
     public function update(Address $address, AddressStoreRequest $request)
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         $address->update($request->validated());
 
         return redirect(route('addresses.index'));
@@ -69,6 +79,8 @@ class AddressesController extends Controller
      */
     public function create()
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         return view('backoffice.pages.addresses.create');
     }
 
@@ -80,6 +92,8 @@ class AddressesController extends Controller
      */
     public function destroy(Address $address)
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         $address->forceDelete();
 
         return redirect('addresses.index');

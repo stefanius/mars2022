@@ -14,6 +14,8 @@ class OrdersController extends Controller
      */
     public function index()
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         return view('backoffice.pages.orders.index');
     }
 

@@ -14,6 +14,8 @@ class InventoryController extends Controller
      */
     public function index()
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         return view('backoffice.pages.inventory.index');
     }
 
@@ -25,6 +27,8 @@ class InventoryController extends Controller
      */
     public function show(Order $order)
     {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
         return view('backoffice.pages.inventory.show', $order);
     }
 }
