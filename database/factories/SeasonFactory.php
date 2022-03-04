@@ -22,7 +22,6 @@ class SeasonFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
             'pre_order_starts_at' => $this->faker->date(),
             'pre_order_ends_at' => $this->faker->date(),
             'saturday_date' => $this->faker->date(),

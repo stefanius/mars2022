@@ -7,9 +7,9 @@ use App\Models\Season;
 use App\Models\Distance;
 use App\Models\OrderLine;
 use App\Models\TicketType;
+use Illuminate\Validation\Rule;
 use App\Http\Livewire\FormWizard;
 use Mollie\Laravel\Facades\Mollie;
-use Illuminate\Validation\Rule;
 
 class PreOrder extends FormWizard
 {
@@ -55,7 +55,7 @@ class PreOrder extends FormWizard
                 'email' => 'required|email:rfc,dns',
                 'organization' => 'sometimes|nullable',
                 'phone' => 'sometimes|nullable',
-                'termsOfService' => ['required', 'boolean', Rule::in(['1', 'true', true])]
+                'termsOfService' => ['required', 'boolean', Rule::in(['1', 'true', true])],
             ],
         ];
     }

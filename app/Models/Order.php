@@ -7,6 +7,7 @@ use App\Events\OrderPaid;
 use App\Events\OrderCreated;
 use App\Events\PaymentFailed;
 use Mollie\Api\Resources\Payment;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -67,7 +68,7 @@ class Order extends Model implements HasLocalePreference
 
             $newValue = $previousValue + 1;
 
-            $model->order_number = sprintf("%'.05d\n", $newValue);
+            $model->order_number = sprintf("%05d", $newValue);
         });
     }
 
@@ -157,6 +158,20 @@ class Order extends Model implements HasLocalePreference
     public function scopePreOrder(Builder $query)
     {
         return $query->whereNotNull('mollie_payment_id');
+    }
+
+    /**
+     * @param Builder $query
+     *
+     * @return Builder
+     */
+    public function scopeOnlyGroups(Builder $query)
+    {
+        return $query->whereHas('orderLines', function (Builder $query) {
+            return $query
+                ->select(DB::raw('SUM(quantity) as sum_quantity'))
+                ->having('sum_quantity', '>', Season::activeSeason()->minimum_group);
+        });
     }
 
     /**
@@ -281,5 +296,15 @@ class Order extends Model implements HasLocalePreference
     public function preferredLocale()
     {
         return $this->locale ?? 'en';
+    }
+
+    public function numberOfAttendees()
+    {
+        return $this->orderLines->sum('quantity');
+    }
+
+    public function isGroup()
+    {
+        return $this->numberOfAttendees() >= $this->season->minimum_group;
     }
 }

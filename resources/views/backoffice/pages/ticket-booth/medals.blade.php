@@ -1,5 +1,9 @@
 <x-layouts.backoffice>
     <x-slot name="menuBarLeft">
+        <a class="navbar-item" href="{{ action('Backoffice\TicketBooth\TicketBoothController@orderSearcher') }}">
+            <span>{{ __('Search Order') }}</span>
+        </a>
+
         <a class="navbar-item" href="{{ action('Backoffice\TicketBooth\TicketBoothController@sales') }}">
             <span>{{ __('Sales') }}</span>
         </a>
@@ -18,7 +22,7 @@
             <livewire:table
                 model="{{ \App\Models\Order::class }}"
                 :queryOn="['order_number', 'first_name', 'last_name', 'email']"
-                :scopes="['paid', 'started', 'notFinished', 'notPrinted', 'activeSeason']"
+                :scopes="['paid', 'started', 'notFinished', 'notPrinted', 'activeSeason', 'onlyGroups']"
                 routeKey="orders"
                 :showCreateButton="false"
                 :headers="[
