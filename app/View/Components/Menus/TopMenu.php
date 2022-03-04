@@ -29,6 +29,7 @@ class TopMenu extends Component
             $this->menuItem('Orders', 'orders.index', auth()->user()->isAdmin()),
             $this->menuItem('Ticket Booth', 'ticket-booth.index', true),
             $this->menuItem('Inventory', 'inventory.index', auth()->user()->isAdmin()),
+            $this->menuItem('Seasons', 'seasons.index', auth()->user()->isAdmin()),
         ];
     }
 

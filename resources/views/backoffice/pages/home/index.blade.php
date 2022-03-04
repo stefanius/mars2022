@@ -1,6 +1,9 @@
 <x-layouts.backoffice>
-    <div class="section">
-        <livewire:dashboard.visiters-on-track></livewire:dashboard.visiters-on-track>
-    </div>
+
+    @if(auth()->user()->isAdmin())
+        @include('backoffice.pages.home.partials.admin-dashboard')
+    @else
+        @include('backoffice.pages.home.partials.user-dashboard')
+    @endif
 
 </x-layouts.backoffice>

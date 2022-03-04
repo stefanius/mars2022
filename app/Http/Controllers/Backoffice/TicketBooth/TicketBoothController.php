@@ -14,7 +14,17 @@ class TicketBoothController extends Controller
      */
     public function index()
     {
-        return redirect(route('ticket-booth.sales'));
+        return redirect(route('ticket-booth.order-searcher'));
+    }
+
+    /**
+     * Show the addresses index.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function orderSearcher()
+    {
+        return view('backoffice.pages.ticket-booth.order-searcher');
     }
 
     /**

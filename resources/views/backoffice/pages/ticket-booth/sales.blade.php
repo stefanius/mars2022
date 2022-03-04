@@ -1,5 +1,9 @@
 <x-layouts.backoffice>
     <x-slot name="menuBarLeft">
+        <a class="navbar-item" href="{{ action('Backoffice\TicketBooth\TicketBoothController@orderSearcher') }}">
+            <span>{{ __('Search Order') }}</span>
+        </a>
+
         <a class="navbar-item is-active" href="{{ action('Backoffice\TicketBooth\TicketBoothController@sales') }}">
             <span>{{ __('Sales') }}</span>
         </a>

@@ -1,12 +1,47 @@
 <x-layouts.backoffice>
-    <div class="p-5">
-        <div class="column is-12">
+    <section class="section">
+        <div class="columns">
+            <div class="column is-3">
+                <div class="card @if($order->isGroup()) has-background-danger-light @else has-background-info-light @endif">
+                    <h1 class="title is-centered has-text-centered">{{ $order->order_number }}</h1>
+                    <h2 class="subtitle is-centered has-text-centered">
+                        @if($order->isGroup())
+                            {{ __('Group') }}
+                        @else
+                            {{ __('Individual') }}
+                        @endif
+                    </h2>
+                </div>
+            </div>
 
-            <x-slot name="header">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __('Orders') }}
-                </h2>
-            </x-slot>
+            <div class="column is-3">
+                <div class="card @if($order->isGroup()) has-background-danger-light @else has-background-info-light @endif">
+                    <h1 class="title is-centered has-text-centered">{{ $order->numberOfAttendees() }}</h1>
+                    <h2 class="subtitle is-centered has-text-centered">{{ __('Attendees') }}</h2>
+                </div>
+            </div>
+
+            <div class="column is-3">
+                <div class="card @if($order->isGroup()) has-background-danger-light @else has-background-info-light @endif">
+                    <h1 class="title is-centered has-text-centered">
+                        @if($order->isFinished())
+                            {{ __('Finished') }}
+                        @elseif($order->isStarted())
+                            {{ __('Started') }}
+                        @elseif($order->isPaid())
+                            {{ __('Paid') }}
+                        @else
+                            {{ __('New') }}
+                        @endif
+                    </h1>
+                    <h2 class="subtitle is-centered has-text-centered">{{ __('Stage') }}</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="column is-12">
 
             <livewire:order-actions
                 :order="$order"
@@ -20,9 +55,9 @@
                 <div class="card">
                     <div class="">
                         <strong>{{ __('Order Number') }}</strong> {{ $order->order_number }} <br/>
-                        <strong>{{ __('Organization') }}</strong> {{ $order->organization }} <br/>
-                        <strong>{{ __('Name') }}</strong> {{ $order->name }} <br/>
                         @if(auth()->user()->isAdmin())
+                            <strong>{{ __('Organization') }}</strong> {{ $order->organization }} <br/>
+                            <strong>{{ __('Name') }}</strong> {{ $order->name }} <br/>
                             <strong>{{ __('Email') }}</strong> {{ $order->email }} <br/>
                             <strong>{{ __('Phone') }}</strong> {{ $order->phone }} <br/>
                         @endif
@@ -45,16 +80,14 @@
                     <div class="">
                         <table class="table is-striped is-fullwidth">
                             <tr>
-                                <th>{{ __('Ticket') }}</th>
-                                <th>{{ __('Amount') }}</th>
-                                <th>{{ __('Total') }}</th>
+                                <th>{{ __('Medal') }}</th>
+                                <th>{{ __('Quantity') }}</th>
                             </tr>
 
                             @foreach($order->orderLines as $line)
                                 <tr>
                                     <td>{{ $line->ticket->name }}</td>
-                                    <td>{{ $line->amount}}</td>
-                                    <td>{{ $line->totalAmount}}</td>
+                                    <td>{{ $line->quantity}}</td>
                                 </tr>
                             @endforeach
                         </table>
@@ -63,5 +96,5 @@
             </div>
         </div>
 
-    </div>
+    </section>
 </x-layouts.backoffice>

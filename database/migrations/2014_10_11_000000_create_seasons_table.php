@@ -15,7 +15,9 @@ class CreateSeasonsTable extends Migration
     {
         Schema::create('seasons', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->integer('edition');
+
+            $table->integer('minimum_group')->default(8);
 
             $table->date('pre_order_starts_at');
             $table->date('pre_order_ends_at');
@@ -24,6 +26,8 @@ class CreateSeasonsTable extends Migration
             $table->date('sunday_date');
 
             $table->integer('year');
+
+            $table->timestamp('read_only_since')->nullable()->default(null);
 
             $table->timestamps();
         });

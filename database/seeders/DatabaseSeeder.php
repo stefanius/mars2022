@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Season;
@@ -104,21 +105,16 @@ class DatabaseSeeder extends Seeder
      */
     protected function seedSeasons()
     {
-        \App\Models\Season::factory(1)->create([
-            'year' => 2019,
-        ]);
+        $currentYear = Carbon::now()->year;
 
-        \App\Models\Season::factory(1)->create([
-            'year' => 2020,
-        ]);
-
-        \App\Models\Season::factory(1)->create([
-            'year' => 2021,
-        ]);
-
-        \App\Models\Season::factory(1)->create([
-            'year' => 2022,
-        ]);
+        for ($year = ($currentYear - 5); $year <= $currentYear; $year++) {
+            \App\Models\Season::factory(1)->create([
+                'edition' => $year - 2000,
+                'year' => $year,
+                'minimum_group' => 8,
+                'read_only_since' => $year !== $currentYear ? Carbon::now() : null,
+            ]);
+        }
 
         return Season::all();
     }

@@ -17,11 +17,13 @@ class Season extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'edition',
+        'minimum_group',
         'pre_order_starts_at',
         'pre_order_ends_at',
         'saturday_date',
         'sunday_date',
+        'read_only_since',
         'year',
     ];
 
