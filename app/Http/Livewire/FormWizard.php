@@ -117,7 +117,7 @@ abstract class FormWizard extends Component
     public function updated(string $propertyName)
     {
         if ($this->liveValidationFor($propertyName)) {
-            $this->validateOnly($propertyName, $this->rulesForCurrentStep());
+            $this->validateOnly($propertyName, $this->rulesForCurrentStep(), $this->messages(), $this->attributes());
         }
     }
 

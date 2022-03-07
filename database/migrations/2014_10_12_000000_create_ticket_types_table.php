@@ -33,8 +33,6 @@ class CreateTicketTypesTable extends Migration
         for ($i = 1; $i <= 65; $i++) {
             $this->createTicketType($i, $i, 1000 + (10 * $i), 400, 500, true, true);
         }
-
-        $this->createTicketType('Donation', 'Donation', 5000, 250, 250, true, true);
     }
 
     protected function createTicketType(string $name, string $description, int $order, int $amountPreOrder, int $amountOrder, bool $allowPreOrder, bool $allowOrder)

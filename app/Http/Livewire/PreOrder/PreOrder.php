@@ -83,21 +83,6 @@ class PreOrder extends FormWizard
     }
 
     /**
-     * Skip live validation for the given attributes.
-     *
-     * @return array
-     */
-    protected function skipLiveValidation(): array
-    {
-        return [
-            'ticketType',
-            'ticketCount',
-            'ticketType.*',
-            'ticketCount.*',
-        ];
-    }
-
-    /**
      * Submit form wizard.
      */
     public function submit()
@@ -116,15 +101,21 @@ class PreOrder extends FormWizard
             'agreed_terms_of_service' => $this->termsOfService,
         ]);
 
-        $this->getTicketsProperty()->each(function ($ticket) {
-            OrderLine::create([
-                'order_id' => $this->order->id,
-                'ticket_type_id' => $ticket['ticket']->id,
-                'half_price' => false,
-                'quantity' => $ticket['quantity'],
-                'amount' => $ticket['ticket']->amount_pre_order,
-                'total_amount' => $ticket['total'],
-            ]);
+        $this->getTicketsProperty()
+            ->mapToGroups(function ($ticket, $key) {
+                return [$ticket['ticket']->id => $ticket];
+            })
+            ->each(function ($group) {
+                $group = collect($group);
+
+                OrderLine::create([
+                    'order_id' => $this->order->id,
+                    'ticket_type_id' => $group->first()['ticket']->id,
+                    'half_price' => false,
+                    'quantity' => $group->sum('quantity'),
+                    'amount' => $group->first()['ticket']->amount_pre_order,
+                    'total_amount' => $group->sum('total'),
+                ]);
         });
 
         $this->preparePayment();
