@@ -10,7 +10,7 @@
     @for ($i = $start; $i < $start + 6; $i++)
         <tr>
             <td>
-                <select wire:model="ticketType.{{ $i }}" id="ticket_type_{{ $i }}" class="input">
+                <select wire:model.debounce.lazy="ticketType.{{ $i }}" id="ticket_type_{{ $i }}" class="input">
                     <option selected hidden>{{ __("Choose") }}</option>
                     @foreach($ticketTypes as $ticketType)
                         <option value="{{ $ticketType->id }}">{{ __($ticketType->name) }}</option>
@@ -18,7 +18,7 @@
                 </select>
             </td>
             <td>
-                <input wire:model="ticketCount.{{ $i }}" id="ticket_count_{{ $i }}" type="number" class="input">
+                <input wire:model.debounce.lazy="ticketCount.{{ $i }}" id="ticket_count_{{ $i }}" type="number" class="input">
             </td>
         </tr>
 
