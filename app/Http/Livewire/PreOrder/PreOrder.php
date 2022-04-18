@@ -118,8 +118,7 @@ class PreOrder extends FormWizard
                 ]);
             });
 
-        $this->order->markAsPaid();
-//        $this->preparePayment();
+        $this->preparePayment();
     }
 
     /**
