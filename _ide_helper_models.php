@@ -155,6 +155,8 @@ namespace App\Models{
  * @property string|null $email
  * @property string|null $organization
  * @property string|null $phone
+ * @property int $mail_consent
+ * @property int $agreed_terms_of_service
  * @property string|null $locale
  * @property string|null $paid_at
  * @property string|null $started_at
@@ -179,11 +181,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order notFinished()
  * @method static \Illuminate\Database\Eloquent\Builder|Order notPrinted()
  * @method static \Illuminate\Database\Eloquent\Builder|Order notStarted()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order onlyGroups()
  * @method static \Illuminate\Database\Eloquent\Builder|Order paid()
  * @method static \Illuminate\Database\Eloquent\Builder|Order preOrder()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
  * @method static \Illuminate\Database\Eloquent\Builder|Order started()
  * @method static \Illuminate\Database\Eloquent\Builder|Order unpaid()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereAgreedTermsOfService($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereDayId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereDistanceId($value)
@@ -193,6 +197,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereMailConsent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereMolliePaymentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereMolliePaymentStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereOrderNumber($value)
@@ -247,12 +252,14 @@ namespace App\Models{
  * App\Models\Season.
  *
  * @property int $id
- * @property string $name
+ * @property int $edition
+ * @property int $minimum_group
  * @property string $pre_order_starts_at
  * @property string $pre_order_ends_at
  * @property string $saturday_date
  * @property string $sunday_date
  * @property int $year
+ * @property string|null $read_only_since
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\SeasonFactory factory(...$parameters)
@@ -260,10 +267,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Season newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Season query()
  * @method static \Illuminate\Database\Eloquent\Builder|Season whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Season whereEdition($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Season whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Season whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Season whereMinimumGroup($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Season wherePreOrderEndsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Season wherePreOrderStartsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Season whereReadOnlySince($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Season whereSaturdayDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Season whereSundayDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Season whereUpdatedAt($value)
@@ -286,6 +295,7 @@ namespace App\Models{
  * @property int $amount_order
  * @property int $allow_pre_order
  * @property int $allow_order
+ * @property int $with_medal
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|TicketType newModelQuery()
@@ -301,6 +311,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TicketType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketType whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketType whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TicketType whereWithMedal($value)
  */
     class TicketType extends \Eloquent
     {

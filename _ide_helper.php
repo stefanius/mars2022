@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.1.0.
+ * Generated for Laravel 9.8.1.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2433,6 +2433,7 @@
          *
          * @param string $field
          * @param array $extraConditions
+         * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
          * @return \Symfony\Component\HttpFoundation\Response|null
          * @static
          */
@@ -2446,6 +2447,7 @@
          *
          * @param string $field
          * @param array $extraConditions
+         * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
          * @return \Symfony\Component\HttpFoundation\Response|null
          * @static
          */
@@ -3012,6 +3014,19 @@
                 return $instance->getClassComponentAliases();
             }
             /**
+         * Register an anonymous component namespace.
+         *
+         * @param string $directory
+         * @param string|null $prefix
+         * @return void
+         * @static
+         */
+            public static function anonymousComponentNamespace($directory, $prefix = null)
+            {
+                /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
+                $instance->anonymousComponentNamespace($directory, $prefix);
+            }
+            /**
          * Register a class-based component namespace.
          *
          * @param string $namespace
@@ -3023,6 +3038,17 @@
             {
                 /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
                 $instance->componentNamespace($namespace, $prefix);
+            }
+            /**
+         * Get the registered anonymous component namespaces.
+         *
+         * @return array
+         * @static
+         */
+            public static function getAnonymousComponentNamespaces()
+            {
+                /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
+                return $instance->getAnonymousComponentNamespaces();
             }
             /**
          * Get the registered class component namespaces.
@@ -5079,23 +5105,23 @@
      * @method static \Illuminate\Support\Carbon createFromTimestampMs($timestamp, $tz = null)
      * @method static \Illuminate\Support\Carbon createFromTimestampUTC($timestamp)
      * @method static \Illuminate\Support\Carbon createMidnightDate($year = null, $month = null, $day = null, $tz = null)
-     * @method static \Illuminate\Support\Carbon disableHumanDiffOption($humanDiffOption)
-     * @method static \Illuminate\Support\Carbon enableHumanDiffOption($humanDiffOption)
+     * @method static void disableHumanDiffOption($humanDiffOption)
+     * @method static void enableHumanDiffOption($humanDiffOption)
      * @method static \Illuminate\Support\Carbon fromSerialized($value)
-     * @method static \Illuminate\Support\Carbon getLastErrors()
-     * @method static \Illuminate\Support\Carbon getTestNow()
+     * @method static array getLastErrors()
+     * @method static \Illuminate\Support\Carbon|null getTestNow()
      * @method static \Illuminate\Support\Carbon instance($date)
-     * @method static \Illuminate\Support\Carbon isMutable()
+     * @method static bool isMutable()
      * @method static \Illuminate\Support\Carbon maxValue()
      * @method static \Illuminate\Support\Carbon minValue()
      * @method static \Illuminate\Support\Carbon now($tz = null)
      * @method static \Illuminate\Support\Carbon parse($time = null, $tz = null)
-     * @method static \Illuminate\Support\Carbon setHumanDiffOptions($humanDiffOptions)
+     * @method static void setHumanDiffOptions($humanDiffOptions)
      * @method static void setTestNow($testNow = null)
-     * @method static \Illuminate\Support\Carbon setUtf8($utf8)
+     * @method static void setUtf8($utf8)
      * @method static \Illuminate\Support\Carbon today($tz = null)
      * @method static \Illuminate\Support\Carbon tomorrow($tz = null)
-     * @method static \Illuminate\Support\Carbon useStrictMode($strictModeEnabled = true)
+     * @method static void useStrictMode($strictModeEnabled = true)
      * @method static \Illuminate\Support\Carbon yesterday($tz = null)
      * @method static \Illuminate\Support\Carbon|false createFromFormat($format, $time, $tz = null)
      * @method static \Illuminate\Support\Carbon|false createSafe($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $tz = null)
@@ -5345,6 +5371,18 @@
                 $instance->extend($name, $resolver);
             }
             /**
+         * Remove an extension connection resolver.
+         *
+         * @param string $name
+         * @return void
+         * @static
+         */
+            public static function forgetExtension($name)
+            {
+                /** @var \Illuminate\Database\DatabaseManager $instance */
+                $instance->forgetExtension($name);
+            }
+            /**
          * Return all of the created connections.
          *
          * @return array
@@ -5378,6 +5416,66 @@
             {
                 /** @var \Illuminate\Database\DatabaseManager $instance */
                 return $instance->setApplication($app);
+            }
+            /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void
+         * @static
+         */
+            public static function macro($name, $macro)
+            {
+                \Illuminate\Database\DatabaseManager::macro($name, $macro);
+            }
+            /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @throws \ReflectionException
+         * @return void
+         * @static
+         */
+            public static function mixin($mixin, $replace = true)
+            {
+                \Illuminate\Database\DatabaseManager::mixin($mixin, $replace);
+            }
+            /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool
+         * @static
+         */
+            public static function hasMacro($name)
+            {
+                return \Illuminate\Database\DatabaseManager::hasMacro($name);
+            }
+            /**
+         * Flush the existing macros.
+         *
+         * @return void
+         * @static
+         */
+            public static function flushMacros()
+            {
+                \Illuminate\Database\DatabaseManager::flushMacros();
+            }
+            /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @throws \BadMethodCallException
+         * @return mixed
+         * @static
+         */
+            public static function macroCall($method, $parameters)
+            {
+                /** @var \Illuminate\Database\DatabaseManager $instance */
+                return $instance->macroCall($method, $parameters);
             }
             /**
          * Determine if the connected database is a MariaDB database.
@@ -5484,6 +5582,21 @@
             {            //Method inherited from \Illuminate\Database\Connection
                 /** @var \Illuminate\Database\MySqlConnection $instance */
                 return $instance->selectOne($query, $bindings, $useReadPdo);
+            }
+            /**
+         * Run a select statement and return the first column of the first row.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @throws \Illuminate\Database\MultipleColumnsSelectedException
+         * @return mixed
+         * @static
+         */
+            public static function scalar($query, $bindings = [], $useReadPdo = true)
+            {            //Method inherited from \Illuminate\Database\Connection
+                /** @var \Illuminate\Database\MySqlConnection $instance */
+                return $instance->scalar($query, $bindings, $useReadPdo);
             }
             /**
          * Run a select statement against the database.
@@ -6996,6 +7109,19 @@
                 return $instance->isWritable($path);
             }
             /**
+         * Determine if two files are the same by comparing their hashes.
+         *
+         * @param string $firstFile
+         * @param string $secondFile
+         * @return bool
+         * @static
+         */
+            public static function hasSameHash($firstFile, $secondFile)
+            {
+                /** @var \Illuminate\Filesystem\Filesystem $instance */
+                return $instance->hasSameHash($firstFile, $secondFile);
+            }
+            /**
          * Determine if the given path is a file.
          *
          * @param string $file
@@ -7696,7 +7822,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
      * @method static \Illuminate\Http\Client\PendingRequest dd()
      * @method static \Illuminate\Http\Client\PendingRequest dump()
-     * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleep = 0, ?callable $when = null)
+     * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleep = 0, ?callable $when = null, bool $throw = true)
      * @method static \Illuminate\Http\Client\PendingRequest sink(string|resource $to)
      * @method static \Illuminate\Http\Client\PendingRequest stub(callable $callback)
      * @method static \Illuminate\Http\Client\PendingRequest timeout(int $seconds)
@@ -9124,6 +9250,19 @@
                 $instance->assertNothingSent();
             }
             /**
+         * Assert that no notifications were sent to the given notifiable.
+         *
+         * @param mixed $notifiable
+         * @throws \Exception
+         * @return void
+         * @static
+         */
+            public static function assertNothingSentTo($notifiable)
+            {
+                /** @var \Illuminate\Support\Testing\Fakes\NotificationFake $instance */
+                $instance->assertNothingSentTo($notifiable);
+            }
+            /**
          * Assert the total amount of times a notification was sent.
          *
          * @param string $notification
@@ -9580,7 +9719,7 @@
             /**
          * Push a new job onto the queue.
          *
-         * @param string $job
+         * @param string|object $job
          * @param mixed $data
          * @param string|null $queue
          * @return mixed
@@ -9590,6 +9729,18 @@
             {
                 /** @var \Illuminate\Support\Testing\Fakes\QueueFake $instance */
                 return $instance->push($job, $data, $queue);
+            }
+            /**
+         * Determine if a job should be faked or actually dispatched.
+         *
+         * @param object $job
+         * @return bool
+         * @static
+         */
+            public static function shouldFakeJob($job)
+            {
+                /** @var \Illuminate\Support\Testing\Fakes\QueueFake $instance */
+                return $instance->shouldFakeJob($job);
             }
             /**
          * Push a raw payload onto the queue.
@@ -9606,10 +9757,10 @@
                 return $instance->pushRaw($payload, $queue, $options);
             }
             /**
-         * Push a new job onto the queue after a delay.
+         * Push a new job onto the queue after (n) seconds.
          *
          * @param \DateTimeInterface|\DateInterval|int $delay
-         * @param string $job
+         * @param string|object $job
          * @param mixed $data
          * @param string|null $queue
          * @return mixed
@@ -9624,7 +9775,7 @@
          * Push a new job onto the queue.
          *
          * @param string $queue
-         * @param string $job
+         * @param string|object $job
          * @param mixed $data
          * @return mixed
          * @static
@@ -9635,11 +9786,11 @@
                 return $instance->pushOn($queue, $job, $data);
             }
             /**
-         * Push a new job onto the queue after a delay.
+         * Push a new job onto a specific queue after (n) seconds.
          *
          * @param string $queue
          * @param \DateTimeInterface|\DateInterval|int $delay
-         * @param string $job
+         * @param string|object $job
          * @param mixed $data
          * @return mixed
          * @static
@@ -11546,7 +11697,7 @@
          * Retrieve an old input item.
          *
          * @param string|null $key
-         * @param string|array|null $default
+         * @param \Illuminate\Database\Eloquent\Model|string|array|null $default
          * @return string|array|null
          * @static
          */
@@ -12350,6 +12501,7 @@
      * @method static \Illuminate\Routing\RouteRegistrar prefix(string $prefix)
      * @method static \Illuminate\Routing\RouteRegistrar scopeBindings()
      * @method static \Illuminate\Routing\RouteRegistrar where(array $where)
+     * @method static \Illuminate\Routing\RouteRegistrar withoutMiddleware(array|string $middleware)
      * @see \Illuminate\Routing\Router
      */
         class Route
@@ -12723,7 +12875,7 @@
          * Substitute the route bindings onto the route.
          *
          * @param \Illuminate\Routing\Route $route
-         * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+         * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
          * @throws \Illuminate\Routing\Exceptions\BackedEnumCaseNotFoundException
          * @return \Illuminate\Routing\Route
          * @static
@@ -12737,7 +12889,7 @@
          * Substitute the implicit route bindings for the given route.
          *
          * @param \Illuminate\Routing\Route $route
-         * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+         * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
          * @throws \Illuminate\Routing\Exceptions\BackedEnumCaseNotFoundException
          * @return void
          * @static
@@ -13006,7 +13158,7 @@
             /**
          * Check if a route with the given name exists.
          *
-         * @param string $name
+         * @param string|array $name
          * @return bool
          * @static
          */
@@ -13397,6 +13549,34 @@
             {            //Method inherited from \Illuminate\Database\Schema\Builder
                 /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
                 return $instance->hasColumns($table, $columns);
+            }
+            /**
+         * Execute a table builder callback if the given table has a given column.
+         *
+         * @param string $table
+         * @param string $column
+         * @param \Closure $callback
+         * @return void
+         * @static
+         */
+            public static function whenTableHasColumn($table, $column, $callback)
+            {            //Method inherited from \Illuminate\Database\Schema\Builder
+                /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                $instance->whenTableHasColumn($table, $column, $callback);
+            }
+            /**
+         * Execute a table builder callback if the given table doesn't have a given column.
+         *
+         * @param string $table
+         * @param string $column
+         * @param \Closure $callback
+         * @return void
+         * @static
+         */
+            public static function whenTableDoesntHaveColumn($table, $column, $callback)
+            {            //Method inherited from \Illuminate\Database\Schema\Builder
+                /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                $instance->whenTableDoesntHaveColumn($table, $column, $callback);
             }
             /**
          * Get the data type for the given column name.
@@ -14427,6 +14607,18 @@
                 return $instance->assertMissing($path);
             }
             /**
+         * Assert that the given directory is empty.
+         *
+         * @param string $path
+         * @return \Illuminate\Filesystem\FilesystemAdapter
+         * @static
+         */
+            public static function assertDirectoryEmpty($path)
+            {
+                /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+                return $instance->assertDirectoryEmpty($path);
+            }
+            /**
          * Determine if a file or directory exists.
          *
          * @param string $path
@@ -14556,7 +14748,7 @@
          * @param string $path
          * @param \Psr\Http\Message\StreamInterface|\Illuminate\Http\File|\Illuminate\Http\UploadedFile|string|resource $contents
          * @param mixed $options
-         * @return bool
+         * @return string|bool
          * @static
          */
             public static function put($path, $contents, $options = [])
@@ -14996,6 +15188,18 @@
             {
                 /** @var \Illuminate\Routing\UrlGenerator $instance */
                 return $instance->previous($fallback);
+            }
+            /**
+         * Get the previous path info for the request.
+         *
+         * @param mixed $fallback
+         * @return string
+         * @static
+         */
+            public static function previousPath($fallback = false)
+            {
+                /** @var \Illuminate\Routing\UrlGenerator $instance */
+                return $instance->previousPath($fallback);
             }
             /**
          * Generate an absolute URL to the given path.
@@ -16889,6 +17093,100 @@
 
 }
 
+    namespace Milon\Barcode\Facades {
+            /**
+     *
+     *
+     */
+        class DNS1DFacade
+        {
+            /**
+         *
+         *
+         * @static
+         */
+            public static function setStorPath($path)
+            {
+                /** @var \Milon\Barcode\DNS1D $instance */
+                return $instance->setStorPath($path);
+            }
+        }
+            /**
+     *
+     *
+     */
+        class DNS2DFacade
+        {
+            /**
+         * Return a SVG string representation of barcode.
+         *
+         * <li>$arrcode['code'] code to be printed on text label</li>
+         * <li>$arrcode['num_rows'] required number of rows</li>
+         * <li>$arrcode['num_cols'] required number of columns</li>
+         * <li>$arrcode['bcode'][$r][$c] value of the cell is $r row and $c column (0 = transparent, 1 = black)</li></ul>
+         *
+         * @param $code (string) code to print
+         * @param $type (string) type of barcode: <ul><li>DATAMATRIX : Datamatrix (ISO/IEC 16022)</li><li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: "\xff".</li><li>QRCODE : QRcode Low error correction</li><li>QRCODE,L : QRcode Low error correction</li><li>QRCODE,M : QRcode Medium error correction</li><li>QRCODE,Q : QRcode Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>TEST : Test matrix</li></ul>
+         * @param $w (int) Width of a single rectangle element in user units.
+         * @param $h (int) Height of a single rectangle element in user units.
+         * @param $color (string) Foreground color (in SVG format) for bar elements (background is transparent).
+         * @return string SVG code.
+         * @protected
+         * @static
+         */
+            public static function getBarcodeSVG($code, $type, $w = 3, $h = 3, $color = 'black')
+            {
+                /** @var \Milon\Barcode\DNS2D $instance */
+                return $instance->getBarcodeSVG($code, $type, $w, $h, $color);
+            }
+            /**
+         * Return an HTML representation of barcode.
+         *
+         * <li>$arrcode['code'] code to be printed on text label</li>
+         * <li>$arrcode['num_rows'] required number of rows</li>
+         * <li>$arrcode['num_cols'] required number of columns</li>
+         * <li>$arrcode['bcode'][$r][$c] value of the cell is $r row and $c column (0 = transparent, 1 = black)</li></ul>
+         *
+         * @param $code (string) code to print
+         * @param $type (string) type of barcode: <ul><li>DATAMATRIX : Datamatrix (ISO/IEC 16022)</li><li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: "\xff".</li><li>QRCODE : QRcode Low error correction</li><li>QRCODE,L : QRcode Low error correction</li><li>QRCODE,M : QRcode Medium error correction</li><li>QRCODE,Q : QRcode Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>TEST : Test matrix</li></ul>
+         * @param $w (int) Width of a single rectangle element in pixels.
+         * @param $h (int) Height of a single rectangle element in pixels.
+         * @param $color (string) Foreground color for bar elements (background is transparent).
+         * @return string HTML code.
+         * @protected
+         * @static
+         */
+            public static function getBarcodeHTML($code, $type, $w = 10, $h = 10, $color = 'black')
+            {
+                /** @var \Milon\Barcode\DNS2D $instance */
+                return $instance->getBarcodeHTML($code, $type, $w, $h, $color);
+            }
+            /**
+         * Return a PNG image representation of barcode (requires GD or Imagick library).
+         *
+         * <li>$arrcode['code'] code to be printed on text label</li>
+         * <li>$arrcode['num_rows'] required number of rows</li>
+         * <li>$arrcode['num_cols'] required number of columns</li>
+         * <li>$arrcode['bcode'][$r][$c] value of the cell is $r row and $c column (0 = transparent, 1 = black)</li></ul>
+         *
+         * @param $code (string) code to print
+         * @param $type (string) type of barcode: <ul><li>DATAMATRIX : Datamatrix (ISO/IEC 16022)</li><li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: "\xff".</li><li>QRCODE : QRcode Low error correction</li><li>QRCODE,L : QRcode Low error correction</li><li>QRCODE,M : QRcode Medium error correction</li><li>QRCODE,Q : QRcode Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>TEST : Test matrix</li></ul>
+         * @param $w (int) Width of a single rectangle element in pixels.
+         * @param $h (int) Height of a single rectangle element in pixels.
+         * @param $color (array) RGB (0-255) foreground color for bar elements (background is transparent).
+         * @return \Milon\Barcode\path or false in case of error.
+         * @protected
+         * @static
+         */
+            public static function getBarcodePNG($code, $type, $w = 3, $h = 3, $color = [])
+            {
+                /** @var \Milon\Barcode\DNS2D $instance */
+                return $instance->getBarcodePNG($code, $type, $w, $h, $color);
+            }
+        }
+
+}
+
     namespace Mollie\Laravel\Facades {
             /**
      * (Facade) Class Mollie.
@@ -17152,10 +17450,10 @@
          *
          * @static
          */
-            public static function report($throwable, $callback = null)
+            public static function report($throwable, $callback = null, $report = null)
             {
                 /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->report($throwable, $callback);
+                return $instance->report($throwable, $callback, $report);
             }
             /**
          *
@@ -17803,6 +18101,37 @@ namespace  {
                 }
 
                 /**
+             * Add a basic "where not" clause to the query.
+             *
+             * @param \Closure|string|array|\Illuminate\Database\Query\Expression $column
+             * @param mixed $operator
+             * @param mixed $value
+             * @param string $boolean
+             * @return \Illuminate\Database\Eloquent\Builder|static
+             * @static
+             */
+                public static function whereNot($column, $operator = null, $value = null, $boolean = 'and')
+                {
+                    /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                    return $instance->whereNot($column, $operator, $value, $boolean);
+                }
+
+                /**
+             * Add an "or where not" clause to the query.
+             *
+             * @param \Closure|array|string|\Illuminate\Database\Query\Expression $column
+             * @param mixed $operator
+             * @param mixed $value
+             * @return \Illuminate\Database\Eloquent\Builder|static
+             * @static
+             */
+                public static function orWhereNot($column, $operator = null, $value = null)
+                {
+                    /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                    return $instance->orWhereNot($column, $operator, $value);
+                }
+
+                /**
              * Add an "order by" clause for a timestamp to the query.
              *
              * @param string|\Illuminate\Database\Query\Expression $column
@@ -17888,7 +18217,7 @@ namespace  {
              *
              * @param mixed $id
              * @param array $columns
-             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
              * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static|static[]
              * @static
              */
@@ -17958,7 +18287,7 @@ namespace  {
              * Execute the query and get the first result or throw an exception.
              *
              * @param array $columns
-             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
              * @return \Illuminate\Database\Eloquent\Model|static
              * @static
              */
@@ -17986,7 +18315,7 @@ namespace  {
              * Execute the query and get the first result if it's the sole matching record.
              *
              * @param array|string $columns
-             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
              * @throws \Illuminate\Database\MultipleRecordsFoundException
              * @return \Illuminate\Database\Eloquent\Model
              * @static
@@ -18011,10 +18340,25 @@ namespace  {
                 }
 
                 /**
+             * Get a single column's value from the first result of a query if it's the sole matching record.
+             *
+             * @param string|\Illuminate\Database\Query\Expression $column
+             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+             * @throws \Illuminate\Database\MultipleRecordsFoundException
+             * @return mixed
+             * @static
+             */
+                public static function soleValue($column)
+                {
+                    /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                    return $instance->soleValue($column);
+                }
+
+                /**
              * Get a single column's value from the first result of the query or throw an exception.
              *
              * @param string|\Illuminate\Database\Query\Expression $column
-             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+             * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
              * @return mixed
              * @static
              */
@@ -18583,10 +18927,11 @@ namespace  {
                 /**
              * Apply the callback if the given "value" is (or resolves to) truthy.
              *
+             * @template TWhenParameter
              * @template TWhenReturnType
-             * @param bool $value
-             * @param \Illuminate\Database\Eloquent\(callable($this):  TWhenReturnType)|null  $callback
-             * @param \Illuminate\Database\Eloquent\(callable($this):  TWhenReturnType)|null  $default
+             * @param \Illuminate\Database\Eloquent\(\Closure($this):  TWhenParameter)|TWhenParameter  $value
+             * @param \Illuminate\Database\Eloquent\(callable($this,  TWhenParameter): TWhenReturnType)|null  $callback
+             * @param \Illuminate\Database\Eloquent\(callable($this,  TWhenParameter): TWhenReturnType)|null  $default
              * @return $this|\Illuminate\Database\Eloquent\TWhenReturnType
              * @static
              */
@@ -18599,10 +18944,11 @@ namespace  {
                 /**
              * Apply the callback if the given "value" is (or resolves to) falsy.
              *
+             * @template TUnlessParameter
              * @template TUnlessReturnType
-             * @param bool $value
-             * @param \Illuminate\Database\Eloquent\(callable($this):  TUnlessReturnType)  $callback
-             * @param \Illuminate\Database\Eloquent\(callable($this):  TUnlessReturnType)|null  $default
+             * @param \Illuminate\Database\Eloquent\(\Closure($this):  TUnlessParameter)|TUnlessParameter  $value
+             * @param \Illuminate\Database\Eloquent\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $callback
+             * @param \Illuminate\Database\Eloquent\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $default
              * @return $this|\Illuminate\Database\Eloquent\TUnlessReturnType
              * @static
              */
@@ -18958,7 +19304,7 @@ namespace  {
                 /**
              * Add a "belongs to" relationship where clause to the query.
              *
-             * @param \Illuminate\Database\Eloquent\Model $related
+             * @param \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection<\Illuminate\Database\Eloquent\Model> $related
              * @param string|null $relationshipName
              * @param string $boolean
              * @throws \Illuminate\Database\Eloquent\RelationNotFoundException
@@ -20128,6 +20474,61 @@ namespace  {
                 }
 
                 /**
+             * Add a clause that determines if a JSON path exists to the query.
+             *
+             * @param string $column
+             * @param string $boolean
+             * @param bool $not
+             * @return \Illuminate\Database\Query\Builder
+             * @static
+             */
+                public static function whereJsonContainsKey($column, $boolean = 'and', $not = false)
+                {
+                    /** @var \Illuminate\Database\Query\Builder $instance */
+                    return $instance->whereJsonContainsKey($column, $boolean, $not);
+                }
+
+                /**
+             * Add an "or" clause that determines if a JSON path exists to the query.
+             *
+             * @param string $column
+             * @return \Illuminate\Database\Query\Builder
+             * @static
+             */
+                public static function orWhereJsonContainsKey($column)
+                {
+                    /** @var \Illuminate\Database\Query\Builder $instance */
+                    return $instance->orWhereJsonContainsKey($column);
+                }
+
+                /**
+             * Add a clause that determines if a JSON path does not exist to the query.
+             *
+             * @param string $column
+             * @param string $boolean
+             * @return \Illuminate\Database\Query\Builder
+             * @static
+             */
+                public static function whereJsonDoesntContainKey($column, $boolean = 'and')
+                {
+                    /** @var \Illuminate\Database\Query\Builder $instance */
+                    return $instance->whereJsonDoesntContainKey($column, $boolean);
+                }
+
+                /**
+             * Add an "or" clause that determines if a JSON path does not exist to the query.
+             *
+             * @param string $column
+             * @return \Illuminate\Database\Query\Builder
+             * @static
+             */
+                public static function orWhereJsonDoesntContainKey($column)
+                {
+                    /** @var \Illuminate\Database\Query\Builder $instance */
+                    return $instance->orWhereJsonDoesntContainKey($column);
+                }
+
+                /**
              * Add a "where JSON length" clause to the query.
              *
              * @param string $column
@@ -21253,6 +21654,12 @@ namespace  {
             {
             }
             class Livewire extends \Livewire\Livewire
+            {
+            }
+            class DNS1D extends \Milon\Barcode\Facades\DNS1DFacade
+            {
+            }
+            class DNS2D extends \Milon\Barcode\Facades\DNS2DFacade
             {
             }
             class Mollie extends \Mollie\Laravel\Facades\Mollie

@@ -303,6 +303,13 @@ class Order extends Model implements HasLocalePreference
         return $this->orderLines->sum('quantity');
     }
 
+    public function numberOfMedals()
+    {
+        return $this->orderLines->filter(function (OrderLine $orderLine) {
+            return $orderLine->ticket->with_medal;
+        })->sum('quantity');
+    }
+
     public function isGroup()
     {
         return $this->numberOfAttendees() >= $this->season->minimum_group;

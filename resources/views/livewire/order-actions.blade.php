@@ -6,7 +6,12 @@
             </div>
 
             <div class="column is-4 has-text-centered has-addons-centered">
-                <button class="button is-fullwidth is-primary">{{ __('Print details') }}</button>
+                <button class="button is-fullwidth is-primary"
+                    onclick="window.open('{{ route("order.print.index", $order) }}',
+                    'print-{{ $order->id }}',
+                    'width=500,height=500');
+                    return false;">{{ __('Print details') }}
+                </button>
             </div>
 
             <div class="column is-4 has-text-centered has-addons-centered">

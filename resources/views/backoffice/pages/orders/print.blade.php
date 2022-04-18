@@ -24,6 +24,13 @@
                     <td class="description"> {{ $orderLine->ticket->name }} </td>
                 </tr>
             @endforeach
+
+            @if($order->isGroup())
+                <tr>
+                    <td class="quantity"> 1 </td>
+                    <td class="description"> {{ __('Group price') }} </td>
+                </tr>
+            @endif
         </tbody>
     </table>
 </div>
