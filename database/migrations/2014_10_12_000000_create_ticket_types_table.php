@@ -23,19 +23,20 @@ class CreateTicketTypesTable extends Migration
             $table->integer('amount_order');
             $table->boolean('allow_pre_order');
             $table->boolean('allow_order');
+            $table->boolean('with_medal');
 
             $table->timestamps();
         });
 
-        $this->createTicketType('None', 'None', 1000, 300, 400, true, true);
+        $this->createTicketType('None', 'None', 1000, 300, 400, true, true, false);
 
         // Create 65 regular ticket types.
         for ($i = 1; $i <= 65; $i++) {
-            $this->createTicketType($i, $i, 1000 + (10 * $i), 400, 500, true, true);
+            $this->createTicketType($i, $i, 1000 + (10 * $i), 400, 500, true, true, true);
         }
     }
 
-    protected function createTicketType(string $name, string $description, int $order, int $amountPreOrder, int $amountOrder, bool $allowPreOrder, bool $allowOrder)
+    protected function createTicketType(string $name, string $description, int $order, int $amountPreOrder, int $amountOrder, bool $allowPreOrder, bool $allowOrder, bool $withMedal)
     {
         TicketType::create([
             'name' => $name,
@@ -45,6 +46,7 @@ class CreateTicketTypesTable extends Migration
             'amount_order' => $amountOrder,
             'allow_pre_order' => $allowPreOrder,
             'allow_order' => $allowOrder,
+            'with_medal' => $withMedal,
         ]);
     }
 

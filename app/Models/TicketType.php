@@ -24,5 +24,6 @@ class TicketType extends Model
         'order',
         'allow_pre_order',
         'allow_order',
+        'with_medal',
     ];
 }

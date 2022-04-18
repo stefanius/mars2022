@@ -116,9 +116,10 @@ class PreOrder extends FormWizard
                     'amount' => $group->first()['ticket']->amount_pre_order,
                     'total_amount' => $group->sum('total'),
                 ]);
-        });
+            });
 
-        $this->preparePayment();
+        $this->order->markAsPaid();
+//        $this->preparePayment();
     }
 
     /**
