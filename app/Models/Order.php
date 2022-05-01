@@ -197,6 +197,14 @@ class Order extends Model implements HasLocalePreference
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function distance()
+    {
+        return $this->belongsTo(Distance::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function day()
     {
         return $this->belongsTo(Day::class);

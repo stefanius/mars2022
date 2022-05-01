@@ -21,6 +21,10 @@ Route::group(['middleware' => ['locale']], function () {
     Route::get('/order/success', function () {
         return view('register.pages.thank-you');
     })->name('order.success');
+
+    Route::get('/order/checkout-retry', function () {
+        return view('register.pages.checkout-retry');
+    })->name('order.checkout-retry');
 });
 
 Route::post('/hooks/mollie', function () {
@@ -35,5 +39,7 @@ Route::post('/hooks/mollie', function () {
         echo 'Payment failed.';
 
         \App\Models\Order::where('order_number', $payment->metadata->order_id)->first()->paymentFailed($payment);
+
+        return redirect(action('order.checkout-retry', ['id' => $paymentId]));
     }
 })->name('webhooks.mollie');

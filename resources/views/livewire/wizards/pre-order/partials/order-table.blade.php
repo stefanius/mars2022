@@ -12,7 +12,6 @@
             <td>
                 <select wire:model.debounce.lazy="ticketType.{{ $i }}" id="ticket_type_{{ $i }}" class="input">
                     <option selected hidden>{{ __("Choose") }}</option>
-                    <option> - </option>
                     @foreach($ticketTypes as $ticketType)
                         <option value="{{ $ticketType->id }}">{{ __($ticketType->name) }}</option>
                     @endforeach
