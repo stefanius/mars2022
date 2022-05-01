@@ -14,21 +14,21 @@
                 </div>
             </div>
 
-            <div class="column is-3">
+            <div class="column is-2">
                 <div class="card @if($order->isGroup()) has-background-danger-light @else has-background-info-light @endif">
                     <h1 class="title is-centered has-text-centered">{{ $order->numberOfAttendees() }}</h1>
                     <h2 class="subtitle is-centered has-text-centered">{{ __('Attendees') }}</h2>
                 </div>
             </div>
 
-            <div class="column is-3">
+            <div class="column is-2">
                 <div class="card @if($order->isGroup()) has-background-danger-light @else has-background-info-light @endif">
                     <h1 class="title is-centered has-text-centered">{{ $order->numberOfMedals() }}</h1>
                     <h2 class="subtitle is-centered has-text-centered">{{ __('Medals') }}</h2>
                 </div>
             </div>
 
-            <div class="column is-3">
+            <div class="column is-2">
                 <div class="card @if($order->isGroup()) has-background-danger-light @else has-background-info-light @endif">
                     <h1 class="title is-centered has-text-centered">
                         @if($order->isFinished())
@@ -42,6 +42,15 @@
                         @endif
                     </h1>
                     <h2 class="subtitle is-centered has-text-centered">{{ __('Stage') }}</h2>
+                </div>
+            </div>
+
+            <div class="column is-3">
+                <div class="card @if($order->isGroup()) has-background-danger-light @else has-background-info-light @endif">
+                    <h1 class="title is-centered has-text-centered">
+                        {{ $order->distance->name }} KM
+                    </h1>
+                    <h2 class="subtitle is-centered has-text-centered">{{ __('Distance') }}</h2>
                 </div>
             </div>
         </div>
