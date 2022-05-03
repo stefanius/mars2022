@@ -8,6 +8,7 @@ use App\Models\OrderLine;
 use App\Models\TicketType;
 use Illuminate\Support\Arr;
 use App\Http\Livewire\FormWizard;
+use Illuminate\Validation\Rule;
 
 class Order extends FormWizard
 {
@@ -18,10 +19,13 @@ class Order extends FormWizard
     public $distance;
     public $ticketType = [];
     public $ticketCount = [];
-    public $halfPrice = [];
     public $phone;
-    public $order;
     public $maxStep = 4;
+    public $order;
+    public $locale;
+    public $mailConsent = false;
+    public $termsOfService = false;
+    public $halfPrice = [];
 
     /**
      * Validation rules.
@@ -32,18 +36,18 @@ class Order extends FormWizard
     {
         return [
             1 => [
-                'firstName' => 'nullable',
-                'lastName' => 'nullable',
-                'email' => 'nullable',
-                'organization' => 'nullable',
-                'phone' => 'nullable',
-            ],
-            2 => [
                 'distance' => 'required',
-                'ticketType' => 'required|array|min:1|size:' . count($this->ticketCount),
-                'ticketCount' => 'required|array|min:1|size:' . count($this->ticketType),
+                'ticketType' => 'required|array|min:1|size:' . max(count($this->ticketCount), 1),
+                'ticketCount' => 'required|array|min:1|size:' . max(count($this->ticketType), 1),
                 'ticketType.*' => 'required|integer|min:1',
                 'ticketCount.*' => 'required|integer|min:1',
+            ],
+            2 => [
+                'firstName' => 'sometimes|nullable',
+                'lastName' => 'sometimes|nullable',
+                'email' => 'sometimes|nullable|email:rfc,dns',
+                'organization' => 'sometimes|nullable',
+                'phone' => 'sometimes|nullable',
             ],
         ];
     }
@@ -88,6 +92,7 @@ class Order extends FormWizard
             'phone' => $this->phone,
             'distance_id' => $this->distance,
             'season_id' => Season::activeSeason()->id,
+            'day_id' => now()->dayOfWeekIso
         ]);
 
         $this->getTicketsProperty()->each(function ($ticket) {
@@ -101,7 +106,7 @@ class Order extends FormWizard
             ]);
         });
 
-        $this->next();
+        $this->lastPage();
     }
 
     public function getSelectedDistanceProperty()

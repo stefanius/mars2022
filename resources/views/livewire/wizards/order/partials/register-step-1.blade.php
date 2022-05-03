@@ -1,29 +1,23 @@
 <div class="columns">
     <div class="column">
-        <div class="field">
-            <label class="label">{{ __("First Name") }}</label>
-            <div class="control is-clearfix">
-                <input wire:model="firstName" type="text" maxlength="70" name="first_name" class="input">
-            </div>
 
-            <span class="help is-danger">
-                @error('firstName')
-                    {{ $message }}
-                @enderror
-            </span>
-        </div>
     </div>
 
     <div class="column">
         <div class="field">
-            <label class="label">{{ __("Last Name") }}</label>
+            <label class="label">{{ __("Distance") }} *</label>
             <div class="control is-clearfix">
-                <input wire:model="lastName" type="text" maxlength="70" name="last_name" class="input">
+                <select wire:model="distance" name="distance" required="required" class="input">
+                    <option selected hidden>{{ __("Choose") }}</option>
+                    @foreach($distances as $distance)
+                        <option value="{{ $distance->id }}">{{ __($distance->name) }}</option>
+                    @endforeach()
+                </select>
             </div>
 
             <span class="help is-danger">
-                @error('lastName')
-                    {{ $message }}
+                @error('distance')
+                {{ $message }}
                 @enderror
             </span>
         </div>
@@ -31,45 +25,31 @@
 </div>
 
 <div class="columns">
-    <div class="column">
-        <div class="field">
-            <label class="label">{{ __("Email") }}</label>
-            <div class="control is-clearfix">
-                <input wire:model="email"  type="text" maxlength="100" name="email" class="input">
-            </div>
+    @if(Agent::isMobile())
+        <div class="column is-one-quarter">
 
-            <span class="help is-danger">
-                @error('email')
-                    {{ $message }}
-                @enderror
-            </span>
         </div>
-    </div>
-</div>
 
-<hr/>
-
-<div class="columns">
-    <div class="column">
-        <div class="field">
-            <label class="label">{{ __("Organization") }}</label>
-            <div class="control is-clearfix">
-                <input wire:model="organization" type="text" maxlength="100" name="organization" class="input">
-            </div>
+        <div class="column is-half">
+            @include('livewire.wizards.order.partials.order-table', ['start' => 0])
         </div>
-    </div>
-</div>
 
-<div class="columns">
-    <div class="column">
-        <div class="field">
-            <label class="label">{{ __("Phone") }}</label>
-            <div class="control is-clearfix">
-                <input wire:model="phone"  type="text" maxlength="100" name="phone" class="input">
-            </div>
-            <p class="help">.</p>
+        <div class="column is-one-quarter">
+
         </div>
-    </div>
+    @else
+        <div class="column is-two-fifths">
+            @include('livewire.wizards.order.partials.order-table', ['start' => 0])
+        </div>
+
+        <div class="column is-one-fifth">
+
+        </div>
+
+        <div class="column is-two-fifths">
+            @include('livewire.wizards.order.partials.order-table',  ['start' => 10])
+        </div>
+    @endif
 </div>
 
 <div class="field is-grouped is-grouped-right">

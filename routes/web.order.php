@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('order.pages.index');
+Route::group(['middleware' => ['locale']], function () {
+    Route::get('/', function () {
+        return view('order.pages.index');
+    });
 });
