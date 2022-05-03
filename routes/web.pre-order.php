@@ -39,7 +39,5 @@ Route::post('/hooks/mollie', function () {
         echo 'Payment failed.';
 
         \App\Models\Order::where('order_number', $payment->metadata->order_id)->first()->paymentFailed($payment);
-
-        return redirect(action('order.checkout-retry', ['id' => $paymentId]));
     }
 })->name('webhooks.mollie');

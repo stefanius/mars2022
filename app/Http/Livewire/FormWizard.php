@@ -144,6 +144,14 @@ abstract class FormWizard extends Component
     /**
      * Go to first step.
      */
+    public function lastPage()
+    {
+        $this->step = $this->maxStep;
+    }
+
+    /**
+     * Go to first step.
+     */
     public function firstPage()
     {
         $this->step = 1;
