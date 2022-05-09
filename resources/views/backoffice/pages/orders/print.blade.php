@@ -10,6 +10,8 @@
 <body id="body" onload="window.print()">
 <div class="ticket">
     <h1 class="centered">{{ $order->order_number }}</h1>
+    <span>{{ __('Distance') }}: {{ $order->distance->name }}</span> </br>
+    <span>{{ __('Started At') }}: {{ $order->started_at->format("H:i") }}</span>
     <table>
         <thead>
         <tr>

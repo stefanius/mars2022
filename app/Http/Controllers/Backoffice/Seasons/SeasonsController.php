@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backoffice\Seasons;
 
 use App\Models\Season;
 use Illuminate\Routing\Controller;
+use App\Http\Requests\SeasonStoreRequest;
 
 class SeasonsController extends Controller
 {
@@ -30,7 +31,7 @@ class SeasonsController extends Controller
     {
         abort_unless(auth()->user()->isAdmin(), 401);
 
-        return view('backoffice.pages.orders.show', ['season' => $season]);
+        return view('backoffice.pages.seasons.show', ['season' => $season]);
     }
 
     /**
@@ -42,6 +43,19 @@ class SeasonsController extends Controller
     {
         abort_unless(auth()->user()->isAdmin(), 401);
 
-        return view('backoffice.pages.orders.create');
+        return view('backoffice.pages.seasons.create');
+    }
+
+    /**
+     * @param SeasonStoreRequest $request
+     */
+    public function store(SeasonStoreRequest $request)
+    {
+        abort_unless(auth()->user()->isAdmin(), 401);
+
+        Season::deactivateSeasons();
+        Season::create($request->validated());
+
+        return redirect(route('addresses.index'));
     }
 }
