@@ -11,7 +11,7 @@
                 <div class="col-start-3 col-span-4">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                            <form role="form" method="post" action="{{ action('Backoffice\Addresses\AddressesController@store') }}">
+                            <form role="form" method="post" action="{{ action('Backoffice\Seasons\SeasonsController@store') }}">
                                 @csrf
 
                                 <div class="mb-6 pt-3 rounded">
@@ -25,6 +25,13 @@
                                     <livewire:form.input
                                         label="{{ __('Year') }}"
                                         name="year"
+                                    ></livewire:form.input>
+                                </div>
+
+                                <div class="mb-6 pt-3 rounded">
+                                    <livewire:form.input
+                                        label="{{ __('Minimum Group') }}"
+                                        name="minimum_group"
                                     ></livewire:form.input>
                                 </div>
 
@@ -54,6 +61,10 @@
                                         label="{{ __('Pre Order Ends At') }}"
                                         name="pre_order_ends_at"
                                     ></livewire:form.input>
+                                </div>
+
+                                <div class="mb-6 pt-3">
+                                    <button class="min-w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">{{ __('Save') }}</button>
                                 </div>
                             </form>
                         </div>

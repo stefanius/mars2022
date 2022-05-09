@@ -8,7 +8,6 @@ use App\Models\OrderLine;
 use App\Models\TicketType;
 use Illuminate\Support\Arr;
 use App\Http\Livewire\FormWizard;
-use Illuminate\Validation\Rule;
 
 class Order extends FormWizard
 {
@@ -92,7 +91,7 @@ class Order extends FormWizard
             'phone' => $this->phone,
             'distance_id' => $this->distance,
             'season_id' => Season::activeSeason()->id,
-            'day_id' => now()->dayOfWeekIso
+            'day_id' => now()->dayOfWeekIso,
         ]);
 
         $this->getTicketsProperty()->each(function ($ticket) {

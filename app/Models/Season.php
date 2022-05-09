@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
@@ -32,6 +33,14 @@ class Season extends Model
      */
     public static function activeSeason()
     {
-        return self::where('year', '=', now()->year)->first();
+        return self::whereNull('read_only_since')->first();
+    }
+
+    /**
+     *
+     */
+    public static function deactivateSeasons()
+    {
+        return self::whereNull('read_only_since')->update(['read_only_since' => Carbon::now()]);
     }
 }

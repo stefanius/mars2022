@@ -46,6 +46,16 @@ class Order extends Model implements HasLocalePreference
     ];
 
     /**
+     *
+     */
+    protected $dates =[
+        'paid_at',
+        'started_at',
+        'finished_at',
+        'printed_at',
+    ];
+
+    /**
      * The event map for the model.
      *
      * @var array
@@ -181,9 +191,7 @@ class Order extends Model implements HasLocalePreference
      */
     public function scopeActiveSeason(Builder $query)
     {
-        return $query->whereHas('season', function ($query) {
-            return $query->where('year', '=', Carbon::now()->year);
-        });
+        return $query->where('season_id', '=', Season::activeSeason()->id);
     }
 
     /**
@@ -191,7 +199,7 @@ class Order extends Model implements HasLocalePreference
      */
     public function orderLines()
     {
-        return $this->hasMany(OrderLine::class);
+        return $this->hasMany(OrderLine::class)->orderBy('ticket_type_id');
     }
 
     /**

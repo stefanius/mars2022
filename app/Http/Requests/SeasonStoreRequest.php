@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddressStoreRequest extends FormRequest
+class SeasonStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,13 @@ class AddressStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email',
-            'street_address' => 'required',
-            'postal_code' => 'required',
-            'city' => 'required',
-            'send_poster' => 'boolean',
-            'send_email' => 'boolean',
-//            'address_type_id'
+            'edition' => 'required',
+            'minimum_group' => 'required',
+            'pre_order_starts_at' => 'required',
+            'pre_order_ends_at' => 'required',
+            'saturday_date' => 'required',
+            'sunday_date' => 'required',
+            'year' => 'required',
         ];
     }
 }
