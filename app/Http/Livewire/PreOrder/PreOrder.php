@@ -117,8 +117,8 @@ class PreOrder extends FormWizard
                     'total_amount' => $group->sum('total'),
                 ]);
             });
-
-        $this->preparePayment();
+            $this->order->markAsPaid();
+        // $this->preparePayment();
     }
 
     /**

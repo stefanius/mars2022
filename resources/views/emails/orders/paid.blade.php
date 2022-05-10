@@ -5,7 +5,7 @@
 
 {{ __('Thank you for your order. Bring this email with you when you are going to the Duinenmars.') }}
 
-{!! DNS1D::getBarcodeSVG($order->order_number, 'EAN13') !!}
+<img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($order->order_number, 'EAN13') }}"/>
 
 @component('mail::table')
 | {{ __('Medal') }} | {{ __('Quantity') }} |
