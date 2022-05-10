@@ -24,6 +24,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_number')->nullable();
+            $table->string('barcode_image')->nullable();
             $table->string('mollie_payment_id')->nullable();
             $table->string('mollie_payment_status')->nullable();
             $table->string('first_name')->nullable();

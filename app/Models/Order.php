@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Contracts\Translation\HasLocalePreference;
+use Milon\Barcode\DNS1D;
+use Storage;
 
 class Order extends Model implements HasLocalePreference
 {
@@ -74,11 +76,16 @@ class Order extends Model implements HasLocalePreference
         parent::boot();
 
         self::creating(function (Model $model) {
+            // Generete new ordernumber
             $previousValue = (int) Order::query()->max('order_number');
-
             $newValue = $previousValue + 1;
-
             $model->order_number = sprintf("%05d", $newValue);
+
+            // Generate barcode image
+            // $barcode = DNS1D::getBarcodePNG($model->order_number, 'EAN13');
+            // $barcodeFilename = md5($newValue) . ".png";
+            // Storage::disk('local')->put($barcodeFilename, $barcode);
+            // $model->barcode_image = $barcodeFilename;
         });
     }
 
