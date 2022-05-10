@@ -1,11 +1,15 @@
 @component('mail::message')
-# {{ __('Order details Duinenmars') }}
+# {{ __('Duinenmars') }}
 
 ## {{ __('Order') }}: {{ $order->order_number }}
+<img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($order->order_number, 'EAN13') }}"/>
 
 {{ __('Thank you for your order. Bring this email with you when you are going to the Duinenmars.') }}
 
-<img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($order->order_number, 'EAN13') }}"/>
+## {{ __('Details') }}
+@if($order->eventDate())
+    {{ __('Date') }}: {{ $order->eventDate()->isoFormat('MMMM Do YYYY') }} ({{ $order->eventDate()->isoFormat('dddd') }})
+@endif()
 
 @component('mail::table')
 | {{ __('Medal') }} | {{ __('Quantity') }} |

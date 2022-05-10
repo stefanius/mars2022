@@ -28,6 +28,11 @@ class Season extends Model
         'year',
     ];
 
+    protected $dates = [
+        'saturday_date',
+        'sunday_date',
+    ];
+
     /**
      * @return Season
      */

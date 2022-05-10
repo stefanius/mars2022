@@ -225,6 +225,19 @@ class Order extends Model implements HasLocalePreference
         return $this->belongsTo(Day::class);
     }
 
+    public function eventDate()
+    {
+        if ($this->day->isSaturday()) {
+            return $this->season->saturday_date;
+        }
+
+        if ($this->day->isSunday()) {
+            return $this->season->sunday_date;
+        }
+
+        return '';
+    }
+
     /**
      * @return mixed
      */
