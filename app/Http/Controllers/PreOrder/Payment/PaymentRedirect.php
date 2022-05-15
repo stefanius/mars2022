@@ -21,13 +21,13 @@ class PaymentRedirect extends Controller
                     ->first();
 
         if (!$order) {
-            return response('Invalid Order', 401);
+            return response("<h1>Invalid Order</h1>" . json_encode($request->all()), 401);
         }
 
         if ($order->isPaid()) {
             return redirect(route('payment.success', ['locale' => $request->get('locale')]));
         }
 
-        return redirect(route('payment.failed', ['hash' => $request->get('hash'), 'id' => $request->get('id'), 'locale' => $request->get('locale')]));
+        return redirect(route('payment.failed', ['hash' => $request->get('hash'), 'id' => $request->get('order'), 'locale' => $request->get('locale')]));
     }
 }
