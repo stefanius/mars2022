@@ -5,32 +5,45 @@ namespace App\Http\Livewire\Dashboard;
 use App\Models\Order;
 use Livewire\Component;
 use App\Models\Distance;
+use Illuminate\Database\Eloquent\Builder;
 
 class VisitersOnTrack extends Component
 {
+    protected function counter($distanceId)
+    {
+        return Order::activeSeason()
+            ->started()
+            ->where('distance_id', '=', $distanceId)
+            ->with('orderLines')
+            ->get()
+            ->sum(function (Order $order) {
+                return $order->numberOfAttendees();
+            });
+    }
+
     protected function get5KilometersStatistics()
     {
-        return Order::activeSeason()->started()->where('distance_id', '=', Distance::DISTANCE_5_KM)->count();
+        return $this->counter(Distance::DISTANCE_5_KM);
     }
 
     protected function get10KilometersStatistics()
     {
-        return Order::activeSeason()->started()->where('distance_id', '=', Distance::DISTANCE_10_KM)->count();
+        return $this->counter(Distance::DISTANCE_10_KM);
     }
 
     protected function get15KilometersStatistics()
     {
-        return Order::activeSeason()->started()->where('distance_id', '=', Distance::DISTANCE_15_KM)->count();
+        return $this->counter(Distance::DISTANCE_15_KM);
     }
 
     protected function get25KilometersStatistics()
     {
-        return Order::activeSeason()->started()->where('distance_id', '=', Distance::DISTANCE_25_KM)->count();
+        return $this->counter(Distance::DISTANCE_25_KM);
     }
 
     protected function get40KilometersStatistics()
     {
-        return Order::activeSeason()->started()->where('distance_id', '=', Distance::DISTANCE_25_KM)->count();
+        return $this->counter(Distance::DISTANCE_40_KM);
     }
 
     /**

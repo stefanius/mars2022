@@ -29,6 +29,8 @@ class Season extends Model
     ];
 
     protected $dates = [
+        'pre_order_starts_at',
+        'pre_order_ends_at',
         'saturday_date',
         'sunday_date',
     ];

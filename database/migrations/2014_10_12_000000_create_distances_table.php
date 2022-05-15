@@ -17,7 +17,7 @@ class CreateDistancesTable extends Migration
         Schema::create('distances', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('long_distance');
+            $table->boolean('long_distance')->default(false);
 
             $table->timestamps();
         });

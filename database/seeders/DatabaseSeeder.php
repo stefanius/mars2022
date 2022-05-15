@@ -32,6 +32,16 @@ class DatabaseSeeder extends Seeder
         $this->seedSeasons()->each(function (Season $season) {
             $this->seedOrders($season);
         });
+
+        \App\Models\Season::factory(1)->create([
+            'edition' => 70,
+            'year' => 2022,
+            'minimum_group' => 8,
+            'pre_order_starts_at' => Carbon::create(2022, 1,1),
+            'pre_order_ends_at' => Carbon::create(2022, 12,31),
+            'saturday_date' => Carbon::create(2022, 10,1),
+            'sunday_date' => Carbon::create(2022, 10,2),
+        ]);
     }
 
     /**
@@ -105,14 +115,14 @@ class DatabaseSeeder extends Seeder
      */
     protected function seedSeasons()
     {
-        $currentYear = Carbon::now()->year;
+        $currentYear = Carbon::now()->year - 1;
 
         for ($year = ($currentYear - 5); $year <= $currentYear; $year++) {
             \App\Models\Season::factory(1)->create([
                 'edition' => $year - 2000,
                 'year' => $year,
                 'minimum_group' => 8,
-                'read_only_since' => $year !== $currentYear ? Carbon::now() : null,
+                'read_only_since' => Carbon::now(),
             ]);
         }
 
