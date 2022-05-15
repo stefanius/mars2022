@@ -131,6 +131,26 @@ class Order extends Model implements HasLocalePreference
         return $query->whereNotNull('started_at');
     }
 
+    public function molliePaymentOpen()
+    {
+        return $this->mollie_payment_status === PaymentStatus::STATUS_OPEN;
+    }
+
+    public function molliePaymentExpired()
+    {
+        return $this->mollie_payment_status === PaymentStatus::STATUS_EXPIRED;
+    }
+
+    public function molliePaymentFailed()
+    {
+        return $this->mollie_payment_status === PaymentStatus::STATUS_FAILED;
+    }
+
+    public function molliePaymentCanceled()
+    {
+        return $this->mollie_payment_status === PaymentStatus::STATUS_CANCELED;
+    }
+
     /**
      * @param Builder $query
      *

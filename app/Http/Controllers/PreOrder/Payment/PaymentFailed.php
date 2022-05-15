@@ -24,6 +24,6 @@ class PaymentFailed extends Controller
             return response('Invalid Order', 401);
         }
 
-        return response("<h1>LOSER!</h1><h2>Betaling is gefaald!</h2>" . $order->mollie_payment_status, 200);
+        return view('register.pages.payment-failed', ['order' => $order]);
     }
 }
