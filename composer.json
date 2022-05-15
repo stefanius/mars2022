@@ -19,7 +19,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
-        "mollie/laravel-mollie": "^2.14",
+        "mollie/laravel-mollie": "^2.19",
         "torann/geoip": "^3.0",
         "milon/barcode": "^9.0"
     },
