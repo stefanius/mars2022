@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
+use Str;
+use Storage;
 use Carbon\Carbon;
+use Milon\Barcode\DNS1D;
 use App\Events\OrderPaid;
 use App\Events\OrderCreated;
 use App\Events\PaymentFailed;
 use Mollie\Api\Resources\Payment;
 use Illuminate\Support\Facades\DB;
+use Mollie\Api\Types\PaymentStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Contracts\Translation\HasLocalePreference;
-use Milon\Barcode\DNS1D;
-use Storage;
 
 class Order extends Model implements HasLocalePreference
 {
@@ -30,6 +32,7 @@ class Order extends Model implements HasLocalePreference
         'first_name',
         'last_name',
         'email',
+        'hash',
         'organization',
         'phone',
         'order_number',
@@ -80,6 +83,7 @@ class Order extends Model implements HasLocalePreference
             $previousValue = (int) Order::query()->max('order_number');
             $newValue = $previousValue + 1;
             $model->order_number = sprintf("%05d", $newValue);
+            $model->hash = Str::uuid()->toString();
 
             // Generate barcode image
             // $barcode = DNS1D::getBarcodePNG($model->order_number, 'EAN13');
@@ -259,6 +263,10 @@ class Order extends Model implements HasLocalePreference
      */
     public function isPaid()
     {
+        if (filled($this->mollie_payment_id)) {
+            return filled($this->paid_at) && $this->mollie_payment_status === PaymentStatus::STATUS_PAID;
+        }
+
         return filled($this->paid_at);
     }
 

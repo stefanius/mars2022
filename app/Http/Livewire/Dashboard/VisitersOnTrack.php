@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Dashboard;
 use App\Models\Order;
 use Livewire\Component;
 use App\Models\Distance;
-use Illuminate\Database\Eloquent\Builder;
 
 class VisitersOnTrack extends Component
 {

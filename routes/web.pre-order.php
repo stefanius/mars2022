@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PreOrder\Payment\PaymentFailed;
+use App\Http\Controllers\PreOrder\Payment\PaymentSuccess;
+use App\Http\Controllers\PreOrder\Payment\PaymentRedirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +21,11 @@ Route::group(['middleware' => ['locale']], function () {
         return view('register.pages.index');
     });
 
-    Route::get('/order/success', function () {
-        return view('register.pages.thank-you');
-    })->name('order.success');
+    Route::get('/payment/redirect', PaymentRedirect::class)->name('payment.redirect');
+
+    Route::get('/payment/success', PaymentSuccess::class)->name('payment.success');
+
+    Route::get('/payment/failed', PaymentFailed::class)->name('payment.failed');
 
     Route::get('/order/checkout-retry', function () {
         return view('register.pages.checkout-retry');
