@@ -28,6 +28,6 @@ class PaymentRedirect extends Controller
             return redirect(route('payment.success', ['locale' => $request->get('locale')]));
         }
 
-        return redirect(route('payment.failed', ['hash' => $request->get('hash'), 'id' => $request->get('order'), 'locale' => $request->get('locale')]));
+        return redirect(route('payment.failed', ['hash' => $request->get('hash'), 'order' => $request->get('order'), 'locale' => $request->get('locale')]));
     }
 }
