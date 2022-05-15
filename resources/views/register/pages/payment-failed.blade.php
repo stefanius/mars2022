@@ -1,8 +1,8 @@
 <x-layouts.register>
     <div class="columns">
         <div class="column">
-            <h1 class="title">{{ __("Payment failed!") }}</h1>
-            <strong>{{ __('Reason') }}: {{ __($order->mollie_payment_status) }} </br>
+            <h1 class="title">{{ __("Payment failed") }}</h1>
+            <strong>{{ __('Reason') }}: {{ __($order->mollie_payment_status) }} </strong></br>
 
             <p>
                 @if($order->molliePaymentExpired())

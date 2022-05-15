@@ -30,19 +30,19 @@ Route::group(['middleware' => ['locale']], function () {
     Route::get('/order/checkout-retry', function () {
         return view('register.pages.checkout-retry');
     })->name('order.checkout-retry');
+
+    Route::post('/hooks/mollie', function () {
+        $paymentId = request()->input('id');
+        $payment = \Mollie\Laravel\Facades\Mollie::api()->payments->get($paymentId);
+
+        if ($payment->isPaid()) {
+            echo 'Payment received.';
+
+            \App\Models\Order::where('order_number', $payment->metadata->order_id)->first()->markAsPaid($payment);
+        } else {
+            echo 'Payment failed.';
+
+            \App\Models\Order::where('order_number', $payment->metadata->order_id)->first()->paymentFailed($payment);
+        }
+    })->name('webhooks.mollie');
 });
-
-Route::post('/hooks/mollie', function () {
-    $paymentId = request()->input('id');
-    $payment = \Mollie\Laravel\Facades\Mollie::api()->payments->get($paymentId);
-
-    if ($payment->isPaid()) {
-        echo 'Payment received.';
-
-        \App\Models\Order::where('order_number', $payment->metadata->order_id)->first()->markAsPaid($payment);
-    } else {
-        echo 'Payment failed.';
-
-        \App\Models\Order::where('order_number', $payment->metadata->order_id)->first()->paymentFailed($payment);
-    }
-})->name('webhooks.mollie');
