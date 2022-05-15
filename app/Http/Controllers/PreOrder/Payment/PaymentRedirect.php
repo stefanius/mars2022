@@ -21,7 +21,7 @@ class PaymentRedirect extends Controller
                     ->first();
 
         if (!$order) {
-            return response('Invalid Order', 401);
+            return response("<h1>Invalid Order</h1>" . json_encode($request->all()), 401);
         }
 
         if ($order->isPaid()) {
