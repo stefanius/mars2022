@@ -37,10 +37,10 @@ class DatabaseSeeder extends Seeder
             'edition' => 70,
             'year' => 2022,
             'minimum_group' => 8,
-            'pre_order_starts_at' => Carbon::create(2022, 1,1),
-            'pre_order_ends_at' => Carbon::create(2022, 12,31),
-            'saturday_date' => Carbon::create(2022, 10,1),
-            'sunday_date' => Carbon::create(2022, 10,2),
+            'pre_order_starts_at' => Carbon::create(2022, 1, 1),
+            'pre_order_ends_at' => Carbon::create(2022, 12, 31),
+            'saturday_date' => Carbon::create(2022, 10, 1),
+            'sunday_date' => Carbon::create(2022, 10, 2),
         ]);
     }
 

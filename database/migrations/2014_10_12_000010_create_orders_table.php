@@ -27,6 +27,7 @@ class CreateOrdersTable extends Migration
             $table->string('barcode_image')->nullable();
             $table->string('mollie_payment_id')->nullable();
             $table->string('mollie_payment_status')->nullable();
+            $table->string('hash')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
