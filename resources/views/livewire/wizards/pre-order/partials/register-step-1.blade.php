@@ -41,7 +41,11 @@
         </div>
     </div>
 </div>
-
+<div class="columns">
+    <div class="column is-12">
+        {{ __('Choose the medal you want to recieve or choose "none" for attendees who wants to participate without a reward.') }}
+    </div>
+</div>
 <div class="columns">
     @if(Agent::isMobile())
         <div class="column is-one-quarter">

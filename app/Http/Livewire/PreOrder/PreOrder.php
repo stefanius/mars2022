@@ -134,7 +134,7 @@ class PreOrder extends FormWizard
                 "value" => number_format($this->order->grandTotal, 2, '.', ''), // You must send the correct number of decimals, thus we enforce the use of strings
             ],
             "description" => "Duinenmars Order #" . $this->order->order_number,
-            "redirectUrl" => route('order.success'),
+            // "redirectUrl" => route('order.success'),
             "webhookUrl" => route('webhooks.mollie'),
             "metadata" => [
                 "order_id" => $this->order->order_number,
