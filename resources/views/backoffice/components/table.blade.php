@@ -29,10 +29,10 @@
                                 <th class="py-3 px-6 text-left" @if(isset($header['width'])) width="{{ $header['width'] }}" @endif>
                                     @if($header['sortable'])
                                         <span style="cursor: pointer;" wire:click="orderBy('{{$key}}')">
-                                    {{ $header['title'] }}
+                                    {{ __($header['title']) }}
                                 </span>
                                     @else
-                                        {{ $header['title'] }}
+                                        {{ __($header['title']) }}
                                     @endif
                                 </th>
                             @endforeach
