@@ -72,6 +72,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'bestuur@duinenmars.nl',
             'password' => 'S3cr3t!1234567890',
             'admin' => true,
+            'locale' => 'nl',
         ]);
     }
 
@@ -85,6 +86,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'medewerker@duinenmars.nl',
             'password' => 'S3cr3t!1234567890',
             'admin' => false,
+            'locale' => 'nl',
         ]);
     }
 

@@ -92,6 +92,7 @@ class Order extends FormWizard
             'distance_id' => $this->distance,
             'season_id' => Season::activeSeason()->id,
             'day_id' => now()->dayOfWeekIso,
+            'locale' => $this->locale,
         ]);
 
         $this->getTicketsProperty()->each(function ($ticket) {

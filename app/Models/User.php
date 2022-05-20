@@ -8,8 +8,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasLocalePreference
 {
     use HasApiTokens;
     use HasFactory;
@@ -27,6 +28,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'locale',
     ];
 
     /**
@@ -77,5 +79,15 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->admin;
+    }
+
+    /**
+     * Get the preferred locale of the entity.
+     *
+     * @return string
+     */
+    public function preferredLocale()
+    {
+        return $this->locale ?? 'en';
     }
 }
