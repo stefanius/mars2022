@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Statistics;
 
-use App\Models\Order;
 use Livewire\Component;
 use App\Models\Distance;
 

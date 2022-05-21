@@ -15,4 +15,14 @@
             </p>
         </div>
     </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field is-grouped is-grouped-right">
+                <a href="{{ action('payment.retry', ['hash' => $order->hash, 'order' => $order->id, 'locale' => $order->locale]) }}" class="button button is-medium is-success">
+                    {{ __("Retry payment") }}
+                </a>
+            </div>
+        </div>
+    </div>
 </x-layouts.register>

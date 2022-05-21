@@ -4,8 +4,6 @@ namespace App\Http\Livewire\Statistics;
 
 use App\Models\Day;
 use App\Models\Order;
-use Livewire\Component;
-use App\Models\Distance;
 
 class CountPaidOrdersSaturday extends Statistics
 {

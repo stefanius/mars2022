@@ -9,7 +9,7 @@ use App\Models\OrderLine;
 use App\Models\TicketType;
 use Illuminate\Validation\Rule;
 use App\Http\Livewire\FormWizard;
-use Mollie\Laravel\Facades\Mollie;
+use App\Actions\CreateMolliePayment;
 
 class PreOrder extends FormWizard
 {
@@ -118,31 +118,7 @@ class PreOrder extends FormWizard
                 ]);
             });
 
-        $this->preparePayment();
-    }
-
-    /**
-     * Prepare Mollie payment.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function preparePayment()
-    {
-        $payment = Mollie::api()->payments->create([
-            "amount" => [
-                "currency" => "EUR",
-                "value" => number_format($this->order->grandTotal, 2, '.', ''), // You must send the correct number of decimals, thus we enforce the use of strings
-            ],
-            "description" => "Duinenmars Order #" . $this->order->order_number,
-            "redirectUrl" => route('payment.redirect', ['hash' => $this->order->hash, 'order' => $this->order->id, 'locale' => $this->locale]),
-            "webhookUrl" => route('webhooks.mollie'),
-            "metadata" => [
-                "order_id" => $this->order->order_number,
-            ],
-        ]);
-
-        // redirect customer to Mollie checkout page
-        return redirect()->away($payment->getCheckoutUrl(), 303);
+        return app(CreateMolliePayment::class)->handle($this->order);
     }
 
     /**
