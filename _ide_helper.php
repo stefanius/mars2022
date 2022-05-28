@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.12.2.
+ * Generated for Laravel 9.13.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -9348,6 +9348,18 @@
                 $instance->assertSentTimes($notification, $expectedCount);
             }
             /**
+         * Assert the total count of notification that were sent.
+         *
+         * @param int $expectedCount
+         * @return void
+         * @static
+         */
+            public static function assertCount($expectedCount)
+            {
+                /** @var \Illuminate\Support\Testing\Fakes\NotificationFake $instance */
+                $instance->assertCount($expectedCount);
+            }
+            /**
          * Assert the total amount of times a notification was sent.
          *
          * @param int $expectedCount
@@ -15932,7 +15944,7 @@
             /**
          * Get the container instance used by the validation factory.
          *
-         * @return \Illuminate\Contracts\Container\Container
+         * @return \Illuminate\Contracts\Container\Container|null
          * @static
          */
             public static function getContainer()

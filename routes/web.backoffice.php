@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth', 'user.locale']], function () {
     Route::get('ticket-booth', 'TicketBooth\TicketBoothController@index')->name('ticket-booth.index');
     Route::get('ticket-booth/order-searcher', 'TicketBooth\TicketBoothController@orderSearcher')->name('ticket-booth.order-searcher');
     Route::get('ticket-booth/sales', 'TicketBooth\TicketBoothController@sales')->name('ticket-booth.sales');
-    Route::get('ticket-booth/pre-oder', 'TicketBooth\TicketBoothController@preorder')->name('ticket-booth.pre-order');
+    Route::get('ticket-booth/pre-order', 'TicketBooth\TicketBoothController@preorder')->name('ticket-booth.pre-order');
     Route::get('ticket-booth/medals', 'TicketBooth\TicketBoothController@medals')->name('ticket-booth.medals');
 
     Route::resource('order-payments', 'Orders\OrderPaymentsController', ['only' => ['index', 'show', 'create', 'store']])->parameter('OrderPayment', 'Order');

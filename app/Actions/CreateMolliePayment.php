@@ -4,10 +4,18 @@ namespace App\Actions;
 
 use Mollie;
 use App\Models\Order;
+use Illuminate\Http\RedirectResponse;
 
 class CreateMolliePayment
 {
-    public function handle(Order $order)
+    /**
+     * Prepate a mollie payment.
+     *
+     * @param Order $order
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handle(Order $order): RedirectResponse
     {
         return $this->preparePayment($order);
     }
@@ -15,9 +23,11 @@ class CreateMolliePayment
     /**
      * Prepare Mollie payment.
      *
+     * @param Order $order
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function preparePayment(Order $order)
+    protected function preparePayment(Order $order): RedirectResponse
     {
         $payment = Mollie::api()->payments->create([
             "amount" => [

@@ -7,14 +7,18 @@ use Livewire\Component;
 
 class OrderSearcher extends Component
 {
+    /**
+     * @var \App\Models\Order
+     */
     public $order;
 
+    /**
+     * @var int
+     */
     public $orderNumber;
 
     /**
      * Listen to updated event.
-     *
-     * @param string $propertyName
      *
      * @throws \Illuminate\Validation\ValidationException
      */

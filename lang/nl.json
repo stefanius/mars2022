@@ -41,6 +41,10 @@
     "Paid orders saturday": "Betaalde orders zaterdag",
     "Paid orders sunday": "Betaalde orders zondag",
     "Statistics": "Statistiek",
+    "Discount": "Korting",
+    "Thank you!": "Bedankt!",
+    "Edit order details": "Order wijzigen",
+    "Feel free to go back to our <a href=\"https://www.duinenmars.nl\">website</a> or start a <a href=\":newOrderUrl\">new order</a>.": "Als je wilt kan je terug naar onze <a href=\"https://www.duinenmars.nl\">webste</a> of plaats een <a href=\":newOrderUrl\">nieuwe bestelling</a>.",
     "Choose the medal you want to recieve or choose \"none\" for attendees who wants to participate without a reward.": "Kies hieronder de medaille die je wilt ontvangen of kies \"geen\" voor deelnemers die alleen willen wandelen zonder beloning.",
     "Thank you for your order. Your should receive an email with your order details. This email is also your ticket to start the Duinenmars.": "Bedankt voor je bestelling. Je ontvangt een email met je bestelling. Bewaar deze goed, dit is je toegangsbewijs tot de Duinenmars."
 }

@@ -10,7 +10,7 @@
                 <select wire:model="distance" name="distance" required="required" class="input">
                     <option selected hidden>{{ __("Choose") }}</option>
                     @foreach($distances as $distance)
-                        <option value="{{ $distance->id }}">{{ __($distance->name) }}</option>
+                        <option value="{{ $distance->id }}">{{ __($distance->name) }} KM</option>
                     @endforeach()
                 </select>
             </div>

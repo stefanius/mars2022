@@ -151,6 +151,7 @@ namespace App\Models{
  * @property string|null $barcode_image
  * @property string|null $mollie_payment_id
  * @property string|null $mollie_payment_status
+ * @property string|null $hash
  * @property string|null $first_name
  * @property string|null $last_name
  * @property string|null $email
@@ -197,6 +198,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereFinishedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereHash($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereLocale($value)
@@ -331,6 +333,7 @@ namespace App\Models{
  * @property string $password
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
+ * @property string $locale
  * @property int $admin
  * @property \Illuminate\Support\Carbon $email_verified_at
  * @property string|null $remember_token
@@ -350,6 +353,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLocale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
@@ -357,7 +361,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
-    class User extends \Eloquent
+    class User extends \Eloquent implements \Illuminate\Contracts\Translation\HasLocalePreference
     {
     }
 }

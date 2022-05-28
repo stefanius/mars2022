@@ -14,6 +14,8 @@ class PaymentSuccess extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('register.pages.thank-you');
+        $newOrderUrl = route('pre-order.start', ['locale' => $request->get('locale')]);
+
+        return view('register.pages.thank-you', compact('newOrderUrl'));
     }
 }

@@ -78,12 +78,12 @@ class Order extends Model implements HasLocalePreference
     {
         parent::boot();
 
-        self::creating(function (Model $model) {
+        self::creating(function (Order $order) {
             // Generete new ordernumber
             $previousValue = (int) Order::query()->max('order_number');
             $newValue = $previousValue + 1;
-            $model->order_number = sprintf("%05d", $newValue);
-            $model->hash = Str::uuid()->toString();
+            $order->order_number = sprintf("%05d", $newValue);
+            $order->hash = Str::uuid()->toString();
 
             // Generate barcode image
             // $barcode = DNS1D::getBarcodePNG($model->order_number, 'EAN13');
@@ -211,7 +211,8 @@ class Order extends Model implements HasLocalePreference
         return $query->whereHas('orderLines', function (Builder $query) {
             return $query
                 ->select(DB::raw('SUM(quantity) as sum_quantity'))
-                ->having('sum_quantity', '>', Season::activeSeason()->minimum_group);
+                ->groupBy('order_lines.id')
+                ->having('sum_quantity', '>', (string) Season::activeSeason()->minimum_group);
         });
     }
 
