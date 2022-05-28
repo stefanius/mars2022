@@ -11,7 +11,7 @@ class PaymentFailed extends Controller
     /**
      * Display the dashboard.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Http\Response
      */
     public function __invoke(Request $request)
     {

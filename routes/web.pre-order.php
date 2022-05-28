@@ -20,7 +20,7 @@ use App\Http\Controllers\PreOrder\Payment\PaymentRedirect;
 Route::group(['middleware' => ['locale']], function () {
     Route::get('/', function () {
         return view('register.pages.index');
-    });
+    })->name('pre-order.start');
 
     Route::get('/payment/redirect', PaymentRedirect::class)->name('payment.redirect');
 

@@ -40,5 +40,7 @@
         <!-- Extra whitelines to create some spacing for the printer -->
         <br />
         <br />
+        <br />
+        <span class="is-text-muted">{{ __('Printed At') }}: {{ now()}}</span><br />
     </body>
 </html>

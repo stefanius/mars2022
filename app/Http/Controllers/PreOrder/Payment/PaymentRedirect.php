@@ -11,7 +11,7 @@ class PaymentRedirect extends Controller
     /**
      * Display the dashboard.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function __invoke(Request $request)
     {
