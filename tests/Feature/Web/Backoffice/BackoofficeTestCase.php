@@ -5,7 +5,7 @@ namespace Tests\Feature\Web\Backoffice;
 use Tests\TestCase;
 use App\Models\User;
 
-class BackofficeTestCase extends TestCase
+abstract class BackofficeTestCase extends TestCase
 {
     /**
      * @var \App\Models\User
