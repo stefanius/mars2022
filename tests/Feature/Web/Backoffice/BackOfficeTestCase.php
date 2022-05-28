@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature\Web\BackOffice;
+namespace Tests\Feature\Web\Backoffice;
 
 use Tests\TestCase;
 use App\Models\User;
 
-class BackOfficeTestCase extends TestCase
+class BackofficeTestCase extends TestCase
 {
     /**
      * @var \App\Models\User

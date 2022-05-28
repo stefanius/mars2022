@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Feature\Web\BackOffice\Administrator;
+namespace Tests\Feature\Web\Backoffice\Administrator;
 
-use Tests\Feature\Web\BackOffice\BackOfficeTestCase;
+use Tests\Feature\Web\Backoffice\BackofficeTestCase;
 
-abstract class AdministratorTestCase extends BackOfficeTestCase
+abstract class AdministratorTestCase extends BackofficeTestCase
 {
     /**
      * @return void

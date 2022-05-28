@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature\Web\Administrator\Orders;
+namespace Tests\Feature\Web\Backoffice\Administrator\Orders;
 
-use Tests\Feature\Web\BackOffice\Administrator\AdministratorTestCase;
+use Tests\Feature\Web\Backoffice\Administrator\AdministratorTestCase;
 
 class AccessOrdersTest extends AdministratorTestCase
 {
