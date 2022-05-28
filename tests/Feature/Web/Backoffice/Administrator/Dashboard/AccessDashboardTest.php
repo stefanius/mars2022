@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Web\Backoffice\Administrator\Dashboard;
 
-use Tests\Feature\Web\BackOffice\Administrator\AdministratorTestCase;
+use Tests\Feature\Web\Backoffice\Administrator\AdministratorTestCase;
 
 class AccessDashboardTest extends AdministratorTestCase
 {
