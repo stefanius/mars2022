@@ -33,7 +33,7 @@ class Order extends Model implements HasLocalePreference
         'last_name',
         'email',
         'hash',
-        'organization',
+        'organisation',
         'phone',
         'order_number',
         'mollie_payment_id',

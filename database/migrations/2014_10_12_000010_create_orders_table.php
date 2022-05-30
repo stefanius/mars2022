@@ -31,7 +31,7 @@ class CreateOrdersTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
-            $table->string('organization')->nullable();
+            $table->string('organisation')->nullable();
             $table->string('phone')->nullable();
 
             $table->boolean('mail_consent')->default(false);

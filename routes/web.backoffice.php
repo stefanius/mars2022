@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth', 'user.locale']], function () {
+Route::group(['middleware' => ['auth', 'user.locale', 'user.suspended', 'user.login-window']], function () {
     Route::resource('/', 'Home\HomeController', ['only' => ['index']]);
 
     Route::resource('profile', 'Profile\ProfileController', ['only' => ['index']]);
@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth', 'user.locale']], function () {
     Route::resource('inventory', 'Inventory\InventoryController', ['only' => ['index', 'show', 'create', 'store']]);
 
     Route::resource('seasons', 'Seasons\SeasonsController', ['only' => ['index', 'show', 'create', 'store']]);
+
+    Route::resource('users', 'Users\UsersController', ['only' => ['index', 'show', 'create', 'store']]);
 
     Route::get('statistics/orders', 'Statistics\OrderStatisticsController')->name('statistics.orders');
 

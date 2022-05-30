@@ -17,8 +17,8 @@
         <span>{{ $firstName }} {{ $lastName }}</span> <br/>
         <span>{{ $email }}</span> <br/>
 
-        @if ($organization)
-            <span>{{ $organization }}</span> <br/>
+        @if ($organisation)
+            <span>{{ $organisation }}</span> <br/>
         @endif
 
         @if ($phone)

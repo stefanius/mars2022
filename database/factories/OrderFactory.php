@@ -31,7 +31,7 @@ class OrderFactory extends Factory
             'first_name' => $this->faker->boolean(55) ? $this->faker->firstName : null,
             'last_name' => $this->faker->boolean(55) ? $this->faker->lastName : null,
             'email' => $this->faker->boolean(50) ? $this->faker->email : null,
-            'organization' => $this->faker->boolean(15) ? $this->faker->company : null,
+            'organisation' => $this->faker->boolean(15) ? $this->faker->company : null,
             'phone' => $this->faker->boolean(15) ? $this->faker->phoneNumber : null,
             'locale' => $this->faker->randomElement(['en', 'nl']),
             'distance_id' => Distance::all()->random()->id,
