@@ -14,7 +14,7 @@ class Order extends FormWizard
     public $firstName;
     public $lastName;
     public $email;
-    public $organization;
+    public $organisation;
     public $distance;
     public $ticketType = [];
     public $ticketCount = [];
@@ -45,7 +45,7 @@ class Order extends FormWizard
                 'firstName' => 'sometimes|nullable',
                 'lastName' => 'sometimes|nullable',
                 'email' => 'sometimes|nullable|email:rfc,dns',
-                'organization' => 'sometimes|nullable',
+                'organisation' => 'sometimes|nullable',
                 'phone' => 'sometimes|nullable',
             ],
         ];
@@ -87,7 +87,7 @@ class Order extends FormWizard
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
-            'organization' => $this->organization,
+            'organisation' => $this->organisation,
             'phone' => $this->phone,
             'distance_id' => $this->distance,
             'season_id' => Season::activeSeason()->id,
@@ -190,7 +190,7 @@ class Order extends FormWizard
 //        $this->firstName = null;
 //        $this->lastName = null;
 //        $this->email = null;
-//        $this->organization = null;
+//        $this->organisation = null;
 //        $this->phone = null;
 //        $this->distance = null;
 //

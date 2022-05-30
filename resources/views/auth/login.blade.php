@@ -9,6 +9,15 @@
                         <figure class="avatar">
                             <img src="/favicon.ico">
                         </figure>
+
+                        @if ($errors->any())
+                            <div class="message is-danger">
+                                <div class="message-body">
+                                    {{ $errors->first() }}
+                                </div>
+                            </div>
+                        @endif
+
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
