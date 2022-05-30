@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Backoffice\Users;
 
-use App\Models\Address;
-use Illuminate\Routing\Controller;
-use App\Http\Requests\AddressStoreRequest;
-use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
+use Illuminate\Routing\Controller;
+use App\Http\Requests\UserStoreRequest;
 
 class UsersController extends Controller
 {
@@ -45,7 +43,7 @@ class UsersController extends Controller
     {
         abort_unless(auth()->user()->isAdmin(), 401);
 
-        return view('backoffice.pages.users.edit', compact('address'));
+        return view('backoffice.pages.users.edit', compact('user'));
     }
 
     /**

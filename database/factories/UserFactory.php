@@ -60,7 +60,7 @@ class UserFactory extends Factory
     }
 
     /**
-     * Create a user with an expired login window
+     * Create a user with an expired login window.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
@@ -75,7 +75,7 @@ class UserFactory extends Factory
     }
 
     /**
-     * Create a user with an active login window
+     * Create a user with an active login window.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
@@ -89,8 +89,8 @@ class UserFactory extends Factory
         });
     }
 
-        /**
-     * Create a user with an active login window
+    /**
+     * Create a user with an active login window.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */

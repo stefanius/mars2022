@@ -109,7 +109,7 @@ class User extends Authenticatable implements HasLocalePreference
     }
 
     /**
-     * Determines when the user has an active login window
+     * Determines when the user has an active login window.
      *
      * @return boolean
      */
