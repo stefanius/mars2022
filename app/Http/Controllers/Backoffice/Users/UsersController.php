@@ -61,21 +61,21 @@ class UsersController extends Controller
     }
 
     /**
-     * @param Address $address
-     * @param AddressStoreRequest $request
+     * @param User $user
+     * @param UserStoreRequest $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Address $address, UserStoreRequest $request)
+    public function update(User $user, UserStoreRequest $request)
     {
         abort_unless(auth()->user()->isAdmin(), 401);
 
-        $address->update($request->validated());
+        $user->update($request->validated());
 
-        return redirect(route('addresses.index'));
+        return redirect(route('users.index'));
     }
 
     /**
-     * Show a address page.
+     * Show a user page.
      *
      * @return \Illuminate\View\View
      */
@@ -87,17 +87,17 @@ class UsersController extends Controller
     }
 
     /**
-     * Destroy a address.
+     * Destroy a user.
      *
-     * @param Address $address
+     * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Address $address)
+    public function destroy(User $user)
     {
         abort_unless(auth()->user()->isAdmin(), 401);
 
-        $address->forceDelete();
+        $user->forceDelete();
 
-        return redirect('addresses.index');
+        return redirect('user.index');
     }
 }
