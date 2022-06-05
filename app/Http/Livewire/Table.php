@@ -90,16 +90,19 @@ class Table extends Component
     public $allowPagination = true;
 
     /**
-     * @param array $headers
-     * @param string $routeKey
-     * @param string $model
+     * Mount Livewire component.
+     *
+     * @param [type] $headers
+     * @param [type] $routeKey
+     * @param [type] $model
      * @param array $queryOn
-     * @param int $pagerLimit
-     * @param bool $showHeader
+     * @param integer $pagerLimit
+     * @param boolean $showHeader
      * @param array $scopes
-     * @param bool $modal
-     * @param bool $allowPagination
-     * @param bool $showCreateButton
+     * @param boolean $modal
+     * @param boolean $allowPagination
+     * @param boolean $showCreateButton
+     * @param array $actions
      */
     public function mount($headers, $routeKey, $model, $queryOn = [], $pagerLimit = 15, $showHeader = true, $scopes = [], $modal = false, $allowPagination=true, $showCreateButton=true, $actions = [])
     {

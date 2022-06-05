@@ -1,0 +1,83 @@
+/home/vagrant/code/app/Actions/Fortify/CreateNewUser.php:27                              StaticAccess            Avoid using static access to class '\Laravel\Jetstream\Jetstream' in method 'create'.
+/home/vagrant/code/app/Actions/Fortify/CreateNewUser.php:30                              StaticAccess            Avoid using static access to class '\App\Models\User' in method 'create'.
+/home/vagrant/code/app/Actions/Fortify/CreateNewUser.php:33                              StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Hash' in method 'create'.
+/home/vagrant/code/app/Actions/Fortify/ResetUserPassword.php:27                          StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Hash' in method 'reset'.
+/home/vagrant/code/app/Actions/Fortify/UpdateUserPassword.php:26                         StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Hash' in method 'update'.
+/home/vagrant/code/app/Actions/Fortify/UpdateUserPassword.php:32                         StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Hash' in method 'update'.
+/home/vagrant/code/app/Actions/Fortify/UpdateUserProfileInformation.php:34               ElseExpression          The method update uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
+/home/vagrant/code/app/Console/Kernel.php:25                                             UnusedFormalParameter   Avoid unused parameters such as '$schedule'.
+/home/vagrant/code/app/Exceptions/Handler.php:37                                         UnusedFormalParameter   Avoid unused parameters such as '$e'.
+/home/vagrant/code/app/Http/Controllers/Auth/ConfirmablePasswordController.php:19        UnusedFormalParameter   Avoid unused parameters such as '$request'.
+/home/vagrant/code/app/Http/Controllers/Auth/ConfirmablePasswordController.php:36        StaticAccess            Avoid using static access to class '\Illuminate\Validation\ValidationException' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Auth/NewPasswordController.php:43                StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Password' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Auth/NewPasswordController.php:47                StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Hash' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Auth/NewPasswordController.php:48                StaticAccess            Avoid using static access to class '\Illuminate\Support\Str' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Auth/PasswordResetLinkController.php:38          StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Password' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Auth/RegisteredUserController.php:41             StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Auth' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Auth/RegisteredUserController.php:41             StaticAccess            Avoid using static access to class '\App\Models\User' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Auth/RegisteredUserController.php:44             StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Hash' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Backoffice/Addresses/AddressesController.php:56  StaticAccess            Avoid using static access to class '\App\Models\Address' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Backoffice/Seasons/SeasonsController.php:56      StaticAccess            Avoid using static access to class '\App\Models\Season' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Backoffice/Seasons/SeasonsController.php:57      StaticAccess            Avoid using static access to class '\App\Models\Season' in method 'store'.
+/home/vagrant/code/app/Http/Controllers/Backoffice/Users/UsersController.php:56          StaticAccess            Avoid using static access to class '\App\Models\User' in method 'store'.
+/home/vagrant/code/app/Http/Livewire/Order/Order.php:86                                  StaticAccess            Avoid using static access to class '\App\Models\Order' in method 'submit'.
+/home/vagrant/code/app/Http/Livewire/Order/Order.php:99                                  StaticAccess            Avoid using static access to class '\App\Models\OrderLine' in method 'submit'.
+/home/vagrant/code/app/Http/Livewire/Order/Order.php:102                                 StaticAccess            Avoid using static access to class '\Illuminate\Support\Arr' in method 'submit'.
+/home/vagrant/code/app/Http/Livewire/Order/Order.php:114                                 StaticAccess            Avoid using static access to class '\App\Models\Distance' in method 'getSelectedDistanceProperty'.
+/home/vagrant/code/app/Http/Livewire/Order/Order.php:137                                 StaticAccess            Avoid using static access to class '\App\Models\TicketType' in method 'getTicketsProperty'.
+/home/vagrant/code/app/Http/Livewire/Order/Order.php:139                                 StaticAccess            Avoid using static access to class '\Illuminate\Support\Arr' in method 'getTicketsProperty'.
+/home/vagrant/code/app/Http/Livewire/Order/Order.php:169                                 StaticAccess            Avoid using static access to class '\App\Models\TicketType' in method 'ticketTypes'.
+/home/vagrant/code/app/Http/Livewire/Order/Order.php:179                                 StaticAccess            Avoid using static access to class '\App\Models\Distance' in method 'distances'.
+/home/vagrant/code/app/Http/Livewire/OrderActions.php:22                                 StaticAccess            Avoid using static access to class '\Carbon\Carbon' in method 'start'.
+/home/vagrant/code/app/Http/Livewire/OrderActions.php:26                                 StaticAccess            Avoid using static access to class '\Carbon\Carbon' in method 'start'.
+/home/vagrant/code/app/Http/Livewire/OrderActions.php:27                                 StaticAccess            Avoid using static access to class '\Carbon\Carbon' in method 'start'.
+/home/vagrant/code/app/Http/Livewire/OrderActions.php:37                                 StaticAccess            Avoid using static access to class '\Carbon\Carbon' in method 'finish'.
+/home/vagrant/code/app/Http/Livewire/PreOrder/PreOrder.php:58                            StaticAccess            Avoid using static access to class '\Illuminate\Validation\Rule' in method 'rules'.
+/home/vagrant/code/app/Http/Livewire/PreOrder/PreOrder.php:90                            StaticAccess            Avoid using static access to class '\App\Models\Order' in method 'submit'.
+/home/vagrant/code/app/Http/Livewire/PreOrder/PreOrder.php:111                           StaticAccess            Avoid using static access to class '\App\Models\OrderLine' in method 'submit'.
+/home/vagrant/code/app/Http/Livewire/PreOrder/PreOrder.php:131                           StaticAccess            Avoid using static access to class '\App\Models\Distance' in method 'getSelectedDistanceProperty'.
+/home/vagrant/code/app/Http/Livewire/PreOrder/PreOrder.php:164                           StaticAccess            Avoid using static access to class '\App\Models\TicketType' in method 'getTicketsProperty'.
+/home/vagrant/code/app/Http/Livewire/PreOrder/PreOrder.php:185                           StaticAccess            Avoid using static access to class '\App\Models\TicketType' in method 'ticketTypes'.
+/home/vagrant/code/app/Http/Livewire/PreOrder/PreOrder.php:195                           StaticAccess            Avoid using static access to class '\App\Models\Distance' in method 'distances'.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                       BooleanArgumentFlag     The method mount has a boolean flag argument $showHeader, which is a certain sign of a Single Responsibility Principle violation.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                       BooleanArgumentFlag     The method mount has a boolean flag argument $modal, which is a certain sign of a Single Responsibility Principle violation.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                       BooleanArgumentFlag     The method mount has a boolean flag argument $allowPagination, which is a certain sign of a Single Responsibility Principle violation.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                       BooleanArgumentFlag     The method mount has a boolean flag argument $showCreateButton, which is a certain sign of a Single Responsibility Principle violation.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                       ExcessiveParameterList  The method mount has 11 parameters. Consider reducing the number of parameters to less than 10.
+/home/vagrant/code/app/Http/Livewire/Table.php:150                                       ElseExpression          The method records uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
+/home/vagrant/code/app/Http/Middleware/CheckOrderOpening.php:19                          UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/CheckPreOrderOpening.php:19                       UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/CheckUserLoginWindow.php:19                       UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/CheckUserLoginWindow.php:22                       StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Auth' in method 'handle'.
+/home/vagrant/code/app/Http/Middleware/CheckUserSuspended.php:19                         UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/CheckUserSuspended.php:22                         StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Auth' in method 'handle'.
+/home/vagrant/code/app/Http/Middleware/SetLocale.php:20                                  UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/SetUserLocale.php:18                              UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Requests/Auth/LoginRequest.php:48                            StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Auth' in method 'authenticate'.
+/home/vagrant/code/app/Http/Requests/Auth/LoginRequest.php:49                            StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\RateLimiter' in method 'authenticate'.
+/home/vagrant/code/app/Http/Requests/Auth/LoginRequest.php:51                            StaticAccess            Avoid using static access to class '\Illuminate\Validation\ValidationException' in method 'authenticate'.
+/home/vagrant/code/app/Http/Requests/Auth/LoginRequest.php:56                            StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\RateLimiter' in method 'authenticate'.
+/home/vagrant/code/app/Http/Requests/Auth/LoginRequest.php:68                            StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\RateLimiter' in method 'ensureIsNotRateLimited'.
+/home/vagrant/code/app/Http/Requests/Auth/LoginRequest.php:74                            StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\RateLimiter' in method 'ensureIsNotRateLimited'.
+/home/vagrant/code/app/Http/Requests/Auth/LoginRequest.php:76                            StaticAccess            Avoid using static access to class '\Illuminate\Validation\ValidationException' in method 'ensureIsNotRateLimited'.
+/home/vagrant/code/app/Http/Requests/Auth/LoginRequest.php:91                            StaticAccess            Avoid using static access to class '\Illuminate\Support\Str' in method 'throttleKey'.
+/home/vagrant/code/app/Models/Order.php:21                                               TooManyMethods          The class Order has 26 non-getter- and setter-methods. Consider refactoring Order to keep number of methods under 25.
+/home/vagrant/code/app/Models/Order.php:21                                               TooManyPublicMethods    The class Order has 26 public methods. Consider refactoring Order to keep number of public methods under 10.
+/home/vagrant/code/app/Models/Order.php:21                                               CouplingBetweenObjects  The class Order has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+/home/vagrant/code/app/Models/Order.php:213                                              StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\DB' in method 'scopeOnlyGroups'.
+/home/vagrant/code/app/Models/Order.php:312                                              StaticAccess            Avoid using static access to class '\Carbon\Carbon' in method 'markAsPrinted'.
+/home/vagrant/code/app/Models/Order.php:321                                              StaticAccess            Avoid using static access to class '\Carbon\Carbon' in method 'markAsPaid'.
+/home/vagrant/code/app/Models/Order.php:327                                              StaticAccess            Avoid using static access to class '\Carbon\Carbon' in method 'markAsPaid'.
+/home/vagrant/code/app/Models/Season.php:51                                              StaticAccess            Avoid using static access to class '\Carbon\Carbon' in method 'deactivateSeasons'.
+/home/vagrant/code/app/Providers/BroadcastServiceProvider.php:17                         StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\Broadcast' in method 'boot'.
+/home/vagrant/code/app/Providers/FortifyServiceProvider.php:34                           StaticAccess            Avoid using static access to class '\Laravel\Fortify\Fortify' in method 'boot'.
+/home/vagrant/code/app/Providers/FortifyServiceProvider.php:35                           StaticAccess            Avoid using static access to class '\Laravel\Fortify\Fortify' in method 'boot'.
+/home/vagrant/code/app/Providers/FortifyServiceProvider.php:36                           StaticAccess            Avoid using static access to class '\Laravel\Fortify\Fortify' in method 'boot'.
+/home/vagrant/code/app/Providers/FortifyServiceProvider.php:37                           StaticAccess            Avoid using static access to class '\Laravel\Fortify\Fortify' in method 'boot'.
+/home/vagrant/code/app/Providers/FortifyServiceProvider.php:39                           StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\RateLimiter' in method 'boot'.
+/home/vagrant/code/app/Providers/FortifyServiceProvider.php:43                           StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\RateLimiter' in method 'boot'.
+/home/vagrant/code/app/Providers/JetstreamServiceProvider.php:30                         StaticAccess            Avoid using static access to class '\Laravel\Jetstream\Jetstream' in method 'boot'.
+/home/vagrant/code/app/Providers/JetstreamServiceProvider.php:40                         StaticAccess            Avoid using static access to class '\Laravel\Jetstream\Jetstream' in method 'configurePermissions'.
+/home/vagrant/code/app/Providers/JetstreamServiceProvider.php:42                         StaticAccess            Avoid using static access to class '\Laravel\Jetstream\Jetstream' in method 'configurePermissions'.
+/home/vagrant/code/app/Providers/RouteServiceProvider.php:97                             StaticAccess            Avoid using static access to class '\Illuminate\Support\Facades\RateLimiter' in method 'configureRateLimiting'.
+/home/vagrant/code/app/View/Components/Menus/TopMenu.php:61                              StaticAccess            Avoid using static access to class '\Illuminate\Support\Str' in method 'isActive'.

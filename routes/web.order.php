@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['locale']], function () {
+Route::group(['middleware' => ['locale', 'order.open']], function () {
     Route::get('/', function () {
         return view('order.pages.index');
     });
+});
+
+Route::group(['middleware' => ['locale']], function () {
+    Route::get('/closed', function () {
+        return view('register.pages.pre-order-closed');
+    })->name('order.closed');
 });

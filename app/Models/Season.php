@@ -50,4 +50,44 @@ class Season extends Model
     {
         return self::whereNull('read_only_since')->update(['read_only_since' => Carbon::now()]);
     }
+
+    /**
+     * Determines pre-order section is closed.
+     *
+     * @return boolean
+     */
+    public function isPreOrderClosed(): bool
+    {
+        return !$this->isPreOrderOpen();
+    }
+
+    /**
+     * Determines the pre-order opening.
+     *
+     * @return boolean
+     */
+    public function isPreOrderOpen(): bool
+    {
+        return Carbon::now()->isAfter($this->pre_order_starts_at) && Carbon::now()->isBefore($this->pre_order_ends_at);
+    }
+
+    /**
+     * Determines order section is closed.
+     *
+     * @return boolean
+     */
+    public function isOrderClosed(): bool
+    {
+        return !$this->isOrderOpen();
+    }
+
+    /**
+     * Determines the order opening.
+     *
+     * @return boolean
+     */
+    public function isOrderOpen(): bool
+    {
+        return $this->saturday_date->isToday() || $this->sunday_date->isToday();
+    }
 }

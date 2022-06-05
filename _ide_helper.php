@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.14.1.
+ * Generated for Laravel 9.16.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3307,6 +3307,7 @@
      *
      * @method static \Illuminate\Broadcasting\Broadcasters\Broadcaster channel(string $channel, callable|string  $callback, array $options = [])
      * @method static mixed auth(\Illuminate\Http\Request $request)
+     * @method static void resolveAuthenticatedUserUsing(Closure $callback)
      * @see \Illuminate\Contracts\Broadcasting\Factory
      */
         class Broadcast
@@ -7085,6 +7086,19 @@
                 return $instance->isDirectory($directory);
             }
             /**
+         * Determine if the given path is a directory that does not contain any other files or directories.
+         *
+         * @param string $directory
+         * @param bool $ignoreDotFiles
+         * @return bool
+         * @static
+         */
+            public static function isEmptyDirectory($directory, $ignoreDotFiles = false)
+            {
+                /** @var \Illuminate\Filesystem\Filesystem $instance */
+                return $instance->isEmptyDirectory($directory, $ignoreDotFiles);
+            }
+            /**
          * Determine if the given path is readable.
          *
          * @param string $path
@@ -7840,6 +7854,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest withoutVerifying()
      * @method static \Illuminate\Http\Client\PendingRequest throw(callable $callback = null)
      * @method static \Illuminate\Http\Client\PendingRequest throwIf($condition)
+     * @method \Illuminate\Http\Client\PendingRequest throwUnless($condition)
      * @method static array pool(callable $callback)
      * @method static \Illuminate\Http\Client\Response delete(string $url, array $data = [])
      * @method static \Illuminate\Http\Client\Response get(string $url, array|string|null $query = null)
@@ -10015,6 +10030,7 @@
          *
          * @param int $status
          * @return \Illuminate\Http\RedirectResponse
+         * @deprecated Will be removed in a future Laravel version.
          * @static
          */
             public static function home($status = 302)
@@ -10644,6 +10660,7 @@
             /**
          * Gets the Session.
          *
+         * @throws SessionNotFoundException When session is not set properly
          * @static
          */
             public static function getSession()
@@ -19173,6 +19190,24 @@ namespace  {
                 }
 
                 /**
+             * Add a relationship count / exists condition to the query with where clauses.
+             *
+             * Also load the relationship with same condition.
+             *
+             * @param string $relation
+             * @param \Closure|null $callback
+             * @param string $operator
+             * @param int $count
+             * @return \Illuminate\Database\Eloquent\Builder|static
+             * @static
+             */
+                public static function withWhereHas($relation, $callback = null, $operator = '>=', $count = 1)
+                {
+                    /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                    return $instance->withWhereHas($relation, $callback, $operator, $count);
+                }
+
+                /**
              * Add a relationship count / exists condition to the query with where clauses and an "or".
              *
              * @param string $relation
@@ -20798,8 +20833,8 @@ namespace  {
              * Add a "having" clause to the query.
              *
              * @param \Closure|string $column
-             * @param string|null $operator
-             * @param string|null $value
+             * @param string|int|float|null $operator
+             * @param string|int|float|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder
              * @static
@@ -20814,8 +20849,8 @@ namespace  {
              * Add an "or having" clause to the query.
              *
              * @param \Closure|string $column
-             * @param string|null $operator
-             * @param string|null $value
+             * @param string|int|float|null $operator
+             * @param string|int|float|null $value
              * @return \Illuminate\Database\Query\Builder
              * @static
              */
