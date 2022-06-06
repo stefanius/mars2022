@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'pre-order.open' => \App\Http\Middleware\CheckPreOrderOpening::class,
+        'order.open' => \App\Http\Middleware\CheckOrderOpening::class,
     ];
 }
