@@ -92,9 +92,9 @@ class Table extends Component
     /**
      * Mount Livewire component.
      *
-     * @param [type] $headers
-     * @param [type] $routeKey
-     * @param [type] $model
+     * @param array $headers
+     * @param string $routeKey
+     * @param string $model
      * @param array $queryOn
      * @param integer $pagerLimit
      * @param boolean $showHeader
