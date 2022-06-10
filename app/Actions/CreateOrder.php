@@ -10,13 +10,16 @@ use Illuminate\Support\Arr;
 class CreateOrder
 {
     /**
-     * Create an order.
+     * Create an order
      *
-     * @param Order $order
+     * @param array $orderData
+     * @param array $ticketTypes
+     * @param array $ticketCount
+     * @param array $halfPrice
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Order
      */
-    public function handle(array $orderData, array $ticketTypes, array $ticketCount, array $halfPrice)
+    public function handle(array $orderData, array $ticketTypes, array $ticketCount, array $halfPrice): Order
     {
         $order = \App\Models\Order::create($orderData);
 
@@ -42,7 +45,7 @@ class CreateOrder
         $tickets = collect();
 
         foreach ($ticketTypes as $key => $value) {
-            if (empty($value) || $value === 0) {
+            if (empty($value) || $value == 0) {
                 continue;
             }
 
