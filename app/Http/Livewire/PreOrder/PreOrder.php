@@ -56,6 +56,7 @@ class PreOrder extends FormWizard
                 'organisation' => 'sometimes|nullable',
                 'phone' => 'sometimes|nullable',
                 'termsOfService' => ['required', 'boolean', Rule::in(['1', 'true', true])],
+                'mailConsent' => ['sometimes', 'nullable', 'boolean', Rule::in(['1', 'true', true])],
             ],
         ];
     }
