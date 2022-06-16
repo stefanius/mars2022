@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Events\SeasonCreated;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
@@ -36,6 +37,15 @@ class Season extends Model
     ];
 
     /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => SeasonCreated::class,
+    ];
+
+    /**
      * @return Season
      */
     public static function activeSeason()
@@ -49,6 +59,16 @@ class Season extends Model
     public static function deactivateSeasons()
     {
         return self::whereNull('read_only_since')->update(['read_only_since' => Carbon::now()]);
+    }
+
+    /**
+     * Undocumented function.
+     *
+     * @return void
+     */
+    public function distances()
+    {
+        return $this->belongsToMany(Distance::class);
     }
 
     /**

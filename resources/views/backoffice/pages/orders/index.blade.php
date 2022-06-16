@@ -11,7 +11,6 @@
                 model="\App\Models\Order"
                 :queryOn="['order_number', 'first_name', 'last_name', 'email']"
                 routeKey="orders"
-                :showCreateButton="false"
                 :headers="[
                 'order_number' => ['title' => 'Order', 'width' => '10%', 'sortable' => true],
                 'first_name' => ['title' => 'First Name', 'width' => '30%', 'sortable' => true],
