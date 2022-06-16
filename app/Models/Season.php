@@ -7,6 +7,7 @@ use App\Events\SeasonCreated;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Season extends Model
 {
@@ -62,11 +63,9 @@ class Season extends Model
     }
 
     /**
-     * Undocumented function.
-     *
-     * @return void
+     * @return BelongsToMany
      */
-    public function distances()
+    public function distances(): BelongsToMany
     {
         return $this->belongsToMany(Distance::class);
     }
