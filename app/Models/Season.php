@@ -48,7 +48,7 @@ class Season extends Model
     /**
      * @return Season
      */
-    public static function activeSeason()
+    public static function activeSeason(): Season
     {
         return self::whereNull('read_only_since')->first();
     }
