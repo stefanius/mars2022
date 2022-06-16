@@ -1,6 +1,12 @@
 <div>
     <div class="card">
         <div class="columns">
+            @if (auth()->user()->isAdmin())
+                <div class="column has-text-centered has-addons-centered">
+                    <button wire:click="paid" class="button is-fullwidth is-primary" @if($order->isPaid()) disabled @endif>{{ __('Paid') }}</button>
+                </div>
+            @endif
+
             <div class="column has-text-centered has-addons-centered">
                 <button wire:click="start" class="button is-fullwidth is-primary" @if($order->isStarted()) disabled @endif>{{ __('Start') }}</button>
             </div>

@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 class CreateOrder
 {
     /**
-     * Create an order
+     * Create an order.
      *
      * @param array $orderData
      * @param array $ticketTypes

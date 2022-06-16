@@ -15,6 +15,7 @@ class Distance extends Model
     public const DISTANCE_15_KM = 3;
     public const DISTANCE_25_KM = 4;
     public const DISTANCE_40_KM = 5;
+    public const DISTANCE_70_KM = 6;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +24,44 @@ class Distance extends Model
      */
     protected $fillable = [
         'name',
-        'long_distance',
+        'distance_type_id',
     ];
+
+    /**
+     * Determines if the distance is short.
+     *
+     * @return boolean
+     */
+    public function isShortDistance(): bool
+    {
+        return $this->distance_type_id === DistanceType::SHORT;
+    }
+
+    /**
+     * Determines if the distance is long.
+     *
+     * @return boolean
+     */
+    public function isLongDistance(): bool
+    {
+        return $this->distance_type_id === DistanceType::LONG;
+    }
+
+    /**
+     * Determines if the distance is spread over the weekend.
+     *
+     * @return boolean
+     */
+    public function isWeekendDistance(): bool
+    {
+        return $this->distance_type_id === DistanceType::WEEKEND;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->belongsTo(DistanceType::class);
+    }
 }

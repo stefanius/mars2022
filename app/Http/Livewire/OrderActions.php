@@ -16,6 +16,14 @@ class OrderActions extends Component
     /**
      * @return bool
      */
+    public function paid()
+    {
+        return $this->order->markAsPaid();
+    }
+
+    /**
+     * @return bool
+     */
     public function start()
     {
         if ($this->order->isPaid()) {

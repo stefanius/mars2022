@@ -3,9 +3,7 @@
 namespace App\Models;
 
 use Str;
-use Storage;
 use Carbon\Carbon;
-use Milon\Barcode\DNS1D;
 use App\Events\OrderPaid;
 use App\Events\OrderCreated;
 use App\Events\PaymentFailed;
@@ -84,12 +82,6 @@ class Order extends Model implements HasLocalePreference
             $newValue = $previousValue + 1;
             $order->order_number = sprintf("%05d", $newValue);
             $order->hash = Str::uuid()->toString();
-
-            // Generate barcode image
-            // $barcode = DNS1D::getBarcodePNG($model->order_number, 'EAN13');
-            // $barcodeFilename = md5($newValue) . ".png";
-            // Storage::disk('local')->put($barcodeFilename, $barcode);
-            // $model->barcode_image = $barcodeFilename;
         });
     }
 
@@ -129,6 +121,16 @@ class Order extends Model implements HasLocalePreference
     public function scopeStarted(Builder $query)
     {
         return $query->whereNotNull('started_at');
+    }
+
+    /**
+     * @param Builder $query
+     *
+     * @return Builder
+     */
+    public function scopeStartedToday(Builder $query)
+    {
+        return $query->whereNotNull('started_at')->where('started_at', '>', Carbon::today()->startOfDay())->where('started_at', '<', Carbon::today()->endOfDay());
     }
 
     public function molliePaymentOpen()
