@@ -25,14 +25,6 @@
 </div>
 
 <div class="columns">
-    <div class="column is-12">
-        {{ __('Choose the medal you want to recieve or choose "none" for attendees who wants to participate without a reward.') }}
-        {{ __('When you own a social discount card (like Ooievaarspas), you may want select the Discount option. Be aware that you have to show your card for each attendee you want a reduction.') }}
-        {{ __('When you need help feel free to ask one of our volunteers to help you out.') }}
-    </div>
-</div>
-
-<div class="columns">
     @if(Agent::isMobile())
         <div class="column is-one-quarter">
 

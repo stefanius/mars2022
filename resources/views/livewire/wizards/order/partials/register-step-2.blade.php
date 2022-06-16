@@ -1,9 +1,9 @@
 <div class="columns">
     <div class="column">
         <div class="field">
-            <label class="label">{{ __("First Name") }} *</label>
+            <label class="label">{{ __("First Name") }}</label>
             <div class="control is-clearfix">
-                <input wire:model="firstName" type="text" maxlength="70" required="required" name="first_name" class="input">
+                <input wire:model="firstName" type="text" maxlength="70" name="first_name" class="input">
             </div>
 
             <span class="help is-danger">
@@ -11,18 +11,14 @@
                     {{ $message }}
                 @enderror
             </span>
-
-            <span class="help">
-                {{ __('Fill in your name so our cashier can find your order.') }}
-            </span>
         </div>
     </div>
 
     <div class="column">
         <div class="field">
-            <label class="label">{{ __("Last Name") }} *</label>
+            <label class="label">{{ __("Last Name") }}</label>
             <div class="control is-clearfix">
-                <input wire:model="lastName" type="text" maxlength="70" required="required" name="last_name" class="input">
+                <input wire:model="lastName" type="text" maxlength="70" name="last_name" class="input">
             </div>
 
             <span class="help is-danger">
@@ -72,24 +68,6 @@
                 <input wire:model="phone"  type="text" maxlength="100" name="phone" class="input">
             </div>
             <p class="help">.</p>
-        </div>
-    </div>
-</div>
-
-<div class="columns">
-    <div class="column">
-        <div class="field">
-            <div class="control is-clearfix">
-                <input wire:model="termsOfService" type="checkbox" name="terms_of_service" class="checkbox"> {{ __("I agree with the terms of service.") }}
-            </div>
-            <span class="help is-danger">
-                @error('termsOfService')
-                    {{ $message }}
-                @enderror
-            </span>
-            <div class="control is-clearfix">
-                <input wire:model="mailConsent" type="checkbox" name="mail_consent" class="checkbox"> {{ __("I consent to recieve future information of this event by email.") }}
-            </div>
         </div>
     </div>
 </div>
