@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Distance;
-use App\Models\DistanceType;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,8 +18,10 @@ class CreateDistancesTable extends Migration
             $table->id();
             $table->string('name');
 
-            $table->unsignedBigInteger('distance_type_id');
-            $table->foreign('distance_type_id')->references('id')->on('distance_types');
+            $table->string('check_in_window_starts_at')->nullable();
+            $table->string('check_in_window_ends_at')->nullable();
+
+            $table->boolean('weekend')->nullable();
 
             $table->timestamps();
         });
@@ -35,19 +36,21 @@ class CreateDistancesTable extends Migration
             $table->foreign('season_id')->references('id')->on('seasons');
         });
 
-        $this->createDistance(5, DistanceType::SHORT);
-        $this->createDistance(10, DistanceType::SHORT);
-        $this->createDistance(15, DistanceType::SHORT);
-        $this->createDistance(25, DistanceType::LONG);
-        $this->createDistance(40, DistanceType::LONG);
-        $this->createDistance(70, DistanceType::WEEKEND);
+        $this->createDistance(5, "09:00", "15:00", false);
+        $this->createDistance(10, "09:00", "14:00", false);
+        $this->createDistance(15, "09:00", "14:00", false);
+        $this->createDistance(25, "08:30", "11:00", false);
+        $this->createDistance(40, "08:00", "10:00", false);
+        $this->createDistance(70, "08:00", "10:00", true);
     }
 
-    protected function createDistance($name, $distanceTypeId)
+    protected function createDistance($name, $checkInWindowStartsAt, $checkInWindowEndsAt, $weekend)
     {
         Distance::create([
             'name' => $name,
-            'distance_type_id' => $distanceTypeId,
+            'check_in_window_starts_at' => $checkInWindowStartsAt,
+            'check_in_window_ends_at' => $checkInWindowEndsAt,
+            'weekend' => $weekend,
         ]);
     }
 
