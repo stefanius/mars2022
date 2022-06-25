@@ -16,7 +16,7 @@
 {{ __('Because this distance is splitted over both saturday and sunday, you have to walk on both days halve the distance.') }}
 @endif()
 
-{{ __('You should start between:') }} {{ $order->distance->checkInTimeWindow() }}
+{{ __('You should start between') }}: {{ $order->distance->checkInTimeWindow() }}
 
 @component('mail::table')
 | {{ __('Medal') }} | {{ __('Quantity') }} |
