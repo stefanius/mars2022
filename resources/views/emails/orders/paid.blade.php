@@ -11,13 +11,12 @@
 {{ __('Date') }}: {{ $order->eventDate()->isoFormat('MMMM Do YYYY') }} ({{ $order->eventDate()->isoFormat('dddd') }})
 @endif()
 
-@if($order->distance->isLongDistance())
-{{ __('Because this is a long distance you must start before 15:00 hours. The finish will be closed when you start an a later time.') }}
+
+@if($order->distance->isWeekend())
+{{ __('Because this distance is splitted over both saturday and sunday, you have to walk on both days halve the distance.') }}
 @endif()
 
-@if($order->distance->isWeekendDistance())
-{{ __('Because this distance is splitted over both saturday and sunday, you have to walk on both days halve the distance. Also you must start before 15:00 hours.') }}
-@endif()
+{{ __('You should start between:') }} {{ $order->distance->checkInTimeWindow() }}
 
 @component('mail::table')
 | {{ __('Medal') }} | {{ __('Quantity') }} |

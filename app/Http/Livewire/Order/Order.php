@@ -39,7 +39,7 @@ class Order extends FormWizard
                 'distance' => 'required',
                 'ticketType' => 'required|array|min:1|size:' . max(count($this->ticketCount), 1),
                 'ticketCount' => 'required|array|min:1|size:' . max(count($this->ticketType), 1),
-                'halfPrice' => 'sometimes|nullable|array|size:' . count($this->ticketType),
+                'halfPrice' => 'sometimes|nullable|array|max:' . count($this->ticketType),
                 'ticketType.*' => 'required|integer|min:1',
                 'ticketCount.*' => 'required|integer|min:1',
                 'halfPrice.*' => 'sometimes|nullable|integer',

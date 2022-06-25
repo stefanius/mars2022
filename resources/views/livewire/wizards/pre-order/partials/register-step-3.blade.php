@@ -33,12 +33,31 @@
 
 <div class="columns">
     <div class="column">
-
-        @foreach($this->tickets as $ticket)
-            <span><strong>Medaile: {{ $ticket['ticket']->name }}</strong> € {{ $ticket['ticket']->amount_pre_order / 100 }} * {{ $ticket['quantity'] }} = € {{ $ticket['total_decimal'] }}</span> <br/>
-        @endforeach
-
-        <span><strong>{{ __("Total") }}:</strong> € {{ $this->grandTotalDecimal }}</span>
+        <table class="table is-striped">
+            <thead>
+              <tr>
+                <th>{{ __('Medal') }}</th>
+                <th>{{ __('Quantity') }}</th>
+                <th>{{ __('Amount') }}</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>{{ __('Total') }}</th>
+                <th></th>
+                <th>€ {{ $this->grandTotalDecimal }}</th>
+              </tr>
+            </tfoot>
+            <tbody>
+                @foreach($this->tickets as $ticket)
+                    <tr>
+                        <td>{{ $ticket['ticket']->name }}</td>
+                        <td>{{ $ticket['quantity'] }}</td>
+                        <td>€ {{ $ticket['total_decimal'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+          </table>
     </div>
 </div>
 

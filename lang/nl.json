@@ -48,6 +48,8 @@
     "Total number of attendees": "Totaal aantal deelnemers",
     "Total number of medals": "Totaal aantal medailles",
     "Total payment": "Totaal factuur",
+    "I consent to recieve future information of this event by email.": "Ik ga ermee akkoord dat ik in de toekomst op de hoogte wordt gehouden van dit evenement.",
+    "I agree with the <a href=\":url\" target=\"__BLANK\">terms of service</a>.": "Ik ga akkoord met de  <a href=\":url\" target=\"__BLANK\">algemene voorwaarden</a>.",
     "Thank you for your order. Bring this email with you when you are going to the Duinenmars.": "Bedankt voor je bestelling. Neem deze email mee als je naar de Duinenmars komt.",
     "Feel free to go back to our <a href=\"https://www.duinenmars.nl\">website</a> or start a <a href=\":newOrderUrl\">new order</a>.": "Als je wilt kan je terug naar onze <a href=\"https://www.duinenmars.nl\">website</a> of plaats een <a href=\":newOrderUrl\">nieuwe bestelling</a>.",
     "Choose the medal you want to recieve or choose \"none\" for attendees who wants to participate without a reward.": "Kies hieronder de medaille die je wilt ontvangen of kies \"geen\" voor deelnemers die alleen willen wandelen zonder beloning.",

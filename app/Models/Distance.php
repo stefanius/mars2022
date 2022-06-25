@@ -24,44 +24,24 @@ class Distance extends Model
      */
     protected $fillable = [
         'name',
-        'distance_type_id',
+        'check_in_window_starts_at',
+        'check_in_window_ends_at',
+        'weekend',
+
     ];
-
-    /**
-     * Determines if the distance is short.
-     *
-     * @return boolean
-     */
-    public function isShortDistance(): bool
-    {
-        return $this->distance_type_id === DistanceType::SHORT;
-    }
-
-    /**
-     * Determines if the distance is long.
-     *
-     * @return boolean
-     */
-    public function isLongDistance(): bool
-    {
-        return $this->distance_type_id === DistanceType::LONG;
-    }
 
     /**
      * Determines if the distance is spread over the weekend.
      *
      * @return boolean
      */
-    public function isWeekendDistance(): bool
+    public function isWeekend(): bool
     {
-        return $this->distance_type_id === DistanceType::WEEKEND;
+        return $this->weekend;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function type()
+    public function checkInTimeWindow()
     {
-        return $this->belongsTo(DistanceType::class);
+        return "{$this->check_in_window_starts_at} - {$this->check_in_window_ends_at}";
     }
 }

@@ -26,6 +26,14 @@ class OrderLine extends Model
     ];
 
     /**
+     * @return boolean
+     */
+    public function isHalfPrice()
+    {
+        return $this->half_price;
+    }
+
+    /**
      * @return float
      */
     public function getAmountAttribute()

@@ -80,7 +80,7 @@
     <div class="column">
         <div class="field">
             <div class="control is-clearfix">
-                <input wire:model="termsOfService" type="checkbox" name="terms_of_service" class="checkbox"> {{ __("I agree with the terms of service.") }}
+                <input wire:model="termsOfService" type="checkbox" name="terms_of_service" class="checkbox"> {!! __("I agree with the <a href=\":url\" target=\"__BLANK\">terms of service</a>.", ['url' => 'https://www.duinenmars.nl/algemene-voorwaarden']) !!}
             </div>
             <span class="help is-danger">
                 @error('termsOfService')
