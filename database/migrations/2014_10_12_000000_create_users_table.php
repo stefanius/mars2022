@@ -20,7 +20,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('locale');
             $table->boolean('admin')->default(false);
-            $table->timestamp('email_verified_at');
+
+            $table->unsignedBigInteger('season_id')->nullable();
+            $table->foreign('season_id')->references('id')->on('seasons');
+
+            $table->timestamp('login_window_starts_at')->nullable();
+            $table->timestamp('login_window_ends_at')->nullable();
+            $table->timestamp('suspended_at')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

@@ -17,23 +17,40 @@ class CreateDistancesTable extends Migration
         Schema::create('distances', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('long_distance')->default(false);
+
+            $table->string('check_in_window_starts_at')->nullable();
+            $table->string('check_in_window_ends_at')->nullable();
+
+            $table->boolean('weekend')->nullable();
 
             $table->timestamps();
         });
 
-        $this->createDistance(5);
-        $this->createDistance(10);
-        $this->createDistance(15);
-        $this->createDistance(25, true);
-        $this->createDistance(40, true);
+        Schema::create('distance_season', function (Blueprint $table) {
+            $table->id();
+
+            $table->unsignedBigInteger('distance_id');
+            $table->foreign('distance_id')->references('id')->on('distances');
+
+            $table->unsignedBigInteger('season_id');
+            $table->foreign('season_id')->references('id')->on('seasons');
+        });
+
+        $this->createDistance(5, "09:00", "15:00", false);
+        $this->createDistance(10, "09:00", "14:00", false);
+        $this->createDistance(15, "09:00", "14:00", false);
+        $this->createDistance(25, "08:30", "11:00", false);
+        $this->createDistance(40, "08:00", "10:00", false);
+        $this->createDistance(70, "08:00", "10:00", true);
     }
 
-    protected function createDistance($name, $longDistance = false)
+    protected function createDistance($name, $checkInWindowStartsAt, $checkInWindowEndsAt, $weekend)
     {
         Distance::create([
             'name' => $name,
-            'long_distance' => $longDistance,
+            'check_in_window_starts_at' => $checkInWindowStartsAt,
+            'check_in_window_ends_at' => $checkInWindowEndsAt,
+            'weekend' => $weekend,
         ]);
     }
 

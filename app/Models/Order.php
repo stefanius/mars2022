@@ -3,9 +3,7 @@
 namespace App\Models;
 
 use Str;
-use Storage;
 use Carbon\Carbon;
-use Milon\Barcode\DNS1D;
 use App\Events\OrderPaid;
 use App\Events\OrderCreated;
 use App\Events\PaymentFailed;
@@ -33,7 +31,7 @@ class Order extends Model implements HasLocalePreference
         'last_name',
         'email',
         'hash',
-        'organization',
+        'organisation',
         'phone',
         'order_number',
         'mollie_payment_id',
@@ -78,18 +76,12 @@ class Order extends Model implements HasLocalePreference
     {
         parent::boot();
 
-        self::creating(function (Model $model) {
+        self::creating(function (Order $order) {
             // Generete new ordernumber
             $previousValue = (int) Order::query()->max('order_number');
             $newValue = $previousValue + 1;
-            $model->order_number = sprintf("%05d", $newValue);
-            $model->hash = Str::uuid()->toString();
-
-            // Generate barcode image
-            // $barcode = DNS1D::getBarcodePNG($model->order_number, 'EAN13');
-            // $barcodeFilename = md5($newValue) . ".png";
-            // Storage::disk('local')->put($barcodeFilename, $barcode);
-            // $model->barcode_image = $barcodeFilename;
+            $order->order_number = sprintf("%05d", $newValue);
+            $order->hash = Str::uuid()->toString();
         });
     }
 
@@ -129,6 +121,16 @@ class Order extends Model implements HasLocalePreference
     public function scopeStarted(Builder $query)
     {
         return $query->whereNotNull('started_at');
+    }
+
+    /**
+     * @param Builder $query
+     *
+     * @return Builder
+     */
+    public function scopeStartedToday(Builder $query)
+    {
+        return $query->whereNotNull('started_at')->where('started_at', '>', Carbon::today()->startOfDay())->where('started_at', '<', Carbon::today()->endOfDay());
     }
 
     public function molliePaymentOpen()
@@ -211,7 +213,8 @@ class Order extends Model implements HasLocalePreference
         return $query->whereHas('orderLines', function (Builder $query) {
             return $query
                 ->select(DB::raw('SUM(quantity) as sum_quantity'))
-                ->having('sum_quantity', '>', Season::activeSeason()->minimum_group);
+                ->groupBy('order_lines.id')
+                ->having('sum_quantity', '>', (string) Season::activeSeason()->minimum_group);
         });
     }
 

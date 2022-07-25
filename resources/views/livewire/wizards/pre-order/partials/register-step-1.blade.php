@@ -28,7 +28,7 @@
                 <select wire:model="distance" name="distance" required="required" class="input">
                     <option selected hidden>{{ __("Choose") }}</option>
                     @foreach($distances as $distance)
-                        <option value="{{ $distance->id }}">{{ __($distance->name) }}</option>
+                        <option value="{{ $distance->id }}">{{ __($distance->name) }} KM</option>
                     @endforeach()
                 </select>
             </div>
@@ -41,11 +41,13 @@
         </div>
     </div>
 </div>
+
 <div class="columns">
     <div class="column is-12">
         {{ __('Choose the medal you want to recieve or choose "none" for attendees who wants to participate without a reward.') }}
     </div>
 </div>
+
 <div class="columns">
     @if(Agent::isMobile())
         <div class="column is-one-quarter">

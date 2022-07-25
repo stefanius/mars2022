@@ -18,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
+        \App\Events\SeasonCreated::class => [
+            \App\Listeners\SetupSeason::class,
+        ],
+
         \App\Events\OrderPaid::class => [
             \App\Listeners\MailOrderPaidConfirmation::class,
         ],

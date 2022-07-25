@@ -1,0 +1,20 @@
+/home/vagrant/code/app/Actions/Fortify/UpdateUserProfileInformation.php:34         ElseExpression          The method update uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
+/home/vagrant/code/app/Console/Kernel.php:25                                       UnusedFormalParameter   Avoid unused parameters such as '$schedule'.
+/home/vagrant/code/app/Exceptions/Handler.php:37                                   UnusedFormalParameter   Avoid unused parameters such as '$e'.
+/home/vagrant/code/app/Http/Controllers/Auth/ConfirmablePasswordController.php:19  UnusedFormalParameter   Avoid unused parameters such as '$request'.
+/home/vagrant/code/app/Http/Controllers/Backoffice/Orders/OrdersController.php:62  UnusedLocalVariable     Avoid unused local variables such as '$order'.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                 BooleanArgumentFlag     The method mount has a boolean flag argument $showHeader, which is a certain sign of a Single Responsibility Principle violation.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                 BooleanArgumentFlag     The method mount has a boolean flag argument $modal, which is a certain sign of a Single Responsibility Principle violation.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                 BooleanArgumentFlag     The method mount has a boolean flag argument $allowPagination, which is a certain sign of a Single Responsibility Principle violation.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                 BooleanArgumentFlag     The method mount has a boolean flag argument $showCreateButton, which is a certain sign of a Single Responsibility Principle violation.
+/home/vagrant/code/app/Http/Livewire/Table.php:107                                 ExcessiveParameterList  The method mount has 11 parameters. Consider reducing the number of parameters to less than 10.
+/home/vagrant/code/app/Http/Livewire/Table.php:150                                 ElseExpression          The method records uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
+/home/vagrant/code/app/Http/Middleware/CheckOrderOpening.php:19                    UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/CheckPreOrderOpening.php:19                 UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/CheckUserLoginWindow.php:19                 UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/CheckUserSuspended.php:19                   UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/SetLocale.php:20                            UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Http/Middleware/SetUserLocale.php:18                        UnusedFormalParameter   Avoid unused parameters such as '$guards'.
+/home/vagrant/code/app/Models/Order.php:21                                         TooManyMethods          The class Order has 26 non-getter- and setter-methods. Consider refactoring Order to keep number of methods under 25.
+/home/vagrant/code/app/Models/Order.php:21                                         TooManyPublicMethods    The class Order has 26 public methods. Consider refactoring Order to keep number of public methods under 10.
+/home/vagrant/code/app/Models/Order.php:21                                         CouplingBetweenObjects  The class Order has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.

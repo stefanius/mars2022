@@ -4,9 +4,10 @@ namespace App\Http\Livewire\Order;
 
 use App\Models\Season;
 use App\Models\Distance;
-use App\Models\OrderLine;
 use App\Models\TicketType;
 use Illuminate\Support\Arr;
+use App\Actions\CreateOrder;
+use Illuminate\Validation\Rule;
 use App\Http\Livewire\FormWizard;
 
 class Order extends FormWizard
@@ -14,7 +15,7 @@ class Order extends FormWizard
     public $firstName;
     public $lastName;
     public $email;
-    public $organization;
+    public $organisation;
     public $distance;
     public $ticketType = [];
     public $ticketCount = [];
@@ -38,15 +39,19 @@ class Order extends FormWizard
                 'distance' => 'required',
                 'ticketType' => 'required|array|min:1|size:' . max(count($this->ticketCount), 1),
                 'ticketCount' => 'required|array|min:1|size:' . max(count($this->ticketType), 1),
+                'halfPrice' => 'sometimes|nullable|array|max:' . count($this->ticketType),
                 'ticketType.*' => 'required|integer|min:1',
                 'ticketCount.*' => 'required|integer|min:1',
+                'halfPrice.*' => 'sometimes|nullable|integer',
             ],
             2 => [
-                'firstName' => 'sometimes|nullable',
-                'lastName' => 'sometimes|nullable',
+                'firstName' => 'required',
+                'lastName' => 'required',
                 'email' => 'sometimes|nullable|email:rfc,dns',
-                'organization' => 'sometimes|nullable',
+                'organisation' => 'sometimes|nullable',
                 'phone' => 'sometimes|nullable',
+                'termsOfService' => ['required', 'boolean', Rule::in(['1', 'true', true])],
+                'mailConsent' => ['sometimes', 'nullable', 'boolean', Rule::in(['1', 'true', true])],
             ],
         ];
     }
@@ -83,28 +88,19 @@ class Order extends FormWizard
      */
     public function submit()
     {
-        $this->order = \App\Models\Order::create([
+        $this->order = app(CreateOrder::class)->handle([
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
-            'organization' => $this->organization,
+            'organisation' => $this->organisation,
             'phone' => $this->phone,
             'distance_id' => $this->distance,
             'season_id' => Season::activeSeason()->id,
             'day_id' => now()->dayOfWeekIso,
             'locale' => $this->locale,
-        ]);
-
-        $this->getTicketsProperty()->each(function ($ticket) {
-            OrderLine::create([
-                'order_id' => $this->order->id,
-                'ticket_type_id' => $ticket['ticket']->id,
-                'half_price' => Arr::get($ticket, 'half_price', false),
-                'quantity' => $ticket['quantity'],
-                'amount' => $ticket['ticket']->amount_order,
-                'total_amount' => $ticket['total'],
-            ]);
-        });
+            'mail_consent' => $this->mailConsent,
+            'agreed_terms_of_service' => $this->termsOfService,
+        ], $this->ticketType, $this->ticketCount, $this->halfPrice);
 
         $this->lastPage();
     }
@@ -187,16 +183,6 @@ class Order extends FormWizard
         $this->reset();
 
         $this->firstPage();
-//        $this->firstName = null;
-//        $this->lastName = null;
-//        $this->email = null;
-//        $this->organization = null;
-//        $this->phone = null;
-//        $this->distance = null;
-//
-//        $this->ticketCount = [];
-//        $this->ticketType = [];
-//        $this->halfPrice = [];
     }
 
     /**

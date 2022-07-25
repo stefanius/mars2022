@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth', 'user.locale']], function () {
+Route::group(['middleware' => ['auth', 'user.locale', 'user.suspended', 'user.login-window']], function () {
     Route::resource('/', 'Home\HomeController', ['only' => ['index']]);
 
     Route::resource('profile', 'Profile\ProfileController', ['only' => ['index']]);
@@ -27,12 +27,14 @@ Route::group(['middleware' => ['auth', 'user.locale']], function () {
 
     Route::resource('seasons', 'Seasons\SeasonsController', ['only' => ['index', 'show', 'create', 'store']]);
 
+    Route::resource('users', 'Users\UsersController', ['only' => ['index', 'show', 'create', 'store']]);
+
     Route::get('statistics/orders', 'Statistics\OrderStatisticsController')->name('statistics.orders');
 
     Route::get('ticket-booth', 'TicketBooth\TicketBoothController@index')->name('ticket-booth.index');
     Route::get('ticket-booth/order-searcher', 'TicketBooth\TicketBoothController@orderSearcher')->name('ticket-booth.order-searcher');
     Route::get('ticket-booth/sales', 'TicketBooth\TicketBoothController@sales')->name('ticket-booth.sales');
-    Route::get('ticket-booth/pre-oder', 'TicketBooth\TicketBoothController@preorder')->name('ticket-booth.pre-order');
+    Route::get('ticket-booth/pre-order', 'TicketBooth\TicketBoothController@preorder')->name('ticket-booth.pre-order');
     Route::get('ticket-booth/medals', 'TicketBooth\TicketBoothController@medals')->name('ticket-booth.medals');
 
     Route::resource('order-payments', 'Orders\OrderPaymentsController', ['only' => ['index', 'show', 'create', 'store']])->parameter('OrderPayment', 'Order');

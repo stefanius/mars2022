@@ -7,6 +7,13 @@ use App\Models\Order;
 
 class CreateMolliePayment
 {
+    /**
+     * Prepate a mollie payment.
+     *
+     * @param Order $order
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function handle(Order $order)
     {
         return $this->preparePayment($order);
@@ -14,6 +21,8 @@ class CreateMolliePayment
 
     /**
      * Prepare Mollie payment.
+     *
+     * @param Order $order
      *
      * @return \Illuminate\Http\RedirectResponse
      */
