@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
         $currentYear = Carbon::now()->year - 1;
 
         for ($year = ($currentYear - 5); $year <= $currentYear; $year++) {
-            \App\Models\Season::factory(1)->create([
+            $season =  \App\Models\Season::factory()->create([
                 'edition' => $year - 2000,
                 'year' => $year,
                 'minimum_group' => 8,

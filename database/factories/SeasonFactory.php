@@ -27,6 +27,7 @@ class SeasonFactory extends Factory
             'saturday_date' => $this->faker->date(),
             'sunday_date' => $this->faker->date(),
             'year' => $this->faker->year(),
+            'edition' => $this->faker->randomNumber(2),
         ];
     }
 }

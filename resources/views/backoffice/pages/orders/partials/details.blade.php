@@ -4,7 +4,7 @@
             <div class="">
                 <strong>{{ __('Order Number') }}</strong> {{ $order->order_number }} <br/>
                 @if(auth()->user()->isAdmin())
-                    <strong>{{ __('Organization') }}</strong> {{ $order->organization }} <br/>
+                    <strong>{{ __('Organisation') }}</strong> {{ $order->organisation }} <br/>
                     <strong>{{ __('Name') }}</strong> {{ $order->name }} <br/>
                     <strong>{{ __('Email') }}</strong> {{ $order->email }} <br/>
                     <strong>{{ __('Phone') }}</strong> {{ $order->phone }} <br/>

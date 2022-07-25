@@ -1,9 +1,9 @@
 <table class="table">
     <thead>
     <tr>
-        <th width="50%">{{ __("Medal") }}</th>
-        <th width="50%">{{ __("Amount") }}</th>
-        <th width="50%">{{ __("Discount") }}</th>
+        <th>{{ __("Medal") }}</th>
+        <th>{{ __("Amount") }}</th>
+        <th>{{ __("Discount") }}</th>
     </tr>
     </thead>
 
@@ -11,7 +11,7 @@
     @for ($i = $start; $i < $start + 6; $i++)
         <tr>
             <td>
-                <select wire:model="ticketType.{{ $i }}" id="ticket_type_{{ $i }}" class="input">
+                <select wire:model="ticketType.{{ $i }}" id="ticket_type_{{ $i }}" class="input" style="width: 80px;">
                     <option selected hidden>{{ __("Choose") }}</option>
 
                     @foreach($ticketTypes as $ticketType)

@@ -17,8 +17,8 @@
         <span>{{ $firstName }} {{ $lastName }}</span> <br/>
         <span>{{ $email }}</span> <br/>
 
-        @if ($organization)
-            <span>{{ $organization }}</span> <br/>
+        @if ($organisation)
+            <span>{{ $organisation }}</span> <br/>
         @endif
 
         @if ($phone)
@@ -31,16 +31,33 @@
     </div>
 </div>
 
-<div class="columns">
-    <div class="column">
-
+<table class="table is-striped">
+    <thead>
+      <tr>
+        <th>{{ __('Medal') }}</th>
+        <th>{{ __('Quantity') }}</th>
+        <th>{{ __('Amount') }}</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>{{ __('Total') }}</th>
+        <th></th>
+        <th>€ {{ number_format($this->grandTotalDecimal, 2) }}</th>
+      </tr>
+    </tfoot>
+    <tbody>
         @foreach($this->tickets as $ticket)
-            <span><strong>Medaile: {{ $ticket['ticket']->name }}</strong> € {{ $ticket['ticket']->amount_pre_order / 100 }} * {{ $ticket['quantity'] }} = € {{ $ticket['total_decimal'] }}</span> <br/>
+            <tr>
+                <td>{{ $ticket['ticket']->name }}  @if($ticket['half_price']) * @endif </td>
+                <td>{{ $ticket['quantity'] }}</td>
+                <td>€ {{ number_format($ticket['total_decimal'], 2) }}</td>
+            </tr>
         @endforeach
+    </tbody>
+  </table>
 
-        <span><strong>{{ __("Total") }}:</strong> € {{ $this->grandTotalDecimal }}</span>
-    </div>
-</div>
+  <span>{{ __('*) There is a discount for this orderline. You should show your Ooievaarspas, Westlandpas or Zoetermeerpas at the desk.') }}</span>
 
 <div class="field is-grouped is-grouped-right">
     <button wire:click="submit" type="submit" class="button button is-medium is-success">

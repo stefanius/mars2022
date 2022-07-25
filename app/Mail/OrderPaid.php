@@ -26,6 +26,8 @@ class OrderPaid extends Mailable implements ShouldQueue
     {
         $this->order = $order;
         $this->locale($order->preferredLocale());
+
+        $this->subject = "[DUINENMARS] " . __("Order paid") . " ({$order->order_number})";
     }
 
     /**

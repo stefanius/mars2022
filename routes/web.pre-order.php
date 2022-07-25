@@ -17,10 +17,14 @@ use App\Http\Controllers\PreOrder\Payment\PaymentRedirect;
 |
 */
 
-Route::group(['middleware' => ['locale']], function () {
+Route::group(['middleware' => ['locale', 'pre-order.open']], function () {
     Route::get('/', function () {
         return view('register.pages.index');
-    });
+    })->name('pre-order.start');
+
+    Route::get('/closed', function () {
+        return view('register.pages.pre-order-closed');
+    })->name('pre-order.closed');
 
     Route::get('/payment/redirect', PaymentRedirect::class)->name('payment.redirect');
 
@@ -48,4 +52,10 @@ Route::group(['middleware' => ['locale']], function () {
             \App\Models\Order::where('order_number', $payment->metadata->order_id)->first()->paymentFailed($payment);
         }
     })->name('webhooks.mollie');
+});
+
+Route::group(['middleware' => ['locale']], function () {
+    Route::get('/closed', function () {
+        return view('register.pages.pre-order-closed');
+    })->name('pre-order.closed');
 });

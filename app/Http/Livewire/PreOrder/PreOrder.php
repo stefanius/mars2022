@@ -16,7 +16,7 @@ class PreOrder extends FormWizard
     public $firstName;
     public $lastName;
     public $email;
-    public $organization;
+    public $organisation;
     public $distance;
     public $ticketType = [];
     public $ticketCount = [];
@@ -53,9 +53,10 @@ class PreOrder extends FormWizard
                 'firstName' => 'required|min:1',
                 'lastName' => 'required|min:1',
                 'email' => 'required|email:rfc,dns',
-                'organization' => 'sometimes|nullable',
+                'organisation' => 'sometimes|nullable',
                 'phone' => 'sometimes|nullable',
                 'termsOfService' => ['required', 'boolean', Rule::in(['1', 'true', true])],
+                'mailConsent' => ['sometimes', 'nullable', 'boolean', Rule::in(['1', 'true', true])],
             ],
         ];
     }
@@ -91,7 +92,7 @@ class PreOrder extends FormWizard
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
-            'organization' => $this->organization,
+            'organisation' => $this->organisation,
             'phone' => $this->phone,
             'distance_id' => $this->distance,
             'day_id' => $this->day,

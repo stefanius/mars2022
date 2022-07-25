@@ -21,6 +21,7 @@ class OrderPaymentsController extends Controller
      * Show a order page.
      *
      * @param Order $order
+     *
      * @return \Illuminate\View\View
      */
     public function show(Order $order)
