@@ -9,19 +9,20 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "doctrine/dbal": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "illuminate/support": "^9.0.0",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^9.0.0",
-        "illuminate/support": "^9.0.0",
         "laravel/homestead": "^13.2",
         "laravel/jetstream": "^2.6",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
+        "milon/barcode": "^9.0",
         "mollie/laravel-mollie": "^2.19",
-        "torann/geoip": "^3.0",
-        "milon/barcode": "^9.0"
+        "torann/geoip": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",

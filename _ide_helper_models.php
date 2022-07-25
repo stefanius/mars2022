@@ -9,9 +9,10 @@
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  */
 
+
 namespace App\Models{
 /**
- * App\Models\Address.
+ * App\Models\Address
  *
  * @property int $id
  * @property string $name
@@ -42,14 +43,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereStreetAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereUpdatedAt($value)
  */
-    class Address extends \Eloquent
-    {
-    }
+	class Address extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\AddressType.
+ * App\Models\AddressType
  *
  * @property int $id
  * @property string $name
@@ -65,14 +64,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AddressType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AddressType whereUpdatedAt($value)
  */
-    class AddressType extends \Eloquent
-    {
-    }
+	class AddressType extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Day.
+ * App\Models\Day
  *
  * @property int $id
  * @property string $name
@@ -84,37 +81,37 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Day whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Day whereShowOnPreOrder($value)
  */
-    class Day extends \Eloquent
-    {
-    }
+	class Day extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Distance.
+ * App\Models\Distance
  *
  * @property int $id
  * @property string $name
- * @property int $long_distance
+ * @property string|null $check_in_window_starts_at
+ * @property string|null $check_in_window_ends_at
+ * @property int|null $weekend
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Distance newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Distance newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Distance query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Distance whereCheckInWindowEndsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Distance whereCheckInWindowStartsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Distance whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Distance whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Distance whereLongDistance($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Distance whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Distance whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Distance whereWeekend($value)
  */
-    class Distance extends \Eloquent
-    {
-    }
+	class Distance extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\InventoryItem.
+ * App\Models\InventoryItem
  *
  * @property int $id
  * @property string|null $name
@@ -137,24 +134,23 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|InventoryItem whereObtainedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|InventoryItem whereUpdatedAt($value)
  */
-    class InventoryItem extends \Eloquent
-    {
-    }
+	class InventoryItem extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Order.
+ * App\Models\Order
  *
  * @property int $id
  * @property string|null $order_number
  * @property string|null $barcode_image
  * @property string|null $mollie_payment_id
  * @property string|null $mollie_payment_status
+ * @property string|null $hash
  * @property string|null $first_name
  * @property string|null $last_name
  * @property string|null $email
- * @property string|null $organization
+ * @property string|null $organisation
  * @property string|null $phone
  * @property int $mail_consent
  * @property int $agreed_terms_of_service
@@ -197,6 +193,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereFinishedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereHash($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereLocale($value)
@@ -204,7 +201,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereMolliePaymentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereMolliePaymentStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereOrderNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereOrganization($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereOrganisation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaidAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePrintedAt($value)
@@ -212,14 +209,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereStartedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  */
-    class Order extends \Eloquent implements \Illuminate\Contracts\Translation\HasLocalePreference
-    {
-    }
+	class Order extends \Eloquent implements \Illuminate\Contracts\Translation\HasLocalePreference {}
 }
 
 namespace App\Models{
 /**
- * App\Models\OrderLine.
+ * App\Models\OrderLine
  *
  * @property int $id
  * @property int $order_id
@@ -245,14 +240,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|OrderLine whereTotalAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderLine whereUpdatedAt($value)
  */
-    class OrderLine extends \Eloquent
-    {
-    }
+	class OrderLine extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Season.
+ * App\Models\Season
  *
  * @property int $id
  * @property int $edition
@@ -281,14 +274,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Season whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Season whereYear($value)
  */
-    class Season extends \Eloquent
-    {
-    }
+	class Season extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\TicketType.
+ * App\Models\TicketType
  *
  * @property int $id
  * @property string $name
@@ -316,14 +307,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TicketType whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TicketType whereWithMedal($value)
  */
-    class TicketType extends \Eloquent
-    {
-    }
+	class TicketType extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\User.
+ * App\Models\User
  *
  * @property int $id
  * @property string $name
@@ -331,8 +320,12 @@ namespace App\Models{
  * @property string $password
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
+ * @property string $locale
  * @property int $admin
- * @property \Illuminate\Support\Carbon $email_verified_at
+ * @property int|null $season_id
+ * @property string|null $login_window_starts_at
+ * @property string|null $login_window_ends_at
+ * @property string|null $suspended_at
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -348,16 +341,19 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdmin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLoginWindowEndsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLoginWindowStartsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereSeasonId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereSuspendedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
-    class User extends \Eloquent
-    {
-    }
+	class User extends \Eloquent implements \Illuminate\Contracts\Translation\HasLocalePreference {}
 }
+

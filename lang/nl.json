@@ -1,4 +1,6 @@
 {
+    "Order paid": "Bestelling betaald",
+    "Started Hikers": "Gestarte Wandelaars",
     "First Name": "Voornaam",
     "Last Name": "Achternaam",
     "Choose": "Kies",
@@ -25,7 +27,7 @@
     "Inventory": "Inventaris",
     "Seasons": "Seizoenen",
     "Edition": "Editie",
-    "Addresses": "Addressen",
+    "Addresses": "Adressen",
     "Ticket Booth": "Loket",
     "Search Order": "Zoek Order",
     "Sales": "Verkoop",
